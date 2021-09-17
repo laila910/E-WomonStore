@@ -1,0 +1,230 @@
+1- categories
+
+catname: enum ["FootWear","Clothing","Watches","Jewelry","Bags","Accessories","Eyewear"]
+catdescription
+catstatus : active or not with Boolean True or false , default false 
+catCreatedDate:Date with default new Date()
+
+add category
+edit category
+del category
+get all categories
+show single category
+
+2-brand
+
+brandName
+brandImage
+
+add brand
+edit brand
+del brand
+get all brands
+show single brand
+
+3-customers
+
+customerFirstName
+customerLastName
+customerEmail
+customerMobileNo
+customerPassword
+customerAddress
+customerCountry
+customerState
+customerZipCode
+customerCreditCard: like "visa" as example
+customerCreditCardTypeId
+customerExpMonth
+customerExpYr
+customerCVC :"Card Verification Code"
+customerDateRegistered : Date with default new Date()
+
+
+add customer
+edit customer
+del customer
+get all customers
+show single customer
+
+4-suppliers "they add products to the E-store directly" && "when the customer make an order ,the notification will send to the supplier to approve the request and send the order details to the account of the customer . and send the notification to ordershipper to deliver the order to the customer " 
+
+
+supplierFirstName
+supplierLastName
+supplierEmail
+supplierMobileNo
+supplierPassword
+supplierCompanyName
+supplierCompanyAddress
+supplierCompanyCity
+supplierCompanyState
+supplierCompanyZipCode
+supplierCompanyFax
+supplierCompanyURL
+
+
+
+add supplier
+edit supplier
+del supplier
+get all suppliers
+show single supplier
+
+5-ordershipper "they are working for the suppliers' Company to deliver the order "
+
+ordershipperFirstName
+ordershipperLastName
+ordershipperEmail
+ordershipperMobileNo
+ordershipperPassword
+ordershipperShippingMethod
+
+
+
+add ordershipper
+edit ordershipper
+del ordershipper
+get all ordershippers
+show single ordershipper
+
+6-products
+
+//ProductDiscountAmount and ProductDiscountStatus 
+
+productName
+productCat
+productBrand
+productStatus : enum["new","old","used"]
+productFeatured : Boolean true or false with default false
+productFirstColor:
+productSecondColor: 
+productThirdColor:
+//if there is a way to make the colors pushed in color array direct to each product That I ////entered It
+productFirstImage:
+productSecondImage:
+productThirdImage:
+// bardo zay el colors law feeh 7al l dah ba3deen , Still Remember :)
+productSizes: enum["S","M","L","XL"]
+productPrice:
+productQuantity:
+productDescription:
+productSpecifications:
+unitsInStock:
+productDiscountAmount:
+productDiscountStatus: Boolean  True or False with default false 
+productAvailable: Boolean True or False with default True 
+productMadeDate : Date with default new Date()
+
+
+add product
+edit product
+del product
+get all products
+show single product
+
+
+6-productReviews
+
+reviewerName
+reviewerEmail
+reviewerComment
+reviewMadeDate : Date with default new Date()
+
+
+add review //the review can be added by customer only
+//edit review that is cann't
+del review
+get all reviewes
+show single reviewes
+
+7- whishlist 
+
+quntity : // the number of product in the whishlist
+path: // the status that is sepecified that the customer can be added the product to the card or not ,Boolean True or False with default False 
+
+
+add whishlist //the whishlist can be added by customer only
+//edit whishlist that is cann't
+del whishlist
+get all whishlist
+show single whishlist
+
+8-addToCard
+
+createdAtDate: Date with default new Date() // the date that is added to card by customer 
+modifiedAtDate: Date with default new Date() // the date if the customer edit the card 
+quntity: // the number of product in the card 
+session: // the status that is sepecified that the customer can be order or not when open this session , Boolean True or False with default False 
+
+
+add addToCard //the addToCard can be added by customer only
+//edit addToCard that is cann't
+del addToCard
+get all addToCard
+show single addToCard
+
+9-orders "after the customer submit an order ,the notification will be send to the supplier to approve the order and sent to the ordershipper with notification . finally the ordershipper will reply with some data of the order and this data are added to the profile of the customer "
+
+//ordernumber is the id that is indexed by default by the database
+orderDate: Date with default new Date()
+shipDate: // this date will be added by the ordershipper 
+salesTax:
+quantity: //the number of products of the order
+totalCost: // the cost of the total order
+shippingCost: // is indicated by the ordershipper 3la 7asab the address of the customer 
+isPaid: Boolean with true and false with default False // after the ordershipper deliver the //order to the customer , the ordershipper can be change the isPaid status to True if the customer is paid 
+
+paymentDate: Date // indicated by the ordershipper too ,besides the isPaid status
+isDelivered: Boolean with true or false with default false // after the ordershipper deliver the order to the customer, the ordershipper can change the status of is isDelivered to True .
+
+orderCanceled: Boolean True or False with default False // the customer can cancel the order in a specified time before the ordershipper is moved to deliver the order to the customer 
+
+add order //the order can be added by customer only
+edit order // the order can be edit by customer only
+del order // the order can be deleted by customer only
+get all orders 
+show single order 
+
+10-contactMessage
+// the name of sa7b el account ,dah hagebo lama arbot been el apis (or resources) ,Remember
+// the customer can send the message to my email of the admin or not , I need to know if here I can send email from here or not 
+
+subject: 
+message: 
+
+add contactMessage //the contactMessage can be added by customer only
+edit contactMessage // cannot edit by anyone
+del contactMessage // the contactMessage can be deleted by admin only
+get all contactMessages // the contactMessages can be get by admin to show them
+show single contactMessage // the contactMessage can be show by admin to show it 
+
+11-admin 
+"the admin can be control of everything of the E-store 
+
+adminFirstName:
+adminLastName:
+adminEmail:
+adminMobileNo:
+adminPassword:
+
+add admin 
+edit admin 
+del admin 
+get all admins 
+show single admin 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
