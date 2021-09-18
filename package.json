@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/laila910/E-WomonStore#readme",
   "dependencies": {
-    "mongoose": "^6.0.6"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.6",
+    "validator": "^13.6.0"
   }
 }
