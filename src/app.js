@@ -7,6 +7,7 @@ const categoryRoutes = require('../routes/category.routes')
 const brandRoutes = require('../routes/brand.routes')
 const supplierRoutes = require('../routes/supplier.routes')
 const ordershipperRoutes = require('../routes/ordershipper.routes')
+const productRoutes = require('../routes/product.routes')
 
 const app = express()
 
@@ -18,6 +19,6 @@ app.use(categoryRoutes)
 app.use(brandRoutes)
 app.use(supplierRoutes)
 app.use(ordershipperRoutes)
-
+app.use(productRoutes)
 
 module.exports = app

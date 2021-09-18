@@ -91,7 +91,7 @@ show single ordershipper
 
 6-products
 
-//ProductDiscountAmount and ProductDiscountStatus 
+
 
 productName
 productCat
@@ -125,7 +125,7 @@ get all products
 show single product
 
 
-6-productReviews
+7-productReviews
 
 reviewerName
 reviewerEmail
@@ -139,7 +139,7 @@ del review
 get all reviewes
 show single reviewes
 
-7- whishlist 
+8- whishlist 
 
 quntity : // the number of product in the whishlist
 path: // the status that is sepecified that the customer can be added the product to the card or not ,Boolean True or False with default False 
@@ -151,7 +151,7 @@ del whishlist
 get all whishlist
 show single whishlist
 
-8-addToCard
+9-addToCard
 
 createdAtDate: Date with default new Date() // the date that is added to card by customer 
 modifiedAtDate: Date with default new Date() // the date if the customer edit the card 
@@ -165,7 +165,7 @@ del addToCard
 get all addToCard
 show single addToCard
 
-9-orders "after the customer submit an order ,the notification will be send to the supplier to approve the order and sent to the ordershipper with notification . finally the ordershipper will reply with some data of the order and this data are added to the profile of the customer "
+10-orders "after the customer submit an order ,the notification will be send to the supplier to approve the order and sent to the ordershipper with notification . finally the ordershipper will reply with some data of the order and this data are added to the profile of the customer "
 
 //ordernumber is the id that is indexed by default by the database
 orderDate: Date with default new Date()
@@ -187,7 +187,7 @@ del order // the order can be deleted by customer only
 get all orders 
 show single order 
 
-10-contactMessage
+11-contactMessage
 // the name of sa7b el account ,dah hagebo lama arbot been el apis (or resources) ,Remember
 // the customer can send the message to my email of the admin or not , I need to know if here I can send email from here or not 
 
@@ -200,7 +200,7 @@ del contactMessage // the contactMessage can be deleted by admin only
 get all contactMessages // the contactMessages can be get by admin to show them
 show single contactMessage // the contactMessage can be show by admin to show it 
 
-11-admin 
+12-admin 
 "the admin can be control of everything of the E-store 
 
 adminFirstName:
