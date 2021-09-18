@@ -15,6 +15,7 @@ show single category
 
 brandName
 brandImage
+brandDescription
 
 add brand
 edit brand
