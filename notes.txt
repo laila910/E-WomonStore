@@ -33,7 +33,7 @@ customerAddress
 customerCountry
 customerState
 customerZipCode
-customerCreditCard: like "visa" as example
+customerCreditCard: enum["visa","discover","amex","mastercard"]
 customerCreditCardTypeId
 customerExpMonth
 customerExpYr

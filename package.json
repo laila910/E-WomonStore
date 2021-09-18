@@ -1,0 +1,23 @@
+{
+  "name": "E-store",
+  "version": "1.0.0",
+  "description": "E-commerce by NodeJs ,Mongodb and angular",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laila910/E-WomonStore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laila910/E-WomonStore/issues"
+  },
+  "homepage": "https://github.com/laila910/E-WomonStore#readme",
+  "dependencies": {
+    "mongoose": "^6.0.6"
+  }
+}
