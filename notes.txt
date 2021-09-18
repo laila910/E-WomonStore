@@ -141,8 +141,8 @@ show single reviewes
 
 8- whishlist 
 
-quntity : // the number of product in the whishlist
-path: // the status that is sepecified that the customer can be added the product to the card or not ,Boolean True or False with default False 
+productQuntity : // the number of product in the whishlist
+pathToCard: // the status that is sepecified that the customer can be added the product to the card or not ,Boolean True or False with default False 
 
 
 add whishlist //the whishlist can be added by customer only
