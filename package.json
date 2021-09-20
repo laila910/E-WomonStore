@@ -1,26 +1,30 @@
 {
-  "name": "E-store",
-  "version": "1.0.0",
-  "description": "E-commerce by NodeJs ,Mongodb and angular",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/laila910/E-WomonStore.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/laila910/E-WomonStore/issues"
-  },
-  "homepage": "https://github.com/laila910/E-WomonStore#readme",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "mongoose": "^6.0.6",
-    "validator": "^13.6.0"
-  }
+    "name": "E-store",
+    "version": "1.0.0",
+    "description": "E-commerce by NodeJs ,Mongodb and angular",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/laila910/E-WomonStore.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/laila910/E-WomonStore/issues"
+    },
+    "homepage": "https://github.com/laila910/E-WomonStore#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "mongoose": "^6.0.6",
+        "nodemailer": "^6.6.3",
+        "validator": "^13.6.0"
+    }
 }

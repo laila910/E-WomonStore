@@ -1,0 +1,61 @@
+## supplier:
+----------
+
+supplierFirstName
+supplierLastName
+supplierEmail
+supplierMobileNo
+supplierPassword 
+supplierCompanyName
+supplierImageProfile
+supplierCompanyAddress=[{addrType:{},addrDetails:{}}]
+supplierCompanyFax
+supplierCompanyURL
+AccountStatus:activate or not by default false 
+
+
+functions:
+1-register
+2-login
+3-logout
+4-profile
+5-editProfile
+6-deactivateAccount
+7-activate
+ #notes:
+ password must be encrypted
+8-sendEmailToAdmin 
+
+
+## product
+----------
+
+productName
+productCat = cat 
+productBrand = brand
+productStatus : enum["new","old","used"]
+productFeatured : Boolean true or false with default false
+productColors:{firstColor:{},secondColr:{},thirdColr:{}}
+productImages:{firstImage:{},secondImage:{},thirdImage:{}}
+productSizes: enum["S","M","L","XL"]
+productPrice:
+productQuantity:
+productDescription:
+productSpecifications:[{firstSpec:{},secondSpec:{},thirdSpec:{}}]
+unitsInStock:
+productDiscount:{supplier:{},discountAmount:{},discountStatus:{true by default}}
+productAvailableStatus: Boolean True or False with default True 
+addedReview:[{customer:{},reviewTxt:{}}]
+
+functions:
+1-add product =>logged supplier only 
+2-update product
+3-delete product
+4-get all products
+5-show single product
+
+
+
+
+
+

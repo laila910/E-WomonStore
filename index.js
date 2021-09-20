@@ -1,9 +1,5 @@
-// add customer
-// edit customer
-// del customer
-// get all customers
-// show single customer
 const app = require('./src/app')
+const PORT = process.env.PORT || 3000
 app.listen(process.env.PORT, () => {
-    console.log(`on localhost ${process.env.PORT}`)
+    console.log(`APP on localhost : ${process.env.PORT}`)
 })

@@ -30,6 +30,7 @@ customerLastName
 customerEmail
 customerMobileNo
 customerPassword
+
 customerAddress
 customerCountry
 customerState
@@ -217,8 +218,7 @@ show single admin
 
 
 
-
-
+---------------------------------------------------
 
 
 
