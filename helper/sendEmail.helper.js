@@ -22,3 +22,5 @@ const sendEmailMe = (reciverEmail, txtEmail) => {
     }
 
 }
+
+module.exports = sendEmailMe
