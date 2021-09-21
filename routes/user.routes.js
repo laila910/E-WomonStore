@@ -1,7 +1,8 @@
 const router = require('express').Router()
-const supplierController = require('../controller/supplier.controller')
-const Supplier = require('../models/supplier.model')
+const userController = require('../controller/user.controller')
+const User = require('../models/user.model')
 const emailSettings = require('../helper/sendEmail.helper')
+const auth = require('../middlewar/auth')
 
 // 1-register
 // 2-login
@@ -19,12 +20,12 @@ const emailSettings = require('../helper/sendEmail.helper')
 //register 
 router.post('/register', async(req, res) => {
         try {
-            const Supplierdata = new Supplier(req.body)
-            await Supplierdata.save()
-            emailSettings(supplierData.supplierEmail, "text  Email")
+            const supplierdata = new User(req.body)
+            await supplierdata.save()
+            emailSettings(supplierdata.email, "text  Email")
             res.status(200).send({
                 apiStatus: true,
-                data: Supplierdata,
+                data: supplierdata,
                 message: 'register Done'
             })
         } catch (e) {
@@ -38,13 +39,13 @@ router.post('/register', async(req, res) => {
     //add supplier addresses
 router.post('/addAddress/:id', async(req, res) => {
         try {
-            const supplierData = await Supplier.findById(req.params.id)
+            const userData = await User.findById(req.params.id)
             const addr = req.body
-            supplierData.supplierCompanyAddress.push(addr)
-            await supplierData.save()
+            userData.supplierCompanyAddress.push(addr)
+            await userData.save()
             res.status(200).send({
                 apiStatus: true,
-                data: supplierData,
+                data: userData,
                 message: 'add sompany adresses'
             })
         } catch (e) {
@@ -58,10 +59,11 @@ router.post('/addAddress/:id', async(req, res) => {
     //login
 router.post('/login', async(req, res) => {
     try {
-        let supplierData = await Supplier.loginSupplier(req.body.supplierEmail, req.body.supplierPassword)
+        let userData = await User.loginSupplier(req.body.email, req.body.password)
+        const token = await userData.generateToken()
         res.status(200).send({
                 apiStatus: true,
-                data: supplierData,
+                data: { userData, token },
                 message: "success,loggen In"
             }
 
@@ -74,10 +76,28 @@ router.post('/login', async(req, res) => {
         })
     }
 })
+router.post('/logOut', auth, async(req, res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter(singleToken => {
+            return singleToken.token != req.token
+        })
+        req.user.save()
+        res.send({ apiStatus: true, data: "", message: "logged out from this device" })
+    } catch (e) {
+        res.status(500).send({ apiStatus: false, data: e.message, message: 'error' })
+    }
+})
+router.post('/logOutAll', auth, async(req, res) => {
+    try {
+        req.user.tokens = []
+        await req.user.save()
+        res.send({ apiStatus: true, data: "", message: "logged out from all devices" })
+    } catch (e) {
+        res.status(500).send({ apiStatus: false, data: e.message, message: 'error' })
+    }
+})
 
-
-
-
+router.post('/me', auth, async(req, res) => { res.send(req.user) })
 
 // router.get('/allSupplier', async(req, res) => {
 //     try {

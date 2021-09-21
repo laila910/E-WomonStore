@@ -1,7 +1,7 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
 
-const Brand = new mongoose.model('Brand', {
+const brandSchema = new mongoose.Schema({
     brandName: {
         type: String,
         required: true,
@@ -15,9 +15,6 @@ const Brand = new mongoose.model('Brand', {
         type: String,
         default: ""
     }
-})
+}, { timeStamps: true })
+const Brand = mongoose.model('Brand', brandSchema)
 module.exports = Brand
-
-
-// brandName
-// brandImage

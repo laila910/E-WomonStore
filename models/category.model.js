@@ -1,15 +1,14 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
 
-const Category = new mongoose.model('Category', {
+const categorySchema = new mongoose.Schema({
     catName: {
         type: String,
-        enum: ["footwear", "clothing", "watches", "jewelry", "bags", "accessories", "eyewear"],
+
         trim: true,
-        lowercase: true,
-        required: true,
-        minlength: 4,
-        maxlength: 11
+
+        required: true
+
 
     },
     catDescription: {
@@ -26,8 +25,8 @@ const Category = new mongoose.model('Category', {
         default: new Date()
     }
 
-})
+}, { timestamps: true })
 
 
-
+const Category = mongoose.model('Category', categorySchema)
 module.exports = Category

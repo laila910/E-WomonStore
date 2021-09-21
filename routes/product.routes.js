@@ -1,15 +1,19 @@
 const router = require('express').Router()
-const { isValidObjectId } = require('mongoose')
+
 const productController = require('../controller/product.controller')
-const product = require('../models/product.model')
+const Product = require('../models/product.model')
+
 
 router.post('/addProduct', async(req, res) => {
     try {
-        const data = new product(req.body)
-        await data.save()
-        res.send(data)
+        const product = new Product({
+            ...req.body,
+            userId: req.user._id
+        })
+        await product.save()
+        res.status(200).send({ apiStatus: true, data: product, message: "data added" })
     } catch (e) {
-        res.send(e)
+        res.status(500).send({ apiStatus: false, data: e.message, message: "error adding post data" })
     }
 })
 

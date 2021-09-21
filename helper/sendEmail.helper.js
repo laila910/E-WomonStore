@@ -3,20 +3,20 @@ const smtpConfig = {
     service: "gmail",
     auth: {
         user: "li0693942@gmail.com",
-        pass: "Laila45##"
+        password: "Laila45##"
     }
 }
 
-const sendEmailMe = (reciverEmail, txtEmail) => {
+const sendEmailMe = async(reciverEmail, txtEmail) => {
     try {
-        const transporter = nodemailer.createTransport(smtpConfig)
+        const transporter = await nodemailer.createTransport(smtpConfig)
         let mailOptions = {
             from: "our app",
             to: reciverEmail,
             subject: "ourSub",
             text: txtEmail
         }
-        transporter.sendMail(mailOptions)
+        await transporter.sendMail(mailOptions)
     } catch (e) {
         console.log(e)
     }

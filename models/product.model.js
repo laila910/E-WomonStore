@@ -1,115 +1,111 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
 
-const Product = new mongoose.model('Product', {
-    productName: {
+const productSchema = new mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    catId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
+    },
+    brandId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Brand',
+        required: true
+    },
+    name: {
         type: String,
         trim: true,
-        lowercase: true,
-        required: true,
-        minlength: 3
+
+        required: true
+
     },
-    productStatus: {
+    status: {
         type: String,
         enum: ["new", "old", "used"]
     },
-    productFeatured: {
+    isFeatured: {
         type: Boolean,
         default: false
     },
-    productFirstColor: {
-        type: String,
-        minlength: 2,
-        maxlength: 30
-
-    },
-    productSecondColor: {
-        type: String,
-        minlength: 2,
-        maxlength: 30
-
-    },
-    productThirdColor: {
-        type: String,
-        minlength: 2,
-        maxlength: 30
-
-    },
-    productFirstImage: {
-        type: String,
-        minlength: 3,
-        maxlength: 50
-    },
-    productSecondImage: {
-        type: String,
-        minlength: 2,
-        maxlength: 50
-    },
-    productThirdImage: {
-        type: String,
-        minlength: 2,
-        maxlength: 50
-    },
+    Colors: [{
+        firstColor: {
+            type: String,
+            trim: true
+        },
+        secondColor: {
+            type: String,
+            trim: true
+        },
+        thirdColor: {
+            type: String,
+            trim: true
+        }
+    }],
+    productFirstImage: [{
+        firstImage: {
+            type: String,
+            trim: true
+        },
+        secondImage: {
+            type: String,
+            trim: true
+        },
+        thirdImage: {
+            type: String,
+            trim: true
+        }
+    }],
     productSizes: {
         type: String,
         enum: ["S", "M", "X", "XL"]
     },
     productPrice: {
-        type: Number
+        type: Number,
+        trim: true
     },
     productQuantity: {
-        type: Number
+        type: Number,
+        trim: true
     },
     productDescription: {
-        type: String
+        type: String,
+        trim: true
     },
     productSpecifications: {
-        type: String
+        type: String,
+        trim: true
     },
     unitsInStock: {
-        type: Number
+        type: Number,
+        trim: true
     },
     productDiscountAmount: {
-        type: Number
+        type: Number,
+        trim: true
     },
     productDiscountStatus: {
         type: Boolean,
         default: false
     },
-    productAvailable: {
-        type: Boolean,
-        default: true
-    },
-    productMadeDate: {
-        type: Date,
-        default: new Date()
-    }
+    reviews: [{
+        userId: {
+            type: Number,
+            trim: true
+        },
+        content: {
+            type: String,
+            trim: true
+        }
+    }]
 
 
-})
+}, { timeStamps: true })
 
+
+const Product = mongoose.model('Product', productSchema)
 module.exports = Product
-
-// productName
-// productCat
-// productBrand
-// productStatus : enum["new","old","used"]
-// productFeatured : Boolean true or false with default false
-// productFirstColor:
-// productSecondColor: 
-// productThirdColor:
-// //if there is a way to make the colors pushed in color array direct to each product That I ////entered It
-// productFirstImage:
-// productSecondImage:
-// productThirdImage:
-// // bardo zay el colors law feeh 7al l dah ba3deen , Still Remember :)
-// productSizes: enum["S","M","L","XL"]
-// productPrice:
-// productQuantity:
-// productDescription:
-// productSpecifications:
-// unitsInStock:
-// productDiscountAmount:
-// productDiscountStatus: Boolean  True or False with default false 
-// productAvailable: Boolean True or False with default True 
-// productMadeDate : Date with default new Date()

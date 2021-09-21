@@ -23,7 +23,7 @@ del brand
 get all brands
 show single brand
 
-3-customers
+3-customers *
 
 customerFirstName
 customerLastName
@@ -50,7 +50,7 @@ get all customers
 show single customer
 
 4-suppliers "they add products to the E-store directly" && "when the customer make an order ,the notification will send to the supplier to approve the request and send the order details to the account of the customer . and send the notification to ordershipper to deliver the order to the customer " 
-
+*
 
 supplierFirstName
 supplierLastName
@@ -74,7 +74,7 @@ get all suppliers
 show single supplier
 
 5-ordershipper "they are working for the suppliers' Company to deliver the order "
-
+*
 ordershipperFirstName
 ordershipperLastName
 ordershipperEmail
@@ -201,7 +201,7 @@ del contactMessage // the contactMessage can be deleted by admin only
 get all contactMessages // the contactMessages can be get by admin to show them
 show single contactMessage // the contactMessage can be show by admin to show it 
 
-12-admin 
+12-admin *
 "the admin can be control of everything of the E-store 
 
 adminFirstName:
