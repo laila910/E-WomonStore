@@ -46,7 +46,7 @@ const productSchema = new mongoose.Schema({
             trim: true
         }
     }],
-    productFirstImage: [{
+    productImages: [{
         firstImage: {
             type: String,
             trim: true
@@ -101,7 +101,38 @@ const productSchema = new mongoose.Schema({
             type: String,
             trim: true
         }
-    }]
+    }],
+    addTocard: [{
+        productId: {
+            type: String,
+            trim: true
+        },
+        productDetails: {
+            type: String,
+            trim: true
+
+        },
+        quantity: {
+            type: Number,
+            trim: true
+
+        },
+        price: {
+            type: Number,
+            trim: true
+        },
+        totalPrice: {
+            type: Number,
+            trim: true
+        }
+    }],
+
+    proccessedOrder: {
+
+        default: false,
+        type: Boolean
+
+    }
 
 
 }, { timeStamps: true })

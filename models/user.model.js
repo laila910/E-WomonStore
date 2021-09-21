@@ -5,192 +5,150 @@ const jwt = require('jsonwebtoken')
 
 const userSchema = new mongoose.Schema({
 
-        name: {
-            type: String,
-            trim: true,
-            lowercase: true,
-            required: true
-        },
-        email: {
-            type: String,
-            trim: true,
-            required: true,
-            unique: true,
-            validate(value) {
-                if (!validator.isEmail(value)) throw new Error('Invalid Email')
-            }
-        },
-        mobileNo: {
-            type: String,
-            trim: true,
-            required: true,
-            validate(value) {
-                if (!validator.isMobilePhone(value, ['ar-EG'])) throw new Error('Invalid Mobile Number')
-            }
-        },
-        password: {
-            type: String,
-            trim: true,
+    name: {
+        type: String,
+        trim: true,
+        lowercase: true,
+        required: true
+    },
+    email: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+        validate(value) {
+            if (!validator.isEmail(value)) throw new Error('Invalid Email')
+        }
+    },
+    mobileNo: {
+        type: String,
+        trim: true,
+        required: true,
+        validate(value) {
+            if (!validator.isMobilePhone(value, ['ar-EG'])) throw new Error('Invalid Mobile Number')
+        }
+    },
+    password: {
+        type: String,
+        trim: true,
 
-            required: true
+        required: true
 
 
-        },
-        userType: {
-            type: String,
-            trim: true,
-            required: true,
-            enum: ["admin", "supplier", "ordershipper", "customer"]
-        },
+    },
+    userType: {
+        type: String,
+        trim: true,
+        required: true,
+        enum: ["admin", "supplier", "ordershipper", "customer"]
+    },
 
-        supplierCompanyName: {
-            type: String,
-            trim: true,
-            required: function() { return this.userType == "supplier" }
-        },
-        Addresses: [{
-            addrType: {
-                type: String,
-                trim: true
-            },
-            addrDetails: {
-                type: String,
-                trim: true
-            }
-        }],
-        supplierCompanyFax: {
-            type: String,
-            trim: true,
-            required: function() { return this.userType == "supplier" }
-        },
-        supplierCompanyURL: {
-            type: String,
-            validate(value) {
-                if (validator.isURL(value)) throw new Error('Invalid URL')
-            },
-            required: function() { return this.userType == "supplier" }
-        },
-        ImageProfile: {
+    supplierCompanyName: {
+        type: String,
+        trim: true,
+        required: function() { return this.userType == "supplier" }
+    },
+    Addresses: [{
+        addrType: {
             type: String,
             trim: true
         },
-        accountStatus: {
-            type: Boolean,
-            trim: false
-        },
-        customerCreditCard: {
+        addrDetails: {
             type: String,
-            enum: ["visa", "discover", "amex", "mastercard"],
-            lowercase: true,
-            required: function() { return this.userType == "customer" }
+            trim: true
+        }
+    }],
+    supplierCompanyFax: {
+        type: String,
+        trim: true,
+        required: function() { return this.userType == "supplier" }
+    },
+    supplierCompanyURL: {
+        type: String,
+        validate(value) {
+            if (validator.isURL(value)) throw new Error('Invalid URL')
         },
-        customerCreditCardTypeId: {
-            type: Number,
-            trim: true,
+        required: function() { return this.userType == "supplier" }
+    },
+    ImageProfile: {
+        type: String,
+        trim: true
+    },
+    accountStatus: {
+        type: Boolean,
+        trim: false
+    },
+    customerCreditCard: {
+        type: String,
+        enum: ["visa", "discover", "amex", "mastercard"],
+        lowercase: true,
+        required: function() { return this.userType == "customer" }
+    },
+    customerCreditCardTypeId: {
+        type: Number,
+        trim: true,
 
-            validate(value) {
-                if (value < 3) throw new Error('your creditcard Id must be 3 ')
-            },
-            required: function() { return this.userType == "customer" }
+        validate(value) {
+            if (value < 3) throw new Error('your creditcard Id must be 3 ')
         },
-        customerExpMonth: {
-            type: Number,
-            trim: true,
-            required: function() { return this.userType == "customer" }
-        },
-        customerExpYr: {
-            type: Number,
-            trim: true,
-            required: function() { return this.userType == "customer" }
-        },
-        customerCVC: {
-            type: "Number",
-            trim: true,
-            required: function() { return this.userType == "customer" }
-        },
-        ordershipperShippingMethod: {
+        required: function() { return this.userType == "customer" }
+    },
+    customerExpMonth: {
+        type: Number,
+        trim: true,
+        required: function() { return this.userType == "customer" }
+    },
+    customerExpYr: {
+        type: Number,
+        trim: true,
+        required: function() { return this.userType == "customer" }
+    },
+    customerCVC: {
+        type: "Number",
+        trim: true,
+        required: function() { return this.userType == "customer" }
+    },
+    ordershipperShippingMethod: {
+        type: String,
+        trim: true,
+        lowercase: true,
+
+        required: function() { return this.userType == "ordershipper" }
+    },
+    contactMessages: [{
+        subject: {
             type: String,
             trim: true,
-            lowercase: true,
-
-            required: function() { return this.userType == "ordershipper" }
-        },
-        contactMessages: [{
-            subject: {
-                type: String,
-                trim: true,
-                validate(value) {
-                    if (this.userType != "admin") {
-
-                    }
-                }
-            },
-            Message: {
-                type: String,
-                trim: true,
-                validate(value) {
-                    if (this.userType == "admin") {
-
-                    }
-                }
-            }
-        }],
-        addTocard: [{
-            productId: {
-                type: String,
-                trim: true,
-                validate(value) {
-                    if (this.userType == "customer") {
-
-                    }
-                }
-            },
-            productDetails: {
-                type: String,
-                trim: true,
-                validate(value) {
-                    if (this.userType == "customer") {
-
-                    }
-                }
-            },
-            productquantity: {
-                type: String,
-                trim: true,
-                validate(value) {
-                    if (this.userType == "customer") {
-
-                    }
-                }
-            }
-        }],
-        proccessedOrder: [{
-            status: {
-                default: false,
-                type: Boolean,
-                validate(value) {
-                    if (this.userType == "customer") {
-
-                    }
-                }
-            }
-        }],
-        submitOrder: [{
-            type: Boolean,
-            default: false,
             validate(value) {
-                if (this.userType == "supplier") {
+                if (this.userType != "admin") {
 
                 }
             }
-        }],
-        tokens: [{
-            token: { type: String, required: true }
-        }]
+        },
+        Message: {
+            type: String,
+            trim: true,
+            validate(value) {
+                if (this.userType != "admin") {
+
+                }
+            }
+        }
+    }],
+    tokens: [{
+        token: { type: String, required: true }
+    }]
 
 
-    }, { timestamps: true })
-    //handle response 
+}, { timestamps: true })
+
+userSchema.virtual('myProducts', {
+    ref: "Product",
+    localField: "_id",
+    foreignField: "userId"
+})
+
+//handle response 
 userSchema.methods.toJSON = function() {
         const user = this.toObject()
         delete user.password
@@ -207,12 +165,12 @@ userSchema.pre('save', async function() {
 
     })
     //login
-userSchema.statics.loginSupplier = async function(email, password) {
-    const supplier = await User.findOne({ email })
-    if (!supplier) throw new Error('Invalid email')
-    const isMatchPass = await bcrypt.compare(password, supplier.password)
+userSchema.statics.loginUser = async function(email, password) {
+    const user = await User.findOne({ email })
+    if (!user) throw new Error('Invalid email')
+    const isMatchPass = await bcrypt.compare(password, user.password)
     if (!isMatchPass) throw new Error('invalid password')
-    return supplier
+    return user
 }
 
 //generate Tokens 

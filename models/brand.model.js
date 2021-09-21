@@ -16,5 +16,11 @@ const brandSchema = new mongoose.Schema({
         default: ""
     }
 }, { timeStamps: true })
+
+brandSchema.virtual('myproductswithBrands', {
+    ref: "Product",
+    localField: "_id",
+    foreignField: "brandId"
+})
 const Brand = mongoose.model('Brand', brandSchema)
 module.exports = Brand
