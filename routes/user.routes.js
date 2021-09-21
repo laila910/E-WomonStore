@@ -3,6 +3,7 @@ const userController = require('../controller/user.controller')
 const User = require('../models/user.model')
 const emailSettings = require('../helper/sendEmail.helper')
 const auth = require('../middlewar/auth')
+const uploadProfileImage = require('../middlewar/profileImageUpload')
 
 // 1-register
 // 2-login
@@ -37,17 +38,41 @@ router.post('/register', async(req, res) => {
         }
     })
     //add addresses
-router.post('/addAddress/:id', async(req, res) => {
+router.post('/addAddress', auth, async(req, res) => {
         try {
-            const userData = await User.findById(req.params.id)
-            const addr = req.body
-            userData.Addresses.push(addr)
-            await userData.save()
-            res.status(200).send({
-                apiStatus: true,
-                data: userData,
-                message: 'add sompany adresses'
+            if (req.user) {
+                userData = new User.findById(req.user._id)
+                addr = req.body
+                userData.Addresses.push(addr)
+                await userData.save()
+                res.status(200).send({
+                    apiStatus: true,
+                    data: userData,
+                    message: 'add  adresses'
+                })
+            }
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'Error In add addresses'
             })
+        }
+    })
+    //add profile image
+router.post('/addImage', auth, uploadProfileImage.single('profileimage'), async(req, res) => {
+        try {
+            if (req.user) {
+                userData = await User.findById(req.params.id)
+                image = req.body
+                userData.ImageProfile.push(image)
+                await userData.save()
+                res.status(200).send({
+                    apiStatus: true,
+                    data: userData,
+                    message: 'add sompany adresses'
+                })
+            }
         } catch (e) {
             res.status(500).send({
                 apiStatus: false,
@@ -103,25 +128,28 @@ router.post('/me', auth, async(req, res) => { res.send(req.user) })
 
 //EDIT PROFILE
 router.patch('/editProfile', auth, async(req, res) => {
-        //indeicate later what types of edits That User can do 
-        avalUpdatates = ["name", "email", "password", "mobileNo"]
-        requested = Object.keys(req.body)
-        isValid = requested.every(r => avalUpdatates.includes(r))
-        if (!isValid) res.send('updates unavaliable')
-        try {
-            const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
-            if (!updatedData) res.send('User not found')
-            res.status(200).send({
-                apiStatus: true,
-                data: updatedData,
-                message: 'user is updated :)'
-            })
-        } catch (e) {
-            res.status(500).send({
-                apiStatus: false,
-                data: e.message,
-                message: 'Error in user updated '
-            })
+
+        if (req.user) {
+            //indeicate later what types of edits That User can do 
+            avalUpdatates = ["name", "email", "password", "mobileNo"]
+            requested = Object.keys(req.body)
+            isValid = requested.every(r => avalUpdatates.includes(r))
+            if (!isValid) res.send('updates unavaliable')
+            try {
+                const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
+                if (!updatedData) res.send('User not found')
+                res.status(200).send({
+                    apiStatus: true,
+                    data: updatedData,
+                    message: 'user is updated :)'
+                })
+            } catch (e) {
+                res.status(500).send({
+                    apiStatus: false,
+                    data: e.message,
+                    message: 'Error in user updated '
+                })
+            }
         }
     })
     //send message to the admin
@@ -146,7 +174,7 @@ router.post('/sendMessage', auth, async(req, res) => {
         })
     }
 })
-router.get('/allUsers', async(req, res) => {
+router.get('/allUsers', auth, async(req, res) => {
     try {
         if (req.user.userType == "admin") {
             const allUserData = await User.find()

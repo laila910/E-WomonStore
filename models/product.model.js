@@ -7,16 +7,7 @@ const productSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
-    catId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
-    },
-    brandId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Brand',
-        required: true
-    },
+
     name: {
         type: String,
         trim: true,
@@ -132,7 +123,37 @@ const productSchema = new mongoose.Schema({
         default: false,
         type: Boolean
 
-    }
+    },
+    categories: [{
+        catName: {
+            type: String,
+            trim: true
+        },
+        catDescription: {
+            type: String,
+            default: ""
+        },
+        catStatus: {
+            type: Boolean,
+            default: false
+        }
+
+    }],
+    brands: [{
+        brandName: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        brandDescription: {
+            type: String,
+            default: ""
+        },
+        brandImage: {
+            type: String,
+            default: ""
+        }
+    }]
 
 
 }, { timeStamps: true })

@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const uploadbrandImage = require('../middlewar/imagebrandUpload')
 
 const productController = require('../controller/product.controller')
 const Product = require('../models/product.model')
@@ -55,9 +56,7 @@ router.post('/addProduct', auth, async(req, res) => {
             if (req.user.userType == "supplier") {
                 product = new Product({
                     ...req.body,
-                    userId: req.user._id,
-                    catId: req.category._id,
-                    brandId: req.brand._id
+                    userId: req.user._id
                 })
             }
             await product.save()
@@ -125,25 +124,75 @@ router.post('/Processtheorder', auth, async(req, res) => {
     })
     //submit order 
 router.post('/submitTheOrderOfCustomer', auth, async(req, res) => {
+        try {
+            if (req.user.userType == "supplier") {
+                const product = await Product.findById(req.params.id)
+                const submitOfOrder = req.body
+                product.submitOrder.push(submitOfOrder)
+                await product.save()
+
+
+                res.status(200).send({
+                    apiStatus: "true",
+                    data: product,
+                    message: "submit order to the customer Done "
+                })
+            }
+        } catch (e) {
+            res.send(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not agree of the customers'order,Error :("
+            })
+
+        }
+    })
+    //add category
+router.post('/addCategory/:id', auth, async(req, res) => {
+        try {
+            if (req.user.userType == "supplier") {
+                const product = await Product.findById(req.params.id)
+                const category = req.body
+                product.categories.push(category)
+                await product.save()
+
+
+                res.status(200).send({
+                    apiStatus: "true",
+                    data: product,
+                    message: "category is added :) "
+                })
+            }
+        } catch (e) {
+            res.send(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not add category,Error :("
+            })
+
+        }
+    })
+    //add brands
+router.post('/addBrand/:id', auth, uploadbrandImage.single('brandimg'), async(req, res) => {
     try {
         if (req.user.userType == "supplier") {
             const product = await Product.findById(req.params.id)
-            const submitOfOrder = req.body
-            product.submitOrder.push(submitOfOrder)
+            const brand = req.body
+            product.brands.push(brand)
             await product.save()
 
 
             res.status(200).send({
                 apiStatus: "true",
                 data: product,
-                message: "submit order to the customer Done "
+                message: "brand is added :) "
             })
         }
     } catch (e) {
         res.send(500).send({
             apiStatus: "false",
             data: e.message,
-            message: "can not agree of the customers'order,Error :("
+            message: "can not add brand,Error :("
         })
 
     }
