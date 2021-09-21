@@ -3,7 +3,7 @@ const smtpConfig = {
     service: "gmail",
     auth: {
         user: "li0693942@gmail.com",
-        password: "Laila45##"
+        password: "laila_@LA"
     }
 }
 
