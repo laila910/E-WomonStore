@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const uploadbrandImage = require('../middlewar/imagebrandUpload')
-
+const auth = require('../middlewar/auth')
 const productController = require('../controller/product.controller')
 const Product = require('../models/product.model')
 
@@ -177,7 +177,10 @@ router.post('/addBrand/:id', auth, uploadbrandImage.single('brandimg'), async(re
     try {
         if (req.user.userType == "supplier") {
             const product = await Product.findById(req.params.id)
-            const brand = req.body
+            const brand = {
+                brandImage: req.file.path,
+                ...req.body
+            }
             product.brands.push(brand)
             await product.save()
 

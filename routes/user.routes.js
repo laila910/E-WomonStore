@@ -64,7 +64,7 @@ router.post('/addImage', auth, uploadProfileImage.single('profileimage'), async(
         try {
             if (req.user) {
                 userData = await User.findById(req.params.id)
-                image = req.body
+                image = req.file.path
                 userData.ImageProfile.push(image)
                 await userData.save()
                 res.status(200).send({
