@@ -1,25 +1,41 @@
 const User = require('../models/user.model')
 const emailSettings = require('../helper/sendEmail.helper')
 
+//register any user and the email is sent to the admin with user data 
 const register = async(req, res) => {
-    try {
-        const userData = new User(req.body)
+        try {
+            const userData = new User(req.body)
+            await userData.save()
+            emailSettings(userData.email, 'hey, you successed to register to our Ecommerce ,your account will be activated in two days at least . WELCOME AGAIN!')
+            emailSettings('lailaibrahim798@gmail.com', `hey, new register to your website with data ${req.user}`)
+            res.status(200).send({
+                apiStatus: true,
+                data: userData,
+                message: 'register Done'
+            })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'Error In Register'
+            })
+        }
+    }
+    //activate the status of users by admin after sent the email with the new users 
+const activateStatus = async(req, res) => {
+    if (req.user.userType == "admin") {
+        userData = await User.findById(req.params.id)
+        userData.accountStatus = true
         await userData.save()
-        emailSettings(userData.email, "text  Email")
         res.status(200).send({
             apiStatus: true,
             data: userData,
-            message: 'register Done'
+            message: 'the status is activated :)'
         })
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'Error In Register'
-        })
+
+
     }
 }
-
 const addAddress = async(req, res) => {
     try {
         if (req.user.userType == "supplier") {
