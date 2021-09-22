@@ -28,7 +28,7 @@ router.get('/allUsers/:id', auth, userController.singleUser)
 router.delete('/allUsers/:id', auth, userController.deleteUser)
     //activate status (admin update status to the users )
 router.post('/activateStatus/:id', auth, userController.activateStatus)
+    //deactivate account
+router.post('/deactivate', auth, userController.deactivate)
 
 module.exports = router
-
-// 6-deactivateAccount

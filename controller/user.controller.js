@@ -228,6 +228,23 @@ const activateStatus = async(req, res) => {
 
     }
 }
+const deactivate = async(req, res) => {
+    try {
+        deactivateUser = await User.findByIdAndDelete(req.user._id)
+        if (!deactivateUser) res.send('User is  not deactivate :(')
+        res.status(200).send({
+            apiStatus: true,
+            data: 'User is deactivate :)',
+            message: 'user deleted Successfuly '
+        })
+    } catch (e) {
+        res.status(500).send({
+            apiStatus: false,
+            data: e.message,
+            message: 'user can not deactivated :('
+        })
+    }
+}
 module.exports = {
     register,
     addAddress,
@@ -241,5 +258,6 @@ module.exports = {
     allUsers,
     singleUser,
     deleteUser,
-    activateStatus
+    activateStatus,
+    deactivate
 }
