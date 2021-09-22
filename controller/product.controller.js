@@ -44,7 +44,7 @@ const addBrand = async(req, res) => {
         if (req.user.userType == "supplier") {
             const product = await Product.findById(req.params.id)
             const brand = {
-                brandImage: req.file.path,
+                brandImage: req.file.path.replace('\\', '/'),
                 ...req.body
             }
             product.brands.push(brand)
@@ -221,7 +221,11 @@ addPImages = async(req, res) => {
     try {
         if (req.user.userType == "supplier") {
             const product = await Product.findById(req.params.id)
-            const images = req.body
+            const images = {
+                firstImage: req.file.path.replace('\\', '/'),
+                secondImage: req.file.path.replace('\\', '/'),
+                thirdImage: req.file.path.replace('\\', '/')
+            }
             product.productImages.push(images)
             await product.save()
 

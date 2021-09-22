@@ -45,8 +45,9 @@ const addImage = async(req, res) => {
     try {
         if (req.user) {
             userData = req.user
-            image = req.file.path
+            image = req.file.path.replace('\\', '/')
             userData.ImageProfile = image
+
             await userData.save()
             res.status(200).send({
                 apiStatus: true,
