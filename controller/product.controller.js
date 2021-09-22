@@ -193,6 +193,54 @@ const submitOrder = async(req, res) => {
 
     }
 }
+addColors = async(req, res) => {
+    try {
+        if (req.user.userType == "supplier") {
+            const product = await Product.findById(req.params.id)
+            const colors = req.body
+            product.Colors.push(colors)
+            await product.save()
+
+
+            res.status(200).send({
+                apiStatus: "true",
+                data: product,
+                message: "colors of product is added :) "
+            })
+        }
+    } catch (e) {
+        res.send(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not add colors,Error :("
+        })
+
+    }
+}
+addPImages = async(req, res) => {
+    try {
+        if (req.user.userType == "supplier") {
+            const product = await Product.findById(req.params.id)
+            const images = req.body
+            product.productImages.push(images)
+            await product.save()
+
+
+            res.status(200).send({
+                apiStatus: "true",
+                data: product,
+                message: "Images of product is added :) "
+            })
+        }
+    } catch (e) {
+        res.send(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not add images ,Error :("
+        })
+
+    }
+}
 module.exports = {
     addProduct,
     addCategory,
@@ -203,5 +251,7 @@ module.exports = {
     editProduct,
     addToCard,
     processOrder,
-    submitOrder
+    submitOrder,
+    addColors,
+    addPImages
 }
