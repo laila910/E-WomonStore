@@ -118,21 +118,11 @@ const userSchema = new mongoose.Schema({
     contactMessages: [{
         subject: {
             type: String,
-            trim: true,
-            validate(value) {
-                if (this.userType != "admin") {
-
-                }
-            }
+            trim: true
         },
         Message: {
             type: String,
-            trim: true,
-            validate(value) {
-                if (this.userType != "admin") {
-
-                }
-            }
+            trim: true
         }
     }],
     tokens: [{

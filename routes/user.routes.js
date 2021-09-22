@@ -40,8 +40,8 @@ router.post('/register', async(req, res) => {
     //add addresses
 router.post('/addAddress', auth, async(req, res) => {
         try {
-            if (req.user) {
-                userData = new User.findById(req.user._id)
+            if (req.user.userType == "supplier") {
+                userData = req.user
                 addr = req.body
                 userData.Addresses.push(addr)
                 await userData.save()
@@ -63,9 +63,9 @@ router.post('/addAddress', auth, async(req, res) => {
 router.post('/addImage', auth, uploadProfileImage.single('profileimage'), async(req, res) => {
         try {
             if (req.user) {
-                userData = await User.findById(req.params.id)
+                userData = req.user
                 image = req.file.path
-                userData.ImageProfile.push(image)
+                userData.ImageProfile = image
                 await userData.save()
                 res.status(200).send({
                     apiStatus: true,
@@ -130,7 +130,7 @@ router.post('/me', auth, async(req, res) => { res.send(req.user) })
 router.patch('/editProfile', auth, async(req, res) => {
 
         if (req.user) {
-            //indeicate later what types of edits That User can do 
+
             avalUpdatates = ["name", "email", "password", "mobileNo"]
             requested = Object.keys(req.body)
             isValid = requested.every(r => avalUpdatates.includes(r))
@@ -138,6 +138,8 @@ router.patch('/editProfile', auth, async(req, res) => {
             try {
                 const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
                 if (!updatedData) res.send('User not found')
+                req.user = updatedData
+                await req.user.save()
                 res.status(200).send({
                     apiStatus: true,
                     data: updatedData,
@@ -154,26 +156,29 @@ router.patch('/editProfile', auth, async(req, res) => {
     })
     //send message to the admin
 router.post('/sendMessage', auth, async(req, res) => {
-    try {
-        if (req.user.userType != "admin") {
-            user = new User.findById(req.user._id)
-            message = req.body
-            await user.contactMessages.push(message)
-            emailSettings(req.user.email, message)
-            res.status(200).send({
-                apiStatus: true,
-                data: user,
-                message: 'send message to admin'
+        try {
+            if (req.user.userType != "admin") {
+                userData = req.user
+                message = req.body
+                userData.contactMessages.push(message)
+                await userData.save()
+                emailSettings(req.user.email, message)
+                res.status(200).send({
+                    apiStatus: true,
+                    data: userData,
+                    message: 'send message to admin'
+                })
+            }
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'Error In Send Message'
             })
         }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'Error In Send Message'
-        })
-    }
-})
+    })
+    //---------------------------
+    //allusers
 router.get('/allUsers', auth, async(req, res) => {
     try {
         if (req.user.userType == "admin") {
@@ -235,7 +240,8 @@ router.delete('/allUsers/:id', auth, async(req, res) => {
 })
 
 
-
+//update status (admin update status to the users )
+// later 
 
 
 module.exports = router
