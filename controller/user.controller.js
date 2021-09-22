@@ -3,39 +3,25 @@ const emailSettings = require('../helper/sendEmail.helper')
 
 //register any user and the email is sent to the admin with user data 
 const register = async(req, res) => {
-        try {
-            const userData = new User(req.body)
-            await userData.save()
-            emailSettings(userData.email, 'hey, you successed to register to our Ecommerce ,your account will be activated in two days at least . WELCOME AGAIN!')
-            emailSettings('lailaibrahim798@gmail.com', `hey, new register to your website with data ${req.user}`)
-            res.status(200).send({
-                apiStatus: true,
-                data: userData,
-                message: 'register Done'
-            })
-        } catch (e) {
-            res.status(500).send({
-                apiStatus: false,
-                data: e.message,
-                message: 'Error In Register'
-            })
-        }
-    }
-    //activate the status of users by admin after sent the email with the new users 
-const activateStatus = async(req, res) => {
-    if (req.user.userType == "admin") {
-        userData = await User.findById(req.params.id)
-        userData.accountStatus = true
+    try {
+        const userData = new User(req.body)
         await userData.save()
+        emailSettings(userData.email, 'hey, you successed to register to our Ecommerce ,your account will be activated in two days at least . WELCOME AGAIN!')
+        emailSettings('lailaibrahim798@gmail.com', `hey, new register to your website with data ${req.user}`)
         res.status(200).send({
             apiStatus: true,
             data: userData,
-            message: 'the status is activated :)'
+            message: 'register Done'
         })
-
-
+    } catch (e) {
+        res.status(500).send({
+            apiStatus: false,
+            data: e.message,
+            message: 'Error In Register'
+        })
     }
 }
+
 const addAddress = async(req, res) => {
     try {
         if (req.user.userType == "supplier") {
@@ -209,22 +195,37 @@ const singleUser = async(req, res) => {
     }
 }
 const deleteUser = async(req, res) => {
-    try {
-        if (req.user.userType == "admin") {
-            deletedUser = await User.findByIdAndDelete(req.params.id)
-            if (!deletedUser) res.send('User is  not deleted')
-            res.status(200).send({
-                apiStatus: true,
-                data: 'User is Deleted',
-                message: 'user deleted Successfuly '
+        try {
+            if (req.user.userType == "admin") {
+                deletedUser = await User.findByIdAndDelete(req.params.id)
+                if (!deletedUser) res.send('User is  not deleted')
+                res.status(200).send({
+                    apiStatus: true,
+                    data: 'User is Deleted',
+                    message: 'user deleted Successfuly '
+                })
+            }
+        } catch (e) {
+            res.status.send({
+                apiStatus: false,
+                data: e.message,
+                message: 'user is not deleted'
             })
         }
-    } catch (e) {
-        res.status.send({
-            apiStatus: false,
-            data: e.message,
-            message: 'user is not deleted'
+    }
+    //activate the status of users by admin after sent the email with the new users 
+const activateStatus = async(req, res) => {
+    if (req.user.userType == "admin") {
+        userData = await User.findById(req.params.id)
+        userData.accountStatus = true
+        await userData.save()
+        res.status(200).send({
+            apiStatus: true,
+            data: userData,
+            message: 'the status is activated :)'
         })
+
+
     }
 }
 module.exports = {
@@ -239,5 +240,6 @@ module.exports = {
     sendMessage,
     allUsers,
     singleUser,
-    deleteUser
+    deleteUser,
+    activateStatus
 }
