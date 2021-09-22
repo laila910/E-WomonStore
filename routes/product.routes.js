@@ -28,4 +28,7 @@ router.post('/addColors/:id', auth, productController.addColors)
 
 router.post('/addPImages/:id', auth, uploadProductImages.Array('images', 3), productController.addPImages)
 
+router.post('/addSizes/:id', auth, productController.addSizes)
+
+router.post('/addReview/:id', auth, productController.addReview)
 module.exports = router

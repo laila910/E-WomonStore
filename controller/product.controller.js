@@ -245,6 +245,57 @@ addPImages = async(req, res) => {
 
     }
 }
+const addSizes = async(req, res) => {
+    try {
+        if (req.user.userType == "supplier") {
+            const product = await Product.findById(req.params.id)
+            const sizes = req.body
+            product.productSizes.push(sizes)
+            await product.save()
+
+
+            res.status(200).send({
+                apiStatus: "true",
+                data: product,
+                message: "sizes are added :) "
+            })
+        }
+    } catch (e) {
+        res.send(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not add sizes,Error :("
+        })
+
+    }
+}
+const addReview = async(req, res) => {
+    try {
+        if (req.user.userType == "customer") {
+            const product = await Product.findById(req.params.id)
+            const review = {
+                ...req.body,
+                userId: req.user._id
+            }
+            product.reviews.push(review)
+            await product.save()
+
+
+            res.status(200).send({
+                apiStatus: "true",
+                data: product,
+                message: "review is added :) "
+            })
+        }
+    } catch (e) {
+        res.send(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not add review,Error :("
+        })
+
+    }
+}
 module.exports = {
     addProduct,
     addCategory,
@@ -257,5 +308,7 @@ module.exports = {
     processOrder,
     submitOrder,
     addColors,
-    addPImages
+    addPImages,
+    addSizes,
+    addReview
 }
