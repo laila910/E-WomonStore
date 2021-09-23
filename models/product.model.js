@@ -130,7 +130,7 @@ const productSchema = new mongoose.Schema({
         type: Boolean
 
     },
-    categories: [{
+    categories: {
         catName: {
             type: String,
             trim: true
@@ -144,8 +144,8 @@ const productSchema = new mongoose.Schema({
             default: false
         }
 
-    }],
-    brands: [{
+    },
+    brands: {
         brandName: {
             type: String,
             required: true,
@@ -159,7 +159,7 @@ const productSchema = new mongoose.Schema({
             type: String,
             default: ""
         }
-    }]
+    }
 
 
 }, { timeStamps: true })
