@@ -1,13 +1,13 @@
 const User = require('../models/user.model')
 const emailSettings = require('../helper/sendEmail.helper')
-
-//register any user and the email is sent to the admin with user data 
+const multer = require('multer')
+    //register any user and the email is sent to the admin with user data 
 const register = async(req, res) => {
     try {
         const userData = new User(req.body)
         await userData.save()
-        emailSettings(userData.email, 'hey, you successed to register to our Ecommerce ,your account will be activated in two days at least . WELCOME AGAIN!')
-        emailSettings('lailaibrahim798@gmail.com', `hey, new register to your website with data ${req.user}`)
+            // emailSettings(userData.email, 'hey, you successed to register to our Ecommerce ,your account will be activated in two days at least . WELCOME AGAIN!')
+            //   emailSettings('lailaibrahim798@gmail.com', `hey, new register to your website with data ${req.user}`)
         res.status(200).send({
             apiStatus: true,
             data: userData,
@@ -89,50 +89,64 @@ const logOut = async(req, res) => {
         req.user.tokens = req.user.tokens.filter(singleToken => {
             return singleToken.token != req.token
         })
-        req.user.save()
-        res.send({ apiStatus: true, data: "", message: "logged out from this device" })
+        await req.user.save()
+        res.status(200).send({
+            apiStatus: true,
+            data: ":(",
+            message: "logged out from this device"
+        })
     } catch (e) {
-        res.status(500).send({ apiStatus: false, data: e.message, message: 'error' })
+        res.status(500).send({
+            apiStatus: false,
+            data: e.message,
+            message: 'error'
+        })
     }
 }
 const logOutAll = async(req, res) => {
     try {
         req.user.tokens = []
         await req.user.save()
-        res.send({ apiStatus: true, data: "", message: "logged out from all devices" })
+        res.status(200).send({ apiStatus: true, data: "", message: "logged out from all devices" })
     } catch (e) {
         res.status(500).send({ apiStatus: false, data: e.message, message: 'error' })
     }
 }
+
 const profile = async(req, res) => { res.send(req.user) }
 
 const editProfile = async(req, res) => {
 
-    if (req.user) {
 
-        avalUpdatates = ["name", "email", "password", "mobileNo"]
-        requested = Object.keys(req.body)
-        isValid = requested.every(r => avalUpdatates.includes(r))
-        if (!isValid) res.send('updates unavaliable')
-        try {
-            const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
-            if (!updatedData) res.send('User not found')
-            req.user = updatedData
-            await req.user.save()
-            res.status(200).send({
-                apiStatus: true,
-                data: updatedData,
-                message: 'user is updated :)'
-            })
-        } catch (e) {
-            res.status(500).send({
-                apiStatus: false,
-                data: e.message,
-                message: 'Error in user updated '
-            })
-        }
+
+    avalUpdatates = ["name", "email", "password", "mobileNo", "supplierCompanyName",
+        "supplierCompanyURL",
+        "supplierCompanyFax", "customerCreditCard", "customerCreditCardTypeId",
+        "customerExpMonth",
+        "customerExpYr", "customerCVC", "ordershipperShippingMethod"
+    ]
+    requested = Object.keys(req.body)
+    isValid = requested.every(r => avalUpdatates.includes(r))
+    if (!isValid) res.send('updates unavaliable')
+    try {
+        const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
+        if (!updatedData) res.send('User not found')
+        req.user = updatedData
+        await req.user.save()
+        res.status(200).send({
+            apiStatus: true,
+            data: updatedData,
+            message: 'user is updated :)'
+        })
+    } catch (e) {
+        res.status(500).send({
+            apiStatus: false,
+            data: e.message,
+            message: 'Error in user updated '
+        })
     }
 }
+
 const sendMessage = async(req, res) => {
     try {
         if (req.user.userType != "admin") {
@@ -140,7 +154,7 @@ const sendMessage = async(req, res) => {
             message = req.body
             userData.contactMessages.push(message)
             await userData.save()
-            emailSettings(req.user.email, message)
+                // emailSettings(req.user.email, message)
             res.status(200).send({
                 apiStatus: true,
                 data: userData,
@@ -259,5 +273,7 @@ module.exports = {
     singleUser,
     deleteUser,
     activateStatus,
-    deactivate
+    deactivate,
+    allUsers,
+    singleUser
 }

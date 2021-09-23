@@ -16,34 +16,38 @@ const addProduct = async(req, res) => {
 }
 
 const addCategory = async(req, res) => {
-    try {
-        if (req.user.userType == "supplier") {
-            const product = await Product.findById(req.params.id)
-            const category = req.body
-            product.categories.push(category)
-            await product.save()
+
+    if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+        try {
+            productData = await Product.findById(req.params.id)
+            category = req.body
+            productData.categories.push(category)
+            await productData.save()
 
 
             res.status(200).send({
                 apiStatus: "true",
-                data: product,
+                data: productData,
                 message: "category is added :) "
             })
-        }
-    } catch (e) {
-        res.send(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not add category,Error :("
-        })
 
+        } catch (e) {
+            res.send(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not add category,Error :("
+            })
+
+        }
     }
+
 }
+
 const addBrand = async(req, res) => {
     try {
-        if (req.user.userType == "supplier") {
-            const product = await Product.findById(req.params.id)
-            const brand = {
+        if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+            product = await Product.findById(req.params.id)
+            brand = {
                 brandImage: req.file.path.replace('\\', '/'),
                 ...req.body
             }
@@ -68,13 +72,13 @@ const addBrand = async(req, res) => {
 }
 const allProducts = async(req, res) => {
     try {
-        if (req.user.userType == "supplier") {
-            const allproducts = await Product.find()
-            if (!allproducts) res.send('products Not Found')
-            res.send(allproducts)
+
+        const allproducts = await Product.find()
+        if (!allproducts) res.send('products Not Found')
+        res.send(allproducts)
 
 
-        }
+
     } catch (e) {
         res.send(e)
     }
@@ -91,27 +95,40 @@ const singleProduct = async(req, res) => {
 }
 const deleteProduct = async(req, res) => {
     try {
-        const deletedProduct = await Product.findByIdAndDelete(req.params.id)
-        if (!deletedProduct) res.send(`product with id ${req.params.id} Not Found`)
-        res.send('Done,Product Deleted')
+        if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+            deletedProduct = await Product.findByIdAndDelete(req.params.id)
+            if (!deletedProduct) res.send(`product with id ${req.params.id} Not Found`)
+            res.status(200).send({
+                apiStatus: true,
+                data: 'Done,Product Deleted',
+                message: 'you are successed to delete :) '
+            })
+        }
     } catch (e) {
-        res.send(e)
+        res.status(500).send({
+            apiStatus: false,
+            data: e.message,
+            message: 'can not deleted product :( '
+        })
     }
 }
+
 const editProduct = async(req, res) => {
-    availableupdates = ["productName", "productStatus", "productFeatured ", "productFirstColor", "productSecondColor", "productThirdColor", "productFirstImage",
-        "productSecondImage", "productThirdImage", "productSizes", "productPrice", "productQuantity", "productDescription", "productSpecifications",
-        "unitsInStock", "productDiscountAmount", "productDiscountStatus", "productAvailable"
-    ]
-    requested = Object.keys(req.body)
-    isValid = requested.every(p => availableupdates.includes(p))
-    if (!isValid) res.send('unavailable updates')
-    try {
-        const updatedData = await product.findByIdAndUpdate(req.params.id, req.body, { runValidator: true })
-        if (!updatedData) res.send('unavailable updates')
-        res.send('Done,Updated product')
-    } catch (e) {
-        res.send(e)
+    if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+        availableupdates = ["productName", "productStatus", "productFeatured ", "productFirstColor", "productSecondColor", "productThirdColor", "productFirstImage",
+            "productSecondImage", "productThirdImage", "productSizes", "productPrice", "productQuantity", "productDescription", "productSpecifications",
+            "unitsInStock", "productDiscountAmount", "productDiscountStatus", "productAvailable"
+        ]
+        requested = Object.keys(req.body)
+        isValid = requested.every(p => availableupdates.includes(p))
+        if (!isValid) res.send('unavailable updates')
+        try {
+            const updatedData = await product.findByIdAndUpdate(req.params.id, req.body, { runValidator: true })
+            if (!updatedData) res.send('unavailable updates')
+            res.send('Done,Updated product')
+        } catch (e) {
+            res.send(e)
+        }
     }
 }
 const addToCard = async(req, res) => {
@@ -149,7 +166,7 @@ const processOrder = async(req, res) => {
     try {
         if (req.user.userType == "customer") {
             const product = await Product.findById(req.params.id)
-            const statusOfOrder = req.body
+            const statusOfOrder = true
             product.processedOrder.push(statusOfOrder)
             await product.save()
 
@@ -164,7 +181,7 @@ const processOrder = async(req, res) => {
         res.send(500).send({
             apiStatus: "false",
             data: e.message,
-            message: "can not assign Task ,Error :("
+            message: "can not order now ,Error :("
         })
 
     }
@@ -173,7 +190,7 @@ const submitOrder = async(req, res) => {
     try {
         if (req.user.userType == "supplier") {
             const product = await Product.findById(req.params.id)
-            const submitOfOrder = req.body
+            const submitOfOrder = true
             product.submitOrder.push(submitOfOrder)
             await product.save()
 

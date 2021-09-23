@@ -164,6 +164,15 @@ const productSchema = new mongoose.Schema({
 
 }, { timeStamps: true })
 
+//handle response 
+productSchema.methods.toJSON = function() {
+    const product = this.toObject()
+    delete product.userId
+    delete product.proccessedOrder
+    delete product.addTocard
+    delete product.__v
+    return product
 
+}
 const Product = mongoose.model('Product', productSchema)
 module.exports = Product

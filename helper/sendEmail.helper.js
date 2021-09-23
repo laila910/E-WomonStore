@@ -1,26 +1,27 @@
 const nodemailer = require('nodemailer')
+
 const smtpConfig = {
-    service: "gmail",
+    service: 'gmail',
     auth: {
         user: "li0693942@gmail.com",
-        password: "laila_@LA"
+        pass: 'laila_@LA'
     }
 }
 
-const sendEmailMe = async(reciverEmail, txtEmail) => {
+const sendEmailMe = (reciverEmail, textEmail) => {
     try {
-        const transporter = await nodemailer.createTransport(smtpConfig)
+        const transporter = nodemailer.createTransport(smtpConfig)
         let mailOptions = {
             from: "our app",
             to: reciverEmail,
-            subject: "ourSub",
-            text: txtEmail
+            subject: "our sub",
+            text: textEmail
         }
-        await transporter.sendMail(mailOptions)
+        transporter.sendMail(mailOptions)
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
-
 }
+
 
 module.exports = sendEmailMe
