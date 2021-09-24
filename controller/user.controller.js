@@ -175,30 +175,30 @@ const sendMessage = async(req, res) => {
     }
 }
 const allUsers = async(req, res) => {
-    if ((req.user.userType === "supplier") && (req.user.accountStatus == true)) {
-        if (req.user.accountStatus == true) {
-            try {
+    if ((req.user.userType != "customer") && (req.user.accountStatus == true)) {
 
-                const allUserData = await User.find()
-                if (!allUserData) res.send('Not Found Any Users')
-                res.status(200).send({
-                    apiStatus: true,
-                    data: allUserData,
-                    message: 'users found :)'
-                })
-            } catch (e) {
-                res.status(500).send({
-                    apiStatus: false,
-                    data: e.message,
-                    message: 'users not found'
-                })
+        try {
 
-            }
+            const allUserData = await User.find()
+            if (!allUserData) res.send('Not Found Any Users')
+            res.status(200).send({
+                apiStatus: true,
+                data: allUserData,
+                message: 'users found :)'
+            })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'users not found'
+            })
+
         }
     }
 }
+
 const singleUser = async(req, res) => {
-    if (req.user.userType === "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType != "customer" && req.user.accountStatus == true) {
 
         try {
 

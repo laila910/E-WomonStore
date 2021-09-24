@@ -134,7 +134,8 @@ const productSchema = new mongoose.Schema({
     categories: {
         catName: {
             type: String,
-            trim: true
+            trim: true,
+            enum: ["footwear", "bag", "accessories", "clothing", "eyewear", "watches"]
         },
         catDescription: {
             type: String,
