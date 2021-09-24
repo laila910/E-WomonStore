@@ -25,15 +25,13 @@ router.post('/sendMessage', auth, userController.sendMessage)
 router.get('/allUsers', auth, userController.allUsers)
     //get single user :) show only for admin:)
 router.get('/allUsers/:id', auth, userController.singleUser)
-    //delete user :) by admin
+    //delete user :) by admin **
 router.delete('/allUsers/:id', auth, userController.deleteUser)
-    //activate status (admin update status to the users ) :)
+    //activate status (admin update status to the users ) :) **
 router.post('/activateStatus/:id', auth, userController.activateStatus)
     //deactivate account :)
 router.post('/deactivate', auth, userController.deactivate)
-
-
-//processed Order by customer :)
+    //processed Order by customer :)
 router.post('/processOrder', auth, userController.processOrder)
     //submit order by supplier 
 router.post('/submitCustomerOrder/:id', auth, userController.submitOrder)

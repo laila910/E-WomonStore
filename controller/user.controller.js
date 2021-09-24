@@ -7,11 +7,12 @@ const register = async(req, res) => {
     try {
         const userData = new User(req.body)
         await userData.save()
-        emailSettings(userData.email, `hey, you successed to register to our Ecommerce ,your account will be activated in two days at least .${userData._id} WELCOME AGAIN!`)
+        emailSettings(userData.email, `hey, you successed to register to our Ecommerce ,your account will be activated in two days at least WELCOME AGAIN ${userData.name}!`)
+
 
         res.status(200).send({
             apiStatus: true,
-            data: userData,
+            data: 'you are successed to register :) ',
             message: 'register Done'
         })
     } catch (e) {
@@ -25,17 +26,16 @@ const register = async(req, res) => {
 
 const addAddress = async(req, res) => {
     try {
-        if (req.user.userType == "supplier") {
-            userData = req.user
-            addr = req.body
-            userData.Addresses.push(addr)
-            await userData.save()
-            res.status(200).send({
-                apiStatus: true,
-                data: userData,
-                message: 'add  adresses'
-            })
-        }
+
+        userData = req.user
+        addr = req.body
+        userData.Addresses.push(addr)
+        await userData.save()
+        res.status(200).send({
+            apiStatus: true,
+            data: userData,
+            message: 'add  adresses'
+        })
     } catch (e) {
         res.status(500).send({
             apiStatus: false,
@@ -45,8 +45,9 @@ const addAddress = async(req, res) => {
     }
 }
 const addImage = async(req, res) => {
-    try {
-        if (req.user) {
+    if (req.user) {
+        try {
+
             userData = req.user
             image = req.file.path.replace('\\', '/')
             userData.ImageProfile = image
@@ -57,19 +58,20 @@ const addImage = async(req, res) => {
                 data: userData,
                 message: 'add sompany adresses'
             })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'Error In add addresses'
+            })
         }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'Error In add addresses'
-        })
     }
 }
 const login = async(req, res) => {
     try {
         let userData = await User.loginUser(req.body.email, req.body.password)
         const token = await userData.generateToken()
+        emailSettings('lailaibrahim798@gmail.com', ` new user in your E-commerce as ${userData.userType} <br> please ,check and activate the account <br> userId is ${userData._id}!`)
         res.status(200).send({
                 apiStatus: true,
                 data: { userData, token },
@@ -120,98 +122,109 @@ const editProfile = async(req, res) => {
 
 
 
-    avalUpdatates = ["name", "email", "password", "mobileNo", "supplierCompanyName",
-        "supplierCompanyURL",
-        "supplierCompanyFax", "customerCreditCard", "customerCreditCardTypeId",
-        "customerExpMonth",
-        "customerExpYr", "customerCVC", "ordershipperShippingMethod"
-    ]
-    requested = Object.keys(req.body)
-    isValid = requested.every(r => avalUpdatates.includes(r))
-    if (!isValid) res.send('updates unavaliable')
-    try {
-        const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
-        if (!updatedData) res.send('User not found')
-        req.user = updatedData
-        await req.user.save()
-        res.status(200).send({
-            apiStatus: true,
-            data: updatedData,
-            message: 'user is updated :)'
-        })
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'Error in user updated '
-        })
+        avalUpdatates = ["name", "email", "password", "mobileNo", "supplierCompanyName",
+            "supplierCompanyURL",
+            "supplierCompanyFax", "customerCreditCard", "customerCreditCardTypeId",
+            "customerExpMonth",
+            "customerExpYr", "customerCVC"
+        ]
+        requested = Object.keys(req.body)
+        isValid = requested.every(r => avalUpdatates.includes(r))
+        if (!isValid) res.send('updates unavaliable')
+        try {
+            const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
+            if (!updatedData) res.send('User not found')
+            req.user = updatedData
+            await req.user.save()
+            res.status(200).send({
+                apiStatus: true,
+                data: updatedData,
+                message: 'user is updated :)'
+            })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'Error in user updated '
+            })
+        }
     }
-}
-
+    //any one can send message to the admin 
 const sendMessage = async(req, res) => {
-    try {
-        if (req.user.userType != "admin") {
+    if (req.user.userType != "admin") {
+        try {
+
             userData = req.user
             message = req.body
             userData.contactMessages.push(message)
             await userData.save()
+            emailSettings('lailaibrahim798@gmail.com', `hey,user with ${req.user} has amessage for you <br> " ${message} `)
 
             res.status(200).send({
                 apiStatus: true,
                 data: userData,
                 message: 'send message to admin'
             })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'Error In Send Message'
+            })
         }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'Error In Send Message'
-        })
     }
 }
 const allUsers = async(req, res) => {
-    try {
-        if (req.user.userType == "admin") {
-            const allUserData = await User.find()
-            if (!allUserData) res.send('Not Found Any Users')
-            res.status(200).send({
-                apiStatus: true,
-                data: allUserData,
-                message: 'users found :)'
-            })
-        }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'users not found'
-        })
+    if ((req.user.userType === "supplier") && (req.user.accountStatus == true)) {
+        if (req.user.accountStatus == true) {
+            try {
 
+                const allUserData = await User.find()
+                if (!allUserData) res.send('Not Found Any Users')
+                res.status(200).send({
+                    apiStatus: true,
+                    data: allUserData,
+                    message: 'users found :)'
+                })
+            } catch (e) {
+                res.status(500).send({
+                    apiStatus: false,
+                    data: e.message,
+                    message: 'users not found'
+                })
+
+            }
+        }
     }
 }
 const singleUser = async(req, res) => {
-    try {
-        if (req.user.userType == "admin") {
+    if (req.user.userType === "supplier" && req.user.accountStatus == true) {
+
+        try {
+
             singleUser = await User.findById(req.params.id)
-            if (!singleUser) res.status(200).send({
+            if (!singleUser) req.send('user Not Found')
+
+            res.status(200).send({
                 apiStatus: true,
                 data: singleUser,
                 message: 'user found :)'
             })
+
+        } catch (e) {
             res.status(500).send({
                 apiStatus: false,
                 data: e.message,
                 message: 'user not found'
             })
         }
-    } catch (e) {
-        res.send(e)
     }
 }
+
 const deleteUser = async(req, res) => {
-        try {
-            if (req.user.userType == "admin") {
+        if (req.user.userType == "admin") {
+            try {
+
                 deletedUser = await User.findByIdAndDelete(req.params.id)
                 if (!deletedUser) res.send('User is  not deleted')
                 res.status(200).send({
@@ -219,27 +232,34 @@ const deleteUser = async(req, res) => {
                     data: 'User is Deleted',
                     message: 'user deleted Successfuly '
                 })
+            } catch (e) {
+                res.status.send({
+                    apiStatus: false,
+                    data: e.message,
+                    message: 'user is not deleted'
+                })
             }
-        } catch (e) {
-            res.status.send({
-                apiStatus: false,
-                data: e.message,
-                message: 'user is not deleted'
-            })
         }
     }
     //activate the status of users by admin after sent the email with the new users 
 const activateStatus = async(req, res) => {
     if (req.user.userType == "admin") {
-        userData = await User.findById(req.params.id)
-        userData.accountStatus = true
-        await userData.save()
-        res.status(200).send({
-            apiStatus: true,
-            data: userData,
-            message: 'the status is activated :)'
-        })
-
+        try {
+            userData = await User.findById(req.params.id)
+            userData.accountStatus = true
+            await userData.save()
+            res.status(200).send({
+                apiStatus: true,
+                data: userData,
+                message: 'the status is activated :)'
+            })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: true,
+                data: e.message,
+                message: 'the status is activated :)'
+            })
+        }
 
     }
 }
@@ -261,8 +281,9 @@ const deactivate = async(req, res) => {
     }
 }
 const processOrder = async(req, res) => {
-    try {
-        if (req.user.userType == "customer") {
+    if (req.user.userType == "customer" && req.user.accountStatus == true) {
+        try {
+
             const user = await User.findById(req.user._id)
 
             user.proccessedOrder = true
@@ -274,19 +295,20 @@ const processOrder = async(req, res) => {
                 data: user,
                 message: "process order Done "
             })
-        }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not order now ,Error :("
-        })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not order now ,Error :("
+            })
 
+        }
     }
 }
 const submitOrder = async(req, res) => {
-    try {
-        if (req.user.userType == "supplier") {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+        try {
+
             const customerData = await User.findById(req.params.id)
 
             customerData.submitOrder = true
@@ -298,17 +320,16 @@ const submitOrder = async(req, res) => {
                 data: customerData,
                 message: "submit order to the customer Done "
             })
-        }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not agree of the customers'order,Error :("
-        })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not agree of the customers'order,Error :("
+            })
 
+        }
     }
 }
-
 module.exports = {
     register,
     addAddress,

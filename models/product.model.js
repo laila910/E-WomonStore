@@ -23,7 +23,7 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    //remember to delete array 
+
     Colors: {
         firstColor: {
             type: String,
@@ -38,21 +38,14 @@ const productSchema = new mongoose.Schema({
             trim: true
         }
     },
-    //remember to delete array 
-    productImages: {
-        firstImage: {
+
+    productImages: [{
+        image: {
             type: String,
             trim: true
-        },
-        secondImage: {
-            type: String,
-            trim: true
-        },
-        thirdImage: {
-            type: String,
-            trim: true
+
         }
-    },
+    }],
     productSizes: [{
         size: {
             type: String,
@@ -173,8 +166,9 @@ const productSchema = new mongoose.Schema({
 productSchema.methods.toJSON = function() {
     const product = this.toObject()
     delete product.userId
-    delete product.proccessedOrder
+
     delete product.addTocard
+    delete product.isFeatured
     delete product.__v
     return product
 

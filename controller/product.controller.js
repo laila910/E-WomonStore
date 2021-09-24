@@ -1,23 +1,25 @@
 const Product = require('../models/product.model')
 const multer = require('multer')
 const addProduct = async(req, res) => {
-    try {
-        if (req.user.userType == "supplier") {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+        try {
+
             product = new Product({
                 ...req.body,
                 userId: req.user._id
             })
+            await product.save()
+            res.status(200).send({ apiStatus: true, data: product, message: "product added" })
+        } catch (e) {
+            res.status(500).send({ apiStatus: false, data: e.message, message: "error adding product data" })
         }
-        await product.save()
-        res.status(200).send({ apiStatus: true, data: product, message: "product added" })
-    } catch (e) {
-        res.status(500).send({ apiStatus: false, data: e.message, message: "error adding product data" })
+
     }
 }
 
 const addCategory = async(req, res) => {
 
-    if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
         try {
             productData = await Product.findById(req.params.id)
             category = req.body
@@ -44,58 +46,78 @@ const addCategory = async(req, res) => {
 }
 
 const addBrand = async(req, res) => {
-    try {
-        if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
-            product = await Product.findById(req.params.id)
-            brand = {
-                brandImage: req.file.path.replace('\\', '/'),
-                ...req.body
-            }
-            product.brands.push(brand)
-            await product.save()
+        if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+            try {
 
+                product = await Product.findById(req.params.id)
+                brand = {
+                    brandImage: req.file.path.replace('\\', '/'),
+                    ...req.body
+                }
+                product.brands.push(brand)
+                await product.save()
+
+
+                res.status(200).send({
+                    apiStatus: "true",
+                    data: product,
+                    message: "brand is added :) "
+                })
+            } catch (e) {
+                res.status(500).send({
+                    apiStatus: "false",
+                    data: e.message,
+                    message: "can not add brand,Error :("
+                })
+
+            }
+        }
+    }
+    //any one can see all product by normal after ligin  or without login
+const allProducts = async(req, res) => {
+        try {
+
+            const allproducts = await Product.find()
+            if (!allproducts) res.send('products Not Found')
 
             res.status(200).send({
                 apiStatus: "true",
-                data: product,
-                message: "brand is added :) "
+                data: allproducts,
+                message: "all Products :) "
+            })
+
+
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'error :('
             })
         }
-    } catch (e) {
-        res.send(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not add brand,Error :("
-        })
 
     }
-}
-const allProducts = async(req, res) => {
-    try {
-
-        const allproducts = await Product.find()
-        if (!allproducts) res.send('products Not Found')
-        res.send(allproducts)
-
-
-
-    } catch (e) {
-        res.send(e)
-    }
-
-}
+    //any one can see any product after login by normal or without login 
 const singleProduct = async(req, res) => {
     try {
         const singleProduct = await Product.findById(req.params.id)
         if (!singleProduct) res.send(`product with id ${req.params.id} Not Found`)
-        res.send(singleProduct)
+        res.status(200).send({
+            apiStatus: true,
+            data: singleProduct,
+            message: 'success in view product'
+        })
     } catch (e) {
-        res.send(e)
+        res.status(500).send({
+            apiStatus: false,
+            data: e.message,
+            message: 'error :('
+        })
     }
 }
 const addSizes = async(req, res) => {
-    try {
-        if (req.user.userType == "supplier") {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+        try {
+
             const product = await Product.findById(req.params.id)
             const sizes = req.body
             product.productSizes.push(sizes)
@@ -107,20 +129,19 @@ const addSizes = async(req, res) => {
                 data: product,
                 message: "sizes are added :) "
             })
-        }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not add sizes,Error :("
-        })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not add sizes,Error :("
+            })
 
+        }
     }
 }
 
-
 const editProduct = async(req, res) => {
-    if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
         availableupdates = ["name", "status", "isFeatured ",
             "productPrice", "productQuantity", "productDescription", "productSpecifications",
             "unitsInStock", "productDiscountAmount", "productDiscountStatus", "productAvailable"
@@ -146,20 +167,20 @@ const editProduct = async(req, res) => {
     }
 }
 addColors = async(req, res) => {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
         try {
-            if (req.user.userType == "supplier") {
-                const product = await Product.findById(req.params.id)
-                const colors = req.body
-                product.Colors.push(colors)
-                await product.save()
+
+            const product = await Product.findById(req.params.id)
+            const colors = req.body
+            product.Colors.push(colors)
+            await product.save()
 
 
-                res.status(200).send({
-                    apiStatus: "true",
-                    data: product,
-                    message: "colors of product is added :) "
-                })
-            }
+            res.status(200).send({
+                apiStatus: "true",
+                data: product,
+                message: "colors of product is added :) "
+            })
         } catch (e) {
             res.send(500).send({
                 apiStatus: "false",
@@ -169,36 +190,41 @@ addColors = async(req, res) => {
 
         }
     }
-    // I will handle this in angular later 
-addPImages = async(req, res) => {
-    try {
-        if (req.user.userType == "supplier") {
-            const product = await Product.findById(req.params.id)
-            const images = {...req.body }
+}
 
-            product.productImages.push(images)
+addPImages = async(req, res) => {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+        try {
+
+            const product = await Product.findById(req.params.id)
+            const image = req.file.path.replace('\\', '/')
+
+
+
+            product.productImages.push(image)
             await product.save()
 
 
             res.status(200).send({
                 apiStatus: "true",
                 data: product,
-                message: "Images of product is added :) "
+                message: "Image of product is added :) "
             })
-        }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not add images ,Error :("
-        })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not add image ,Error :("
+            })
 
+        }
     }
 }
 
 const addReview = async(req, res) => {
-    try {
-        if (req.user.userType == "customer") {
+    if (req.user.userType == "customer" && req.user.accountStatus == true) {
+        try {
+
             const product = await Product.findById(req.params.id)
             const review = {
                 ...req.body,
@@ -213,19 +239,20 @@ const addReview = async(req, res) => {
                 data: product,
                 message: "review is added :) "
             })
-        }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not add review,Error :("
-        })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not add review,Error :("
+            })
 
+        }
     }
 }
 const addToCard = async(req, res) => {
-    try {
-        if (req.user.userType == "customer") {
+    if (req.user.userType == "customer" && req.user.accountStatus == true) {
+        try {
+
             product = await Product.findById(req.params.id)
             let addtocardData = {}
             addtocardData.productId = req.params.id
@@ -242,24 +269,24 @@ const addToCard = async(req, res) => {
 
             res.status(200).send({
                 apiStatus: "true",
-                data: product,
+                data: product.addTocard,
                 message: " added to card successfuly "
             })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: "false",
+                data: e.message,
+                message: "can not add to card,Error :("
+            })
+
         }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: "false",
-            data: e.message,
-            message: "can not add to card,Error :("
-        })
-
     }
+
 }
-
-
 const deleteProduct = async(req, res) => {
-    try {
-        if (req.user.userType != "customer" && req.user.userType != "ordershipper") {
+    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+        try {
+
             const deletedProduct = await Product.findByIdAndDelete(req.params.id)
             if (!deletedProduct) res.send(`product with id ${req.params.id} Not Found`)
             res.status(200).send({
@@ -267,13 +294,13 @@ const deleteProduct = async(req, res) => {
                 data: 'Done,Product Deleted',
                 message: 'you are successed to delete :) '
             })
+        } catch (e) {
+            res.status(500).send({
+                apiStatus: false,
+                data: e.message,
+                message: 'can not deleted product :( '
+            })
         }
-    } catch (e) {
-        res.status(500).send({
-            apiStatus: false,
-            data: e.message,
-            message: 'can not deleted product :( '
-        })
     }
 }
 module.exports = {
