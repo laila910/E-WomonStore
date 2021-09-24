@@ -23,7 +23,8 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    Colors: [{
+    //remember to delete array 
+    Colors: {
         firstColor: {
             type: String,
             trim: true
@@ -36,8 +37,9 @@ const productSchema = new mongoose.Schema({
             type: String,
             trim: true
         }
-    }],
-    productImages: [{
+    },
+    //remember to delete array 
+    productImages: {
         firstImage: {
             type: String,
             trim: true
@@ -50,32 +52,36 @@ const productSchema = new mongoose.Schema({
             type: String,
             trim: true
         }
-    }],
+    },
     productSizes: [{
         size: {
             type: String,
             trim: true
         },
         number: {
-            type: String,
+            type: Number,
             trim: true
         }
     }],
     productPrice: {
         type: Number,
-        trim: true
+        trim: true,
+        default: 50
     },
     productQuantity: {
         type: Number,
-        trim: true
+        trim: true,
+        default: 1
     },
     productDescription: {
         type: String,
-        trim: true
+        trim: true,
+        default: ""
     },
     productSpecifications: {
         type: String,
-        trim: true
+        trim: true,
+        default: ""
     },
     unitsInStock: {
         type: Number,
@@ -91,8 +97,8 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [{
         userId: {
-            type: Number,
-            trim: true
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         },
         content: {
             type: String,
@@ -100,36 +106,34 @@ const productSchema = new mongoose.Schema({
         }
     }],
     addTocard: [{
-        productId: {
-            type: String,
-            trim: true
-        },
-        productDetails: {
-            type: String,
-            trim: true
 
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        productId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
         },
         quantity: {
             type: Number,
-            trim: true
-
+            trim: true,
+            default: 1
         },
         price: {
-            type: Number,
-            trim: true
+            type: String,
+            trim: true,
+            default: 1
         },
         totalPrice: {
-            type: Number,
-            trim: true
+            type: String,
+            trim: true,
+            default: 1
         }
+
     }],
 
-    proccessedOrder: {
 
-        default: false,
-        type: Boolean
-
-    },
     categories: {
         catName: {
             type: String,
@@ -148,8 +152,9 @@ const productSchema = new mongoose.Schema({
     brands: {
         brandName: {
             type: String,
-            required: true,
-            unique: true
+
+            default: ""
+
         },
         brandDescription: {
             type: String,

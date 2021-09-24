@@ -1,13 +1,14 @@
 const User = require('../models/user.model')
 const emailSettings = require('../helper/sendEmail.helper')
 const multer = require('multer')
-    //register any user and the email is sent to the admin with user data 
+
+//register any user and the email is sent to the admin with user data 
 const register = async(req, res) => {
     try {
         const userData = new User(req.body)
         await userData.save()
-            // emailSettings(userData.email, 'hey, you successed to register to our Ecommerce ,your account will be activated in two days at least . WELCOME AGAIN!')
-            //   emailSettings('lailaibrahim798@gmail.com', `hey, new register to your website with data ${req.user}`)
+        emailSettings(userData.email, `hey, you successed to register to our Ecommerce ,your account will be activated in two days at least .${userData._id} WELCOME AGAIN!`)
+
         res.status(200).send({
             apiStatus: true,
             data: userData,
@@ -154,7 +155,7 @@ const sendMessage = async(req, res) => {
             message = req.body
             userData.contactMessages.push(message)
             await userData.save()
-                // emailSettings(req.user.email, message)
+
             res.status(200).send({
                 apiStatus: true,
                 data: userData,
@@ -259,6 +260,55 @@ const deactivate = async(req, res) => {
         })
     }
 }
+const processOrder = async(req, res) => {
+    try {
+        if (req.user.userType == "customer") {
+            const user = await User.findById(req.user._id)
+
+            user.proccessedOrder = true
+            await user.save()
+
+
+            res.status(200).send({
+                apiStatus: "true",
+                data: user,
+                message: "process order Done "
+            })
+        }
+    } catch (e) {
+        res.status(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not order now ,Error :("
+        })
+
+    }
+}
+const submitOrder = async(req, res) => {
+    try {
+        if (req.user.userType == "supplier") {
+            const customerData = await User.findById(req.params.id)
+
+            customerData.submitOrder = true
+            await customerData.save()
+
+
+            res.status(200).send({
+                apiStatus: "true",
+                data: customerData,
+                message: "submit order to the customer Done "
+            })
+        }
+    } catch (e) {
+        res.status(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not agree of the customers'order,Error :("
+        })
+
+    }
+}
+
 module.exports = {
     register,
     addAddress,
@@ -275,5 +325,7 @@ module.exports = {
     activateStatus,
     deactivate,
     allUsers,
-    singleUser
+    singleUser,
+    processOrder,
+    submitOrder
 }

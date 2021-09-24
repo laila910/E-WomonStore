@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        enum: ["admin", "supplier", "ordershipper", "customer"]
+        enum: ["admin", "supplier", "customer"]
     },
 
     supplierCompanyName: {
@@ -108,13 +108,6 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: function() { return this.userType == "customer" }
     },
-    ordershipperShippingMethod: {
-        type: String,
-        trim: true,
-        lowercase: true,
-
-        required: function() { return this.userType == "ordershipper" }
-    },
     contactMessages: [{
         subject: {
             type: String,
@@ -125,6 +118,15 @@ const userSchema = new mongoose.Schema({
             trim: true
         }
     }],
+    proccessedOrder: {
+        type: Boolean,
+        default: false
+
+    },
+    submitOrder: {
+        type: Boolean,
+        default: false
+    },
     tokens: [{
         token: { type: String, required: true }
     }]

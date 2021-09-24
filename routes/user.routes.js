@@ -32,4 +32,9 @@ router.post('/activateStatus/:id', auth, userController.activateStatus)
     //deactivate account :)
 router.post('/deactivate', auth, userController.deactivate)
 
+
+//processed Order by customer :)
+router.post('/processOrder', auth, userController.processOrder)
+    //submit order by supplier 
+router.post('/submitCustomerOrder/:id', auth, userController.submitOrder)
 module.exports = router

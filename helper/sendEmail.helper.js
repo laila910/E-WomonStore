@@ -1,27 +1,31 @@
 const nodemailer = require('nodemailer')
-
-const smtpConfig = {
-    service: 'gmail',
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    requireTLS: true,
     auth: {
-        user: "li0693942@gmail.com",
-        pass: 'laila_@LA'
+        user: 'li0693942@gmail.com',
+        pass: '123@Tech'
     }
-}
+});
 
-const sendEmailMe = (reciverEmail, textEmail) => {
-    try {
-        const transporter = nodemailer.createTransport(smtpConfig)
-        let mailOptions = {
-            from: "our app",
-            to: reciverEmail,
-            subject: "our sub",
-            text: textEmail
+
+
+
+const sendEmail = (email, text) => {
+    mailOptions = {
+        from: 'li0693942@gmail.com',
+        to: email,
+        subject: 'welcome to Our Site',
+        text: text
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error.message);
         }
-        transporter.sendMail(mailOptions)
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-
-module.exports = sendEmailMe
+        console.log('success register :) ');
+    })
+};
+module.exports = sendEmail

@@ -13,23 +13,20 @@ router.post('/addBrand/:id', auth, uploadbrandImage.single('brandImage'), produc
 router.get('/allProduct', productController.allProducts)
     //single product :) for all users 
 router.get('/allProduct/:id', productController.singleProduct)
-
-router.delete('/allProduct/:id', auth, productController.deleteProduct)
-
-router.patch('/allProduct/:id', auth, productController.editProduct)
-    //add To card
-router.post('/addedTocard/:id', auth, productController.addToCard)
-    //processed Order
-router.post('/Processtheorder', auth, productController.processOrder)
-    //submit order 
-router.post('/submitTheOrderOfCustomer', auth, productController.submitOrder)
-
-router.post('/addColors/:id', auth, productController.addColors)
-
-router.post('/addPImages/:id', auth, uploadProductImages.array('images', 3), productController.addPImages)
-
+    //add sizes :)
 router.post('/addSizes/:id', auth, productController.addSizes)
+    //  edit product :)
+router.patch('/allProduct/:id', auth, productController.editProduct)
+    // add colors by supplier :)
+router.post('/addColors/:id', auth, productController.addColors)
+    //add product images by supplier // I will handle this in angular later ****
+router.post('/addPImages/:id', auth, uploadProductImages.array('productimages', 3), productController.addPImages)
+    //add reviews by customer :) 
 
 router.post('/addReview/:id', auth, productController.addReview)
+    //add To card BY customer :) 
+router.post('/addedTocard/:id', auth, productController.addToCard)
+    // :)
+router.delete('/allProduct/:id', auth, productController.deleteProduct)
 
 module.exports = router
