@@ -96,6 +96,10 @@ const productSchema = new mongoose.Schema({
         content: {
             type: String,
             trim: true
+        },
+        rating: { //rating product from 1 to 5 
+            type: Number,
+            default: 0
         }
     }],
     addTocard: [{
