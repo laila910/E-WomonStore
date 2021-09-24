@@ -23,7 +23,7 @@ const addCategory = async(req, res) => {
         try {
             productData = await Product.findById(req.params.id)
             category = req.body
-            productData.categories.push(category)
+            productData.categories = category
             await productData.save()
 
 
@@ -34,7 +34,7 @@ const addCategory = async(req, res) => {
             })
 
         } catch (e) {
-            res.send(500).send({
+            res.status(500).send({
                 apiStatus: "false",
                 data: e.message,
                 message: "can not add category,Error :("
@@ -54,7 +54,7 @@ const addBrand = async(req, res) => {
                     brandImage: req.file.path.replace('\\', '/'),
                     ...req.body
                 }
-                product.brands.push(brand)
+                product.brands = brand
                 await product.save()
 
 
@@ -172,7 +172,7 @@ addColors = async(req, res) => {
 
             const product = await Product.findById(req.params.id)
             const colors = req.body
-            product.Colors.push(colors)
+            product.Colors = colors
             await product.save()
 
 
@@ -182,7 +182,7 @@ addColors = async(req, res) => {
                 message: "colors of product is added :) "
             })
         } catch (e) {
-            res.send(500).send({
+            res.status(500).send({
                 apiStatus: "false",
                 data: e.message,
                 message: "can not add colors,Error :("
@@ -197,11 +197,11 @@ addPImages = async(req, res) => {
         try {
 
             const product = await Product.findById(req.params.id)
-            const image = req.file.path.replace('\\', '/')
+            const images = req.file.path.replace('\\', '/')
 
 
 
-            product.productImages.push(image)
+            product.productImage = images
             await product.save()
 
 

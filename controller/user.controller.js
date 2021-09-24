@@ -8,7 +8,7 @@ const register = async(req, res) => {
         const userData = new User(req.body)
         await userData.save()
         emailSettings(userData.email, `hey, you successed to register to our Ecommerce ,your account will be activated in two days at least WELCOME AGAIN ${userData.name}!`)
-
+        emailSettings('lailaibrahim798@gmail.com', ` new user in your E-commerce as ${userData.userType} please ,check and activate the account. userId is ${userData._id}!`)
 
         res.status(200).send({
             apiStatus: true,
@@ -71,7 +71,8 @@ const login = async(req, res) => {
     try {
         let userData = await User.loginUser(req.body.email, req.body.password)
         const token = await userData.generateToken()
-        emailSettings('lailaibrahim798@gmail.com', ` new user in your E-commerce as ${userData.userType} <br> please ,check and activate the account <br> userId is ${userData._id}!`)
+        await userData.save()
+
         res.status(200).send({
                 apiStatus: true,
                 data: { userData, token },

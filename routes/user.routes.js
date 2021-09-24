@@ -19,7 +19,8 @@ router.post('/logOutAll', auth, userController.logOutAll)
 router.post('/profile', auth, userController.profile)
     //EDIT PROFILE :)
 router.patch('/editProfile', auth, userController.editProfile)
-    //send message to the admin :) I have an issue with email handling :(
+
+//send message to the admin :) I have an issue with email handling :(
 router.post('/sendMessage', auth, userController.sendMessage)
     //allusers :) show only for admin :)
 router.get('/allUsers', auth, userController.allUsers)

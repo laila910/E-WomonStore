@@ -20,7 +20,7 @@ router.patch('/allProduct/:id', auth, productController.editProduct)
     // add colors by supplier :)
 router.post('/addColors/:id', auth, productController.addColors)
     //add product images by supplier :)
-router.post('/addPImages/:id', auth, uploadProductImages.single('image'), productController.addPImages)
+router.post('/addPImages/:id', auth, uploadProductImages.single('productImage'), productController.addPImages)
     //add reviews by customer :) 
 
 router.post('/addReview/:id', auth, productController.addReview)

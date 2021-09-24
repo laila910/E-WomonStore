@@ -3,7 +3,7 @@ const path = require('path')
 fs = require('fs')
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        const location = path.join('productimages', Date.now().random(1, 100))
+        const location = path.join('productimages')
         fs.mkdir(location, (err) => {})
         cb(null, location)
 

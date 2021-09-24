@@ -76,7 +76,7 @@ const userSchema = new mongoose.Schema({
     },
     accountStatus: {
         type: Boolean,
-        trim: false,
+        trim: true,
         default: function() { if (this.userType == "admin") return true }
     },
     customerCreditCard: {
