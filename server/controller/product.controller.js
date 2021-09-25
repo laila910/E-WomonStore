@@ -23,6 +23,7 @@ const addCategory = async(req, res) => {
         try {
             productData = await Product.findById(req.params.id)
             category = req.body
+
             productData.categories = category
             await productData.save()
 
@@ -51,6 +52,7 @@ const addBrand = async(req, res) => {
 
                 product = await Product.findById(req.params.id)
                 brand = {
+
                     brandImage: req.file.path.replace('\\', '/'),
                     ...req.body
                 }
