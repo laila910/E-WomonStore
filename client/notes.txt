@@ -1,0 +1,104 @@
+home =>
+navbar
+searchbar
+sidebar
+categories on the side
+featured products=>hay3rd el product ely isfeatured=true
+recent products=>hay3rd el products ely lessa 7tnha
+footer
+----------------------------------------
+product-list=>
+navbar
+searchbar
+products
+rightside
+footer
+
+notes: when I click it convert me to product-details with id
+---------------------------------------
+sidebar=>3aml zay cart gwah dol:-
+linkat in sidebar
+kol el categories
+bestSelling=>
+newArrivals=>hay3rd el products ely lessa 7tnha
+footer
+
+-----------------------------------------
+product-details=>zay single product with all details :)
+navbar
+searchbar for products
+product
+leftside
+footer
+----------------------------------------------
+users=>
+navbar
+
+instead of home :-
+dashborad=>admin or supplier can see  crud system for users ,
+but admin only can delete user or activatestatus of user
+but supplier only can submit order for user
+
+dashborad for supplier => ha3ml crud system for products
+
+footer
+
+-------------------------------------------------
+addTocard=>
+navbar
+searchbar
+table for card
+on left card to calculate or process the order
+------------------------------------
+checkout=>
+navbar
+searchbar
+
+after customer click on process button that will directly to this page maktob feha
+you submit your order ,your order will be arrive soon .please wait to our call
+
+footer
+-------------------------------------
+
+contactus=>
+navbar
+searchbar
+your messages in card in right and the addresses of the user in the right
+footer
+-------------------------------------------
+
+register=>
+navbar
+searchbar
+loginform ,registerform
+footer
+------------------------------------------------
+myprofile=>
+navbar
+searchbar
+mydata
+footer
+
+-----------------------------------------------------------
+category=>
+categoriespage:- ha3ml onepage category w lama yeb3t esm el category ely bydawr 3aleha
+ageeb kol el products ely el category bta3tha esmha zay ma ba3t
+1-footwear
+2-bag
+3-accessories
+4-clothing
+5-eyewear
+6-watches
+
+shared=>
+searchbar for products
+navbar
+footer
+slidebar
+rightside
+featured
+recent
+
+
+
+
