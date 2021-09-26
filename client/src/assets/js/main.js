@@ -230,4 +230,4 @@
             $('#' + checkbox_id + '-show').slideDown();
         }
     });
-})(jQuery);
+});
