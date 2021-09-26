@@ -1,26 +1,25 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6">
-            <div class="alert alert-primary">
+        <div class="col-lg-12">
+            <!-- <div class="alert alert-primary">
                 {{registerForm.value|json}}<br> isValid:{{ registerForm.valid }}<br> is inValid:{{ registerForm.invalid }}<br> submitted:{{ registerForm.submitted }}<br> touched:{{ registerForm.touched }}<br>
 
 
 
 
-            </div>
+            </div> -->
             <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>Name</label>
                         <input class="form-control" type="text" placeholder="Name" required minlenghth="5" maxlength="15" name="name" [(ngModel)]="userData.name" #name="ngModel">
                         <div class="alert alert-danger" *ngIf="name.invalid && (name.touched||registerForm.submitted||name.dirty)">
                             <p *ngIf="name.errors?.required">required</p>
-                            <p *ngIf="name.errors?.minlength">min length</p>
-                            <p *ngIf="name.errors?.maxlength">max length</p>
+
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>E-mail</label>
 
                         <input class="form-control" type="text" placeholder="E-mail" required name="email" ngModel #email="ngModel">
@@ -30,21 +29,53 @@
 
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>Mobile No</label>
                         <input class="form-control" type="text" placeholder="Mobile No" required name="mobileNo" [(ngModel)]="userData.mobileNo" #mobileNo="ngModel">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>Password</label>
                         <input class="form-control" type="text" placeholder="Password" required name="password" [(ngModel)]="userData.password" #password="ngModel">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label>UserType if admin or customer or supplier </label>
                         <input class="form-control" type="text" placeholder="userType" required name="userType" [(ngModel)]="userData.userType" #userType="ngModel">
                     </div>
+                    <div class="col-md-12">
+                        <label>Supplier Company Name</label>
+                        <input class="form-control" type="text" placeholder="supplier company name " name="supplierCompanyName" [(ngModel)]="userData.supplierCompanyName" #supplierCompanyName="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label>Supplier Company Fax</label>
+                        <input class="form-control" type="text" placeholder="supplier company Fax " name="supplierCompanyFax" [(ngModel)]="userData.supplierCompanyFax" #supplierCompanyFax="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label>Supplier Company URL</label>
+                        <input class="form-control" type="text" placeholder="supplier company URL" name="supplierCompanyURL" [(ngModel)]="userData.supplierCompanyURL" #supplierCompanyURL="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label> Customer Credit Card</label>
+                        <input class="form-control" type="text" placeholder="Customer Credit Card" name="customerCreditCard" [(ngModel)]="userData.customerCreditCard" #customerCreditCard="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label> Customer Credit Card TypeId</label>
+                        <input class="form-control" type="text" placeholder="Customer Credit Card TypeID" name="customerCreditCardTypeId" [(ngModel)]="userData.customerCreditCard" #customerCreditCardTypeId="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label> Customer Expiration Month</label>
+                        <input class="form-control" type="text" placeholder="Customer Expiration Month" name="customerExpMonth" [(ngModel)]="userData.customerExpMonth" #customerExpMonth="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label> Customer Expiration year</label>
+                        <input class="form-control" type="text" placeholder="Customer Expiration year" name="customerExpYr" [(ngModel)]="userData.customerExpYr" #customerExpYr="ngModel">
+                    </div>
+                    <div class="col-md-12">
+                        <label> Customer CVC</label>
+                        <input class="form-control" type="text" placeholder="Customer CVC" name="customerCVC" [(ngModel)]="userData.customerCVC" #customerCVC="ngModel">
+                    </div>
 
                     <div class="col-md-12">
-                        <button class="btn">Submit</button>
+                        <button class="btn btn-danger">Submit</button>
                     </div>
                 </div>
             </form>

@@ -13,7 +13,16 @@ export class RegisterComponent implements OnInit {
     password: "",
     mobileNo: "",
     userType: "",
-    accountStatus: false
+    accountStatus: false,
+    supplierCompanyName: "",
+    supplierCompanyFax: "",
+    supplierCompanyURL: "",
+    customerCreditCard: "",
+    customerCreditCardTypeId: "",
+    customerExpMonth: "",
+    customerExpYr: "",
+    customerCVC: ""
+
   }
   constructor(private _userService: UserService) { }
 
@@ -21,11 +30,13 @@ export class RegisterComponent implements OnInit {
   }
   onRegister(data: any) {
     // console.log(data.value)
-    console.log(this.userData)
-    this._userService.registerUser(this.userData).subscribe(data => {
-      console.log(data)
-    })
+    if (data.valid) {
+      console.log(this.userData)
+      this._userService.registerUser(this.userData).subscribe(data => {
+        console.log(data)
+      })
 
+    }
   }
 
 }

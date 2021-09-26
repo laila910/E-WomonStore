@@ -8,7 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProductlistComponent } from './pages/productlist/productlist.component';
 import { ProductdetailsComponent } from './pages/productdetails/productdetails.component';
 import { AddtocardComponent } from './pages/addtocard/addtocard.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
+
 import { ContactComponent } from './pages/contact/contact.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -17,8 +17,8 @@ import { CategoryComponent } from './pages/category/category.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SearchbarComponent } from './shared/searchbar/searchbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { RightsideComponent } from './shared/rightside/rightside.component';
+
+
 import { FeaturedComponent } from './shared/featured/featured.component';
 import { RecentComponent } from './shared/recent/recent.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
@@ -32,7 +32,7 @@ import { HeaderComponent } from './shared/header/header.component';
     ProductlistComponent,
     ProductdetailsComponent,
     AddtocardComponent,
-    CheckoutComponent,
+
     ContactComponent,
     RegisterComponent,
     LoginComponent,
@@ -41,8 +41,7 @@ import { HeaderComponent } from './shared/header/header.component';
     NavbarComponent,
     FooterComponent,
     SearchbarComponent,
-    SidebarComponent,
-    RightsideComponent,
+
     FeaturedComponent,
     RecentComponent,
     AdminComponent,

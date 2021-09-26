@@ -11,5 +11,18 @@ export class SupplierComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  addProduct() { }
+  submitOrder() { }
+  showUser() { }
+  addSize() { }
+  addCat() { }
+  addBrand() { }
+  addColors() {
+
+  }
+  addPImage() { }
+  showProduct() { }
+  editProduct() { }
+  deleteProduct() { }
 
 }

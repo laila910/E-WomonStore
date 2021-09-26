@@ -1,1 +1,30 @@
-<p>admin works!</p>
+<div class="container">
+    <div class="row">
+
+        <table class=" table table-bordered ">
+            <caption>List of users</caption>
+            <thead>
+                <tr>
+                    <th scope="col ">#</th>
+                    <th scope="col ">First</th>
+                    <th scope="col ">Last</th>
+                    <th scope="col ">Handle</th>
+                    <th scope="col ">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row ">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td class="space-between">
+                        <a class="btn btn-danger" (click)="deleteUser()">Delete</a>
+                        <a class="btn btn-primary" (click)="activateStatus()">ActivateStatus</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

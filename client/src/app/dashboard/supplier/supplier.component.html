@@ -1,1 +1,67 @@
-<p>supplier works!</p>
+<div class="container">
+    <div class="row">
+        <a class="btn btn-danger" (click)="addProduct()">Add Product </a>
+    </div>
+    <div class="row">
+
+        <table class=" table table-bordered ">
+            <caption>List of Users</caption>
+            <thead>
+                <tr>
+                    <th scope="col ">#</th>
+                    <th scope="col ">First</th>
+                    <th scope="col ">Last</th>
+                    <th scope="col ">Handle</th>
+                    <th scope="col ">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row ">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td class="space-between">
+                        <a class="btn btn-danger" (click)="submitOrder()">SubmitOrder</a>
+                        <a class="btn btn-primary" (click)="showUser()">show user</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+
+        <table class=" table table-bordered ">
+            <caption>List of Products</caption>
+            <thead>
+                <tr>
+                    <th scope="col ">#</th>
+                    <th scope="col ">First</th>
+                    <th scope="col ">Last</th>
+                    <th scope="col ">Handle</th>
+                    <th scope="col ">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row ">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td class="space-between">
+                        <a class="btn btn-danger" (click)="addSize()">Add Sizes </a>
+                        <a class="btn btn-danger" (click)="addCat()">Add Category </a>
+                        <a class="btn btn-danger" (click)="addBrand()">Add Brand </a>
+                        <a class="btn btn-danger" (click)="addColors()">Add Colors</a>
+                        <a class="btn btn-danger" (click)="addPImage()">>Add Product Image </a>
+                        <a class="btn btn-primary" (click)="showProduct()">show product</a>
+                        <a class="btn btn-primary" (click)="editProduct()">edit product</a>
+                        <a class="btn btn-primary" (click)="deleteProduct()">delete product</a>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

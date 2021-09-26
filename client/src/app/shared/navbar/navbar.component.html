@@ -1,6 +1,6 @@
 <!-- Top bar Start -->
-<div class="top-bar bg-danger text-center text-white">
-    <div class="container-fluid">
+<div class="top-bar p-2">
+    <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <i class="fa fa-envelope"></i> support@email.com
@@ -14,39 +14,43 @@
 <!-- Top bar End -->
 
 <!-- Nav Bar Start -->
-<div class="nav bg-primary">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md  navbar-danger text-white">
-            <a href="#" class="navbar-brand">MENU</a>
+<div class="nav">
+    <div class="container">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a routerLink="" class="navbar-brand">MENU</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                    <a href="product-list.html" class="nav-item nav-link">Products</a>
-                    <a href="product-detail.html" class="nav-item nav-link">Product Detail</a>
-                    <a href="cart.html" class="nav-item nav-link">Cart</a>
-                    <a href="checkout.html" class="nav-item nav-link">Checkout</a>
-                    <a href="my-account.html" class="nav-item nav-link">My Account</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                    <a routerLink="" class="nav-item nav-link">Home</a>
+                    <a routerLink="productlist" class="nav-item nav-link">Products</a>
+                    <!-- <a routerLink="productdetails" class="nav-item nav-link">Product Detail</a> -->
+                    <a routerLink="addtocard" class="nav-item nav-link">Cart</a>
+                    <!-- <a routerLink="checkout" class="nav-item nav-link">Checkout</a> -->
+                    <a routerLink="myprofile" class="nav-item nav-link">Account</a>
+                    <a routerLink="admin" class="nav-item nav-link">Admin-Dashboard</a>
+                    <a routerLink="supplier" class="nav-item nav-link">supplier-Dashboard</a>
+                    <a routerLink="contact" class="nav-item nav-link">Contact Us</a>
+
+                    <!-- <div class="nav-item dropdown">
+                        <a routerLink="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">More Pages</a>
                         <div class="dropdown-menu">
-                            <a href="wishlist.html" class="dropdown-item">Wishlist</a>
-                            <a href="login.html" class="dropdown-item">Login & Register</a>
-                            <a href="contact.html" class="dropdown-item">Contact Us</a>
+                            <a routerLink="admin" class="dropdown-item active">Account</a>
+                            <a routerLink="admin" class="dropdown-item active">Admin-Dash</a>
+                            <a routerLink="supplier" class="dropdown-item active">supplier-Dash</a>
+                            <a routerLink="contact" class="dropdown-item">Contact Us</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
-                        </div>
-                    </div>
+
+
+                    <a routerLink="login" class="nav-item nav-link">Login</a>
+                    <a routerLink="register" class="nav-item nav-link">Register</a>
+
+
                 </div>
             </div>
         </nav>
