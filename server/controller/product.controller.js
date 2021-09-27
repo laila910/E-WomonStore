@@ -1,7 +1,7 @@
 const Product = require('../models/product.model')
 const multer = require('multer')
 const addProduct = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
 
             product = new Product({
@@ -19,7 +19,7 @@ const addProduct = async(req, res) => {
 
 const addCategory = async(req, res) => {
 
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
             productData = await Product.findById(req.params.id)
             category = req.body
@@ -47,7 +47,7 @@ const addCategory = async(req, res) => {
 }
 
 const addBrand = async(req, res) => {
-        if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+        if (req.user.userType == 2 && req.user.accountStatus == true) {
             try {
 
                 product = await Product.findById(req.params.id)
@@ -117,7 +117,7 @@ const singleProduct = async(req, res) => {
     }
 }
 const addSizes = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
 
             const product = await Product.findById(req.params.id)
@@ -143,7 +143,7 @@ const addSizes = async(req, res) => {
 }
 
 const editProduct = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         availableupdates = ["name", "status", "isFeatured ",
             "productPrice", "productQuantity", "productDescription", "productSpecifications",
             "unitsInStock", "productDiscountAmount", "productDiscountStatus", "productAvailable"
@@ -169,7 +169,7 @@ const editProduct = async(req, res) => {
     }
 }
 addColors = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
 
             const product = await Product.findById(req.params.id)
@@ -195,7 +195,7 @@ addColors = async(req, res) => {
 }
 
 addPImages = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
 
             const product = await Product.findById(req.params.id)
@@ -224,7 +224,7 @@ addPImages = async(req, res) => {
 }
 
 const addReview = async(req, res) => {
-    if (req.user.userType == "customer" && req.user.accountStatus == true) {
+    if (req.user.userType == 3 && req.user.accountStatus == true) {
         try {
 
             const product = await Product.findById(req.params.id)
@@ -252,7 +252,7 @@ const addReview = async(req, res) => {
     }
 }
 const addToCard = async(req, res) => {
-    if (req.user.userType == "customer" && req.user.accountStatus == true) {
+    if (req.user.userType == 3 && req.user.accountStatus == true) {
         try {
 
             product = await Product.findById(req.params.id)
@@ -286,7 +286,7 @@ const addToCard = async(req, res) => {
 
 }
 const deleteProduct = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
 
             const deletedProduct = await Product.findByIdAndDelete(req.params.id)

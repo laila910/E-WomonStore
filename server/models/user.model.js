@@ -37,16 +37,19 @@ const userSchema = new mongoose.Schema({
 
     },
     userType: {
-        type: String,
+        type: Number,
         trim: true,
         required: true,
-        enum: ["admin", "supplier", "customer"]
+        enum: [1, 2, 3]
+            // 1 for admin 
+            // 2 for supplier 
+            // 3 for customer 
     },
 
     supplierCompanyName: {
         type: String,
         trim: true,
-        required: function() { return this.userType == "supplier" }
+        required: function() { return this.userType == 2 }
     },
     Addresses: [{
         addrType: {
@@ -61,14 +64,14 @@ const userSchema = new mongoose.Schema({
     supplierCompanyFax: {
         type: String,
         trim: true,
-        required: function() { return this.userType == "supplier" }
+        required: function() { return this.userType == 2 }
     },
     supplierCompanyURL: {
         type: String,
         validate(value) {
             if (validator.isURL(value)) throw new Error('Invalid URL')
         },
-        required: function() { return this.userType == "supplier" }
+        required: function() { return this.userType == 2 }
     },
     ImageProfile: {
         type: String,
@@ -77,13 +80,13 @@ const userSchema = new mongoose.Schema({
     accountStatus: {
         type: Boolean,
         trim: true,
-        default: function() { if (this.userType == "admin") return true }
+        default: function() { if (this.userType == 1) return true }
     },
     customerCreditCard: {
         type: String,
         enum: ["visa", "discover", "amex", "mastercard"],
         lowercase: true,
-        required: function() { return this.userType == "customer" }
+        required: function() { return this.userType == 3 }
     },
     customerCreditCardTypeId: {
         type: Number,
@@ -92,22 +95,22 @@ const userSchema = new mongoose.Schema({
         validate(value) {
             if (value < 3) throw new Error('your creditcard Id must be 3 ')
         },
-        required: function() { return this.userType == "customer" }
+        required: function() { return this.userType == 3 }
     },
     customerExpMonth: {
         type: Number,
         trim: true,
-        required: function() { return this.userType == "customer" }
+        required: function() { return this.userType == 3 }
     },
     customerExpYr: {
         type: Number,
         trim: true,
-        required: function() { return this.userType == "customer" }
+        required: function() { return this.userType == 3 }
     },
     customerCVC: {
         type: "Number",
         trim: true,
-        required: function() { return this.userType == "customer" }
+        required: function() { return this.userType == 3 }
     },
     contactMessages: [{
         subject: {

@@ -152,7 +152,7 @@ const editProfile = async(req, res) => {
     }
     //any one can send message to the admin 
 const sendMessage = async(req, res) => {
-    if (req.user.userType != "admin") {
+    if (req.user.userType != 1) {
         try {
 
             userData = req.user
@@ -176,7 +176,7 @@ const sendMessage = async(req, res) => {
     }
 }
 const allUsers = async(req, res) => {
-    if ((req.user.userType != "customer") && (req.user.accountStatus == true)) {
+    if ((req.user.userType != 3) && (req.user.accountStatus == true)) {
 
         try {
 
@@ -199,7 +199,7 @@ const allUsers = async(req, res) => {
 }
 
 const singleUser = async(req, res) => {
-    if (req.user.userType != "customer" && req.user.accountStatus == true) {
+    if (req.user.userType != 3 && req.user.accountStatus == true) {
 
         try {
 
@@ -223,7 +223,7 @@ const singleUser = async(req, res) => {
 }
 
 const deleteUser = async(req, res) => {
-        if (req.user.userType == "admin") {
+        if (req.user.userType == 1) {
             try {
 
                 deletedUser = await User.findByIdAndDelete(req.params.id)
@@ -244,7 +244,7 @@ const deleteUser = async(req, res) => {
     }
     //activate the status of users by admin after sent the email with the new users 
 const activateStatus = async(req, res) => {
-    if (req.user.userType == "admin") {
+    if (req.user.userType == 1) {
         try {
             userData = await User.findById(req.params.id)
             userData.accountStatus = true
@@ -282,7 +282,7 @@ const deactivate = async(req, res) => {
     }
 }
 const processOrder = async(req, res) => {
-    if (req.user.userType == "customer" && req.user.accountStatus == true) {
+    if (req.user.userType == 3 && req.user.accountStatus == true) {
         try {
 
             const user = await User.findById(req.user._id)
@@ -307,7 +307,7 @@ const processOrder = async(req, res) => {
     }
 }
 const submitOrder = async(req, res) => {
-    if (req.user.userType == "supplier" && req.user.accountStatus == true) {
+    if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
 
             const customerData = await User.findById(req.params.id)
