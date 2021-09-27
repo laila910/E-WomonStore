@@ -16,7 +16,7 @@ router.post('/logOut', auth, userController.logOut)
     //logout from all devices :)
 router.post('/logOutAll', auth, userController.logOutAll)
     //profile :)
-router.post('/profile', auth, userController.profile)
+router.get('/profile', auth, userController.profile)
     //EDIT PROFILE :)
 router.patch('/editProfile', auth, userController.editProfile)
 

@@ -117,7 +117,13 @@ const logOutAll = async(req, res) => {
     }
 }
 
-const profile = async(req, res) => { res.send(req.user) }
+const profile = async(req, res) => {
+    res.status(200).send({
+        apiStatus: true,
+        data: req.user,
+        message: "data is returned"
+    })
+}
 
 const editProfile = async(req, res) => {
 
