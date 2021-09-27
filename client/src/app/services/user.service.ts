@@ -20,4 +20,7 @@ export class UserService {
   // logoutUser(): Observable<any> {
   //   return this._http.post('http://localhost:3000/user/logOut')
   // }
+  profile(): Observable<any> {
+    return this._http.get('http://localhost:3000/user/profile')
+  }
 }

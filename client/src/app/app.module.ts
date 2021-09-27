@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { AdminComponent } from './dashboard/admin/admin.component';
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { LogOutComponent } from './pages/log-out/log-out.component';
+import { UserInterceptor } from './providers/user.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { LogOutComponent } from './pages/log-out/log-out.component';
     HttpClientModule
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
   { path: "log-out", component: LogOutComponent },
-  { path: "myprofile", component: MyprofileComponent },
+  { path: "profile", component: MyprofileComponent },
   { path: "productlist", component: ProductlistComponent },
   { path: "productdetails", component: ProductdetailsComponent },
   { path: "contact", component: ContactComponent },
