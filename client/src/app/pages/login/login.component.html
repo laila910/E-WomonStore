@@ -1,27 +1,27 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6">
-            <div class="login-form">
+            <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
                 <div class="row">
                     <div class="col-md-6">
                         <label>E-mail </label>
-                        <input class="form-control" type="text" placeholder="E-mail / Username">
+                        <input class="form-control" type="text" name="email" placeholder="E-mail" [(ngModel)]="userData.email" #email="ngModel">
+                        <div class="alert alert-danger" *ngIf="email.invalid && (email.touched||loginForm.submitted)">
+                            <p *ngIf="email.errors?.required">required</p>
+                            <p *ngIf="email.errors?.email">email</p>
+
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <label>Password</label>
-                        <input class="form-control" type="text" placeholder="Password">
+                        <input class="form-control" type="text" name="password" placeholder="Password" required [(ngModel)]="userData.password" #password="ngModel">
                     </div>
+
                     <div class="col-md-12">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="newaccount">
-                            <label class="custom-control-label" for="newaccount">Keep me signed in</label>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn">Submit</button>
+                        <button class="btn btn-danger">Submit</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>

@@ -11,4 +11,13 @@ export class UserService {
   registerUser(userData: any): Observable<any> {
     return this._http.post('http://localhost:3000/user/register', userData)
   }
+  getAllUsers(): Observable<any> {
+    return this._http.get('http://localhost:3000/user/allUsers')
+  }
+  loginUser(userData: any): Observable<any> {
+    return this._http.post('http://localhost:3000/user/login', userData)
+  }
+  // logoutUser(): Observable<any> {
+  //   return this._http.post('http://localhost:3000/user/logOut')
+  // }
 }

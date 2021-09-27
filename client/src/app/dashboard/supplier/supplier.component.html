@@ -9,18 +9,22 @@
             <thead>
                 <tr>
                     <th scope="col ">#</th>
-                    <th scope="col ">First</th>
-                    <th scope="col ">Last</th>
-                    <th scope="col ">Handle</th>
+                    <th scope="col ">Name</th>
+                    <th scope="col ">Email</th>
+                    <th scope="col ">Mobile No.</th>
+                    <th scope="col ">Password</th>
+                    <th scope="col ">User Type</th>
                     <th scope="col ">action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row ">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                <tr *ngFor="let user of myUsers">
+                    <th scope="row ">{{ user._id }}</th>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.mobileNo }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.userType }}</td>
                     <td class="space-between">
                         <a class="btn btn-danger" (click)="submitOrder()">SubmitOrder</a>
                         <a class="btn btn-primary" (click)="showUser()">show user</a>

@@ -11,11 +11,13 @@ import { AddtocardComponent } from './pages/addtocard/addtocard.component';
 
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
+import { LogOutComponent } from './pages/log-out/log-out.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent },
+  { path: "log-out", component: LogOutComponent },
   { path: "myprofile", component: MyprofileComponent },
   { path: "productlist", component: ProductlistComponent },
   { path: "productdetails", component: ProductdetailsComponent },

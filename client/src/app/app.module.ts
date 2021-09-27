@@ -24,6 +24,7 @@ import { RecentComponent } from './shared/recent/recent.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { LogOutComponent } from './pages/log-out/log-out.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HeaderComponent } from './shared/header/header.component';
     RecentComponent,
     AdminComponent,
     SupplierComponent,
-    HeaderComponent
+    HeaderComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,

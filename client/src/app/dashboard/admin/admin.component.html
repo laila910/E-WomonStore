@@ -6,18 +6,22 @@
             <thead>
                 <tr>
                     <th scope="col ">#</th>
-                    <th scope="col ">First</th>
-                    <th scope="col ">Last</th>
-                    <th scope="col ">Handle</th>
+                    <th scope="col ">Name</th>
+                    <th scope="col ">Email</th>
+                    <th scope="col ">Password</th>
+                    <th scope="col ">Mobile No.</th>
+                    <th scope="col ">UserType</th>
                     <th scope="col ">action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row ">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                <tr *ngFor="let user of myUsers">
+                    <th scope="row ">{{ user._id}}</th>
+                    <th scope="row ">{{ user.name}}</th>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{{ user.mobileNo }}</td>
+                    <td>{{ user.userType }}</td>
                     <td class="space-between">
                         <a class="btn btn-danger" (click)="deleteUser()">Delete</a>
                         <a class="btn btn-primary" (click)="activateStatus()">ActivateStatus</a>
