@@ -21,6 +21,6 @@ export class UserService {
   //   return this._http.post('http://localhost:3000/user/logOut')
   // }
   profile(): Observable<any> {
-    return this._http.get('http://localhost:3000/user/profile')
+    return this._http.post('http://localhost:3000/user/profile', null)
   }
 }

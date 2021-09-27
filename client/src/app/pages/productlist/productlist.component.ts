@@ -11,8 +11,8 @@ export class ProductlistComponent implements OnInit {
 
   ngOnInit(): void {
     this._data.getAllProduct().subscribe(data => {
-      console.log(data)
-      this.myProducts = data
+      console.log(data.data)
+      this.myProducts = data.data
     })
   }
 
