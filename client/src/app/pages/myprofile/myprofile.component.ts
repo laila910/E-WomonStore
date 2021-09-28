@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-myprofile',
   templateUrl: './myprofile.component.html',
@@ -7,7 +8,7 @@ import { UserService } from '../../services/user.service';
 })
 export class MyprofileComponent implements OnInit {
   myData: [] = []
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService, private _router: Router) { }
 
   ngOnInit(): void {
     this.getMe()
@@ -18,7 +19,7 @@ export class MyprofileComponent implements OnInit {
         console.log(data)
         this.myData = data
       },
-      (e) => { console.log(e) },
+      (e) => { this._router.navigate(['user/login']) },
       () => { console.log(2) })
   }
   logOut() {
