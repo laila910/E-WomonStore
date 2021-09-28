@@ -12,8 +12,13 @@
                     <th scope="col ">Name</th>
                     <th scope="col ">Email</th>
                     <th scope="col ">Mobile No.</th>
-                    <th scope="col ">Password</th>
+
                     <th scope="col ">User Type</th>
+
+                    <th scope="col ">proccessed Order</th>
+                    <th scope="col ">Order </th>
+
+
                     <th scope="col ">action</th>
                 </tr>
             </thead>
@@ -23,11 +28,23 @@
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.mobileNo }}</td>
-                    <td>{{ user.password }}</td>
+
                     <td>{{ user.userType }}</td>
+                    <!-- i do not need the account status because any user cann't order without true account status -->
+
+                    <td>{{ user.proccessedOrder}}</td>
+                    <td *ngIf="user.proccessedOrder == true, else elseblock">
+                        <a class="btn btn-primary">Show Order</a>
+
+                    </td>
+                    <ng-template #elseblock>
+                        <td>No orders</td>
+                    </ng-template>
+
+
                     <td class="space-between">
-                        <a class="btn btn-danger" (click)="submitOrder()">SubmitOrder</a>
-                        <a class="btn btn-primary" (click)="showUser()">show user</a>
+                        <a class="btn btn-danger" (click)="submitOrder(user._id)">SubmitOrder</a>
+                        <a class="btn btn-primary" (click)="showUser(user._id)">show user</a>
                     </td>
                 </tr>
 
@@ -41,27 +58,27 @@
             <thead>
                 <tr>
                     <th scope="col ">#</th>
-                    <th scope="col ">First</th>
-                    <th scope="col ">Last</th>
-                    <th scope="col ">Handle</th>
+                    <th scope="col ">Name</th>
+                    <th scope="col ">Price</th>
+                    <th scope="col ">Image</th>
                     <th scope="col ">action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row ">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                <tr *ngFor="let product of myProducts">
+                    <th scope="row ">{{ product._id }}</th>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.productPrice }}</td>
+                    <td><img [src]="product.productImage"></td>
                     <td class="space-between">
-                        <a class="btn btn-danger" (click)="addSize()">Add Sizes </a>
-                        <a class="btn btn-danger" (click)="addCat()">Add Category </a>
-                        <a class="btn btn-danger" (click)="addBrand()">Add Brand </a>
-                        <a class="btn btn-danger" (click)="addColors()">Add Colors</a>
-                        <a class="btn btn-danger" (click)="addPImage()">>Add Product Image </a>
-                        <a class="btn btn-primary" (click)="showProduct()">show product</a>
-                        <a class="btn btn-primary" (click)="editProduct()">edit product</a>
-                        <a class="btn btn-primary" (click)="deleteProduct()">delete product</a>
+                        <a class="btn btn-danger" (click)="addSize(product._id)">Add Sizes </a>
+                        <a class="btn btn-danger" (click)="addCat(product._id)">Add Category </a>
+                        <a class="btn btn-danger" (click)="addBrand(product._id)">Add Brand </a>
+                        <a class="btn btn-danger" (click)="addColors(product._id)">Add Colors</a>
+                        <a class="btn btn-danger" (click)="addPImage(product._id)">>Add Product Image </a>
+                        <a class="btn btn-primary" (click)="showProduct(product._id)">show product</a>
+                        <a class="btn btn-primary" (click)="editProduct(product._id)">edit product</a>
+                        <a class="btn btn-primary" (click)="deleteProduct(product._id)">delete product</a>
                     </td>
                 </tr>
 

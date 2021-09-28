@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     console.log(this.userData)
     this._userService.loginUser(this.userData).subscribe(data => {
       console.log(data.data.token)
-      localStorage.setItem('appToken', `bearer ${data.data.token}`)
+      localStorage.setItem(`appToken`, `Bearer ${data.data.token}`)
     },
       () => { },
       () => { }

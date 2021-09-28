@@ -13,7 +13,7 @@ export class UserInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    let token = localStorage.getItem('appToken')
+    let token = localStorage.getItem(`appToken`)
     if (token) {
       request = request.clone({
         headers: request.headers.set('Authorization', token)

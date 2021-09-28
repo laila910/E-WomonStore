@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
         password: "",
         mobileNo: "",
         userType: this.userType,
-        accountStatus: true
+        accountStatus: false
       }
     }
     console.log(data.value)

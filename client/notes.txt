@@ -99,6 +99,40 @@ rightside
 featured
 recent
 
+-----------------------------------------------
+pages for users=>
+
+register=>register *
+login=>login *
+addAddress *
+addImage *
+logOut=>button not page
+logOutAll =>button not page
+profile =>profile *
+editProfile *
+sendMessage=>contact *
+allUsers =>admin dashborad *
+singleUser *
+deleteUser=> button not page
+activateStatus => button not page
+deactivate =>button not page
+processOrder=>button not page
+submitCustomerOrder=>button not page
+-------------------------------------
+pages for product=>
+
+addProduct *
+addCat *
+addBrand *
+allProduct=>productlist *
+singleProduct-->productdetails *
+addSizes *
+editProduct *
+addColors *
+addPImages *
+addReview *
+addedTocard =>addtocard *
+deleteProduct =>button msh page
 
 
 

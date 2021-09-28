@@ -24,34 +24,42 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a routerLink="" class="nav-item nav-link">Home</a>
-                    <a routerLink="productlist" class="nav-item nav-link">Products</a>
-                    <!-- <a routerLink="productdetails" class="nav-item nav-link">Product Detail</a> -->
-                    <a routerLink="addtocard" class="nav-item nav-link">Cart</a>
-                    <!-- <a routerLink="checkout" class="nav-item nav-link">Checkout</a> -->
-                    <a routerLink="profile" class="nav-item nav-link">Account</a>
-                    <a routerLink="admin" class="nav-item nav-link">Admin-Dashboard</a>
-                    <a routerLink="supplier" class="nav-item nav-link">supplier-Dashboard</a>
-                    <a routerLink="contact" class="nav-item nav-link">Contact Us</a>
+                    <a routerLink="" class="nav-item nav-link ">Home</a>
+                    <a routerLink="product/allProduct" class="nav-item nav-link">Products</a>
+                    <a routerLink="product/addedTocard" class="nav-item nav-link">Cart</a>
+                    <a routerLink="user/profile" class="nav-item nav-link">Account</a>
 
-                    <!-- <div class="nav-item dropdown">
-                        <a routerLink="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">More Pages</a>
-                        <div class="dropdown-menu">
-                            <a routerLink="admin" class="dropdown-item active">Account</a>
-                            <a routerLink="admin" class="dropdown-item active">Admin-Dash</a>
-                            <a routerLink="supplier" class="dropdown-item active">supplier-Dash</a>
-                            <a routerLink="contact" class="dropdown-item">Contact Us</a>
-                        </div>
-                    </div> -->
+                    <a routerLink="user/sendMessage" class="nav-item nav-link">Contact Us</a>
+                    <div class="dropdown">
+                        <a class="btn  text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">More Pages</a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" routerLink="user/allUsers">Admin Dashboard</a></li>
+                            <li><a class="dropdown-item" routerLink="supplier">supplier Dashboard</a></li>
+
+                        </ul>
+                    </div>
                 </div>
+
+
                 <div class="navbar-nav ml-auto">
 
 
-                    <a routerLink="login" class="nav-item nav-link">Login</a>
-                    <a routerLink="register" class="nav-item nav-link">Register</a>
-                    <a routerLink="log-out" class="nav-item nav-link">logOut</a>
 
 
+                    <div class="dropdown">
+                        <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">User Account</a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" routerLink="user/login">Login</a></li>
+                            <li><a class="dropdown-item" routerLink="user/register">Register</a></li>
+
+                        </ul>
+                    </div>
+
+
+
+                    <a routerLink="user/logOut" (click)="logOut()" class="nav-item nav-link">logOut</a>
                 </div>
             </div>
         </nav>

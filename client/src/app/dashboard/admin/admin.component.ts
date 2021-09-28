@@ -13,13 +13,24 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this._data.getAllUsers().subscribe(data => {
       console.log(data)
-      this.myUsers = data
+      this.myUsers = data.data
     })
   }
-  deleteUser() {
+  deleteUser(id: any) {
+    this._data.deleteUser(id).subscribe(data => {
+      console.log(data)
+    },
+      (e) => { console.log(e) },
+      () => { console.log(2) })
 
   }
-  activateStatus() {
+  activateStatus(id: any) {
+    this._data.activateStatus(id).subscribe(data => {
+      console.log(data)
+    },
+      (e) => { console.log(e) },
+      () => { console.log(2) })
+
 
   }
 }
