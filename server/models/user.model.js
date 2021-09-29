@@ -107,6 +107,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: function() { return this.userType == 3 }
     },
+    //hasheel el customercvc and customercreditcardType ba3deen
     customerCVC: {
         type: "Number",
         trim: true,

@@ -11,13 +11,15 @@ const productSchema = new mongoose.Schema({
     name: {
         type: String,
         trim: true,
-
+        lowercase: true,
         required: true
 
     },
     status: {
         type: String,
-        enum: ["new", "old", "used"]
+        lowercase: true,
+        enum: ["new", "old", "used"],
+        default: "new"
     },
     isFeatured: {
         type: Boolean,
@@ -116,11 +118,6 @@ const productSchema = new mongoose.Schema({
             default: 1
         },
         price: {
-            type: String,
-            trim: true,
-            default: 1
-        },
-        totalPrice: {
             type: String,
             trim: true,
             default: 1
