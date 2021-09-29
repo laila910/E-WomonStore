@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class ContactComponent implements OnInit {
   messageData = {
     subject: "",
-    content: ""
+    Message: ""
   }
   constructor(private _userService: UserService, private _router: Router) { }
 

@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6 ">
-            <form>
+            <form #addForm="ngForm" (ngSubmit)="addPImages(addForm)">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Product Image</label>
-                        <input class="form-control" type="file" name="productImage" placeholder="Product Image">
+                        <input class="form-control" type="file" name="productImage" [(ngModel)]="productData.productImage" #productImage="ngModel" placeholder="Product Image">
                     </div>
                     <div class="col-md-12">
                         <button class="btn btn-danger">add</button>

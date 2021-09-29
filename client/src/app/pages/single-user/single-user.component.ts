@@ -26,7 +26,7 @@ export class SingleUserComponent implements OnInit {
       (e) => { console.log(e) },
       () => {
 
-
+        console.log(2)
       }
     )
 

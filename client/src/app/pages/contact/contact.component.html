@@ -39,7 +39,7 @@
                             <input type="text" class="form-control" name="subject" placeholder="Subject" [(ngModel)]="messageData.subject" #subject="ngModel">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="5" name="content" [(ngModel)]="messageData.content" placeholder="Message">
+                            <textarea class="form-control" rows="5" name="Message" [(ngModel)]="messageData.Message" #Message="ngModel" placeholder="Message">
                                 </textarea>
                         </div>
                         <div><button class="btn btn-danger" type="submit">Send Message</button></div>
