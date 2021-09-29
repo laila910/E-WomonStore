@@ -1,11 +1,12 @@
 const validator = require('validator')
 const mongoose = require('mongoose')
 
+
 const productSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
     },
 
     name: {

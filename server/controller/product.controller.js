@@ -1,5 +1,6 @@
 const Product = require('../models/product.model')
 const multer = require('multer')
+
 const addProduct = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
@@ -119,8 +120,8 @@ const singleProduct = async(req, res) => {
 const addSizes = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
-
-            const product = await Product.findById(req.params.id)
+            var id = new ObjectId(req.params.id);
+            const product = await Product.findById(id)
             const sizes = req.body
             product.productSizes.push(sizes)
             await product.save()
@@ -146,14 +147,18 @@ const editProduct = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         availableupdates = ["name", "status", "isFeatured ",
             "productPrice", "productQuantity", "productDescription", "productSpecifications",
-            "unitsInStock", "productDiscountAmount", "productDiscountStatus", "productAvailable"
+            "unitsInStock", "productDiscountAmount", "productDiscountStatus"
         ]
         requested = Object.keys(req.body)
         isValid = requested.every(p => availableupdates.includes(p))
         if (!isValid) res.send('unavailable updates')
         try {
-            const updatedData = await Product.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
+            const updatedData = await Product.findByIdAndUpdate(
+                req.params.id,
+                req.body, { runValidators: true })
             if (!updatedData) res.send('unavailable updates')
+
+            await updatedData.save()
             res.status(200).send({
                 apiStatus: true,
                 data: 'Done,Updated product',
@@ -262,7 +267,7 @@ const addToCard = async(req, res) => {
             addtocardData.quantity = req.body.quantity
             addtocardData.price = parseInt(product.productPrice, 10)
                 // totalPrice = addtocardData.quantity * addtocardData.price
-            // addtocardData.totalPrice = parseInt(totalPrice, 10)
+                // addtocardData.totalPrice = parseInt(totalPrice, 10)
 
 
             product.addTocard.push(addtocardData)
