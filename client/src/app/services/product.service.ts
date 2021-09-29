@@ -27,7 +27,7 @@ export class ProductService {
     return this._http.post(`${this.commonUrl}product/addSizes/${id}`, userData)
   }
   editProduct(userData: any, id: any): Observable<any> {
-    return this._http.patch(`${this.commonUrl}product/allProduct/${id}`, userData)
+    return this._http.patch(`${this.commonUrl}product/editProduct/${id}`, userData)
   }
   addColors(userData: any, id: any): Observable<any> {
     return this._http.post(`${this.commonUrl}product/addColors/${id}`, userData)

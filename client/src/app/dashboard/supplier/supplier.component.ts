@@ -59,13 +59,13 @@ export class SupplierComponent implements OnInit {
     this._router.navigateByUrl(`product/allProduct/${id}`)
   }
   editProduct(id: any) {
-    this._router.navigateByUrl(`product/addProduct/${id}`)
+    this._router.navigateByUrl(`product/editProduct/${id}`)
   }
   deleteProduct(id: any) {
     this._product.deleteProduct(id).subscribe(data => {
       console.log(data)
     },
-      (e) => { console.log(e)},
+      (e) => { console.log(e) },
       () => {
         this._router.navigateByUrl('supplier')
       })
