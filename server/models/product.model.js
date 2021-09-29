@@ -128,11 +128,12 @@ const productSchema = new mongoose.Schema({
 
     categories: {
 
+        catName: {
+            type: String,
+            trim: true,
+            enum: ["footwear", "bag", "accessories", "clothing", "eyewear", "watches"]
 
-        type: String,
-        trim: true,
-        enum: ["footwear", "bag", "accessories", "clothing", "eyewear", "watches"]
-
+        }
     },
     brands: {
 
