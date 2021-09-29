@@ -43,23 +43,23 @@ const routes: Routes = [
 
       { path: "sendMessage", component: ContactComponent },
       { path: "allUsers", component: AdminComponent },
-      { path: "allUsers", component: SingleUserComponent }
+      { path: "allUsers/:id", component: SingleUserComponent }
     ]
   },
   //ha3mlha b activateRoute ba3den mn el kashkol
   {
     path: "product", children: [
       { path: "addProduct", component: AddProductComponent },
-      { path: "addCat", component: AddCatComponent },
-      { path: "addBrand", component: AddBrandComponent },
+      { path: "addCat/:id", component: AddCatComponent },
+      { path: "addBrand/:id", component: AddBrandComponent },
       { path: "allProduct", component: ProductlistComponent },
-      { path: "allProduct", component: ProductdetailsComponent },//nafs el kalam zayfo2
-      { path: "addSizes", component: AddSizesComponent },
-      { path: "editProduct", component: EditProductComponent },
-      { path: "addColors", component: AddColorsComponent },
-      { path: "addPImages", component: AddPImagesComponent },
-      { path: "addReview", component: AddReviewComponent },
-      { path: "addedTocard", component: AddtocardComponent }
+      { path: "allProduct/:id", component: ProductdetailsComponent },
+      { path: "addSizes/:id", component: AddSizesComponent },
+      { path: "editProduct/:id", component: EditProductComponent },
+      { path: "addColors/:id", component: AddColorsComponent },
+      { path: "addPImages/:id", component: AddPImagesComponent },
+      { path: "addReview/:id", component: AddReviewComponent },
+      { path: "addedTocard/:id", component: AddtocardComponent }
 
     ]
   },

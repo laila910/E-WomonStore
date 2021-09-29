@@ -1,47 +1,49 @@
 <div class="container d-flex justify-content-center">
     <div class="row">
         <div class="col-lg-6">
-            <li> UserName:</li>
+            <li> UserName:{{ userData.name}}</li>
         </div>
         <div class="col-lg-6">
-            <li>UserEmail:</li>
+            <li>UserEmail:{{ userData.email }}</li>
         </div>
         <div class="col-lg-6">
-            <li>UserMobileNo.:</li>
+            <li>UserMobileNo.:{{ userData.mobileNo }}</li>
         </div>
         <div class="col-lg-6">
-            <li> UserType:</li>
+            <li> UserType:{{ userData.userType }}</li>
         </div>
         <div class="col-lg-6">
-            <li> UserAddresses:</li>
+            <li> UserAddresses:{{ userData.Addresses}}</li>
         </div>
         <div class="col-lg-6">
-            <li> AccountStatus:</li>
+            <li> AccountStatus:{{ userData.accountStatus}}</li>
         </div>
         <div class="col-lg-6">
-            <li> contactMessages:</li>
-        </div>
-        <!-- ha3ml check 3ala el userType if admin msh ha3rd 7aga tany ,if customer ha3rd 7agat el Customer
-      ,if supplier ha3rd 7agat el supplier .UsingSwitch Case -->
-
-        <div class="col-lg-6">
-            <li> customerCreditCard:</li>
-        </div>
-        <div class="col-lg-6">
-            <li> customerExpMonth:</li>
-        </div>
-        <div class="col-lg-6">
-            <li> customerExpYr:</li>
+            <li> contactMessages:{{ userData.contactMessages }}</li>
         </div>
 
+
         <div class="col-lg-6">
-            <li> supplierCompanyName:</li>>
+            <li> customerCreditCard:{{ userData.customerCreditCard }}</li>
         </div>
         <div class="col-lg-6">
-            <li> supplierCompanyFax:</li>
+            <li> customerExpMonth:{{ userData.customerExpMonth }}</li>
         </div>
         <div class="col-lg-6">
-            <li> supplierCompanyURL:</li>
+            <li> customerExpYr:{{ userData.customerExpYr }}</li>
+        </div>
+        <div class="col-lg-6">
+            <li>proccess Order:{{userData.proccessedOrder}}</li>
+
+        </div>
+        <div class="col-lg-6">
+            <li> supplierCompanyName:{{ userData.supplierCompanyName }}</li>
+        </div>
+        <div class="col-lg-6">
+            <li> supplierCompanyFax:{{ userData.supplierCompanyFax }}</li>
+        </div>
+        <div class="col-lg-6">
+            <li> supplierCompanyURL:{{ userData.supplierCompanyURL}}</li>
         </div>
 
 

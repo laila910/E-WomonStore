@@ -1,19 +1,19 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6 ">
-            <form>
+            <form #addForm="ngForm" (ngSubmit)="addcolors(addForm)">
                 <div class="row">
                     <div class="col-md-6">
                         <label> First Color</label>
-                        <input class="form-control" type="text" name="firstColor" placeholder="First Color">
+                        <input class="form-control" type="text" name="firstColor" [(ngModel)]="productData.firstColor" #firstColor="ngModel" placeholder="First Color">
                     </div>
                     <div class="col-md-6">
                         <label> Second Color</label>
-                        <input class="form-control" type="text" name="secondColor" placeholder="Second Color">
+                        <input class="form-control" type="text" name="secondColor" [(ngModel)]="productData.secondColor" #secondColor="ngModel" placeholder="Second Color">
                     </div>
                     <div class="col-md-6">
                         <label> Third Color</label>
-                        <input class="form-control" type="text" name="thirdColor" placeholder="Third Color">
+                        <input class="form-control" type="text" name="thirdColor" [(ngModel)]="productData.thirdColor" #thirdColor="ngModel" placeholder="Third Color">
                     </div>
 
 

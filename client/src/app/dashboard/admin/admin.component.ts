@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -8,7 +9,7 @@ import { UserService } from 'src/app/services/user.service'
 export class AdminComponent implements OnInit {
   myUsers: any[] = []
 
-  constructor(private _data: UserService) { }
+  constructor(private _data: UserService,private _router:Router) { }
 
   ngOnInit(): void {
     this._data.getAllUsers().subscribe(data => {
@@ -32,5 +33,8 @@ export class AdminComponent implements OnInit {
       () => { console.log(2) })
 
 
+  }
+  showUser(id: any) {
+    this._router.navigateByUrl(`user/allUsers/${id}`)
   }
 }

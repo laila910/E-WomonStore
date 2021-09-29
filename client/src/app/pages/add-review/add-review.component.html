@@ -1,18 +1,18 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6 ">
-            <form>
+            <form #addForm="ngForm" (ngSubmit)="addReview(addForm)">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Review</label>
-                        <input class="form-control" type="text" name="content" placeholder="Review Content">
+                        <input class="form-control" type="text" name="content" [(ngModel)]="productData.content" #content="ngModel" placeholder=" Review Content ">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 ">
                         <label>Review Rating</label>
-                        <input class="form-control" type="number" name="rating" placeholder="Review Rating">
+                        <input class="form-control " type="number " name="rating" [(ngModel)]="productData.rating" #rating="ngModel" placeholder="Review Rating ">
                     </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-danger">add</button>
+                    <div class="col-md-12 ">
+                        <button class="btn btn-danger ">add</button>
                     </div>
                 </div>
             </form>

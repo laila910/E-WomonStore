@@ -32,46 +32,43 @@ export class SupplierComponent implements OnInit {
       (e) => { console.log(e) },
       () => { console.log(2) })
   }
-  showUser(id: any) { //hab3t el id lessa hana5odha
-    this._router.navigateByUrl('user/allUsers')
-    // this._data.getSingleUser(id).subscribe(data => {
-    //   console.log(data)
-    // },
-    //   (e) => { console.log(e) },
-    //   () => { console.log(2) })//HENA I CAN REDIRECT data to show:)
+  showUser(id: any) {
+    this._router.navigateByUrl(`user/allUsers/${id}`)
   }
 
   addProduct() {
     this._router.navigateByUrl('product/addProduct')
   }
   addSize(id: any) {
-    this._router.navigateByUrl('product/addSizes')
+    this._router.navigateByUrl(`product/addSizes/${id}`)
   }
-  addCat(id: any) { //hab3t el id lessa hana5odha
-    this._router.navigateByUrl('product/addCat')
+  addCat(id: any) {
+    this._router.navigateByUrl(`product/addCat/${id}`)
   }
-  addBrand(id: any) { //lessa hab3t el id bardo
-    this._router.navigateByUrl('product/addBrand')
+  addBrand(id: any) {
+    this._router.navigateByUrl(`product/addBrand/${id}`)
   }
-  addColors(id: any) {//lessa hab3t el id bardo
-    this._router.navigateByUrl('product/addColors')
+  addColors(id: any) {
+    this._router.navigateByUrl(`product/addColors/${id}`)
   }
 
-  addPImage(id: any) { //lessa hab3t el id bardo
-    this._router.navigateByUrl('product/addPImages')
+  addPImage(id: any) {
+    this._router.navigateByUrl(`product/addPImages/${id}`)
   }
-  showProduct(id: any) { //hab3t el id bardo lessa
-    this._router.navigateByUrl('product/allProduct')
+  showProduct(id: any) {
+    this._router.navigateByUrl(`product/allProduct/${id}`)
   }
-  editProduct(id: any) { //hab3t el id bardo lessa
-    this._router.navigateByUrl('product/addProduct')
+  editProduct(id: any) {
+    this._router.navigateByUrl(`product/addProduct/${id}`)
   }
-  deleteProduct(id: any) { //hab3t el id bardo lessa
+  deleteProduct(id: any) {
     this._product.deleteProduct(id).subscribe(data => {
       console.log(data)
     },
-      () => { },
-      () => { })
+      (e) => { console.log(e)},
+      () => {
+        this._router.navigateByUrl('supplier')
+      })
   }
 
 }

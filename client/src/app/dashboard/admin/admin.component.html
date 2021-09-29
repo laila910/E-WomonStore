@@ -25,6 +25,7 @@
                     <td>{{ user.userType }}</td>
                     <td>{{ user.accountStatus}}</td>
                     <td class="space-between">
+                        <a class="btn btn-primary" (click)="showUser(user._id)">show user</a>
                         <a class="btn btn-danger" (click)="deleteUser(user._id)">Delete</a>
                         <a class="btn btn-primary" (click)="activateStatus(user._id)">ActivateStatus</a>
                     </td>

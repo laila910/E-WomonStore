@@ -1,3 +1,5 @@
+import { UserService } from '../../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SingleUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _userService: UserService, private _route: ActivatedRoute) { }
+  id = this._route.snapshot.params.id;
+  userType: any
+  userData: any = {}
+
 
   ngOnInit(): void {
+
+    this._userService.getSingleUser(this.id).subscribe(
+      data => {
+        console.log(data)
+        this.userData = data
+
+      },
+      (e) => { console.log(e) },
+      () => {
+
+
+      }
+    )
+
   }
 
+
+
 }
+
+
+

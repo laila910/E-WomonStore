@@ -1,15 +1,15 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
         <div class="col-lg-6 ">
-            <form>
+            <form #addForm="ngForm" (ngSubmit)="addAddress(addForm)">
                 <div class="row">
                     <div class="col-md-6">
                         <label>Address Type </label>
-                        <input class="form-control" type="text" name="addrType" placeholder="address Type">
+                        <input class="form-control" type="text" name="addrType" [(ngModel)]="userData.addrType" #addrType="ngModel" placeholder="address Type">
                     </div>
                     <div class="col-md-6">
                         <label>Address Details</label>
-                        <input class="form-control" type="text" name="addrDetails" placeholder="Address Details">
+                        <input class="form-control" type="text" name="addrDetails" [(ngModel)]="userData.addrDetails" #addrDetails="ngModel" placeholder="Address Details">
                     </div>
 
                     <div class="col-md-12">
