@@ -37,10 +37,9 @@ export class RegisterComponent implements OnInit {
         userType: this.userType,
         accountStatus: false,
         customerCreditCard: "",
-        customerCreditCardTypeId: "",
+
         customerExpMonth: "",
-        customerExpYr: "",
-        customerCVC: ""
+        customerExpYr: ""
       }
     } else if (this.userType == 1) {
       this.userData = {
