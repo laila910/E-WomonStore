@@ -261,8 +261,8 @@ const addToCard = async(req, res) => {
             addtocardData.userId = req.user._id
             addtocardData.quantity = req.body.quantity
             addtocardData.price = parseInt(product.productPrice, 10)
-            totalPrice = addtocardData.quantity * addtocardData.price
-            addtocardData.totalPrice = parseInt(totalPrice, 10)
+                // totalPrice = addtocardData.quantity * addtocardData.price
+            // addtocardData.totalPrice = parseInt(totalPrice, 10)
 
 
             product.addTocard.push(addtocardData)

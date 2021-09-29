@@ -88,15 +88,7 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         required: function() { return this.userType == 3 }
     },
-    customerCreditCardTypeId: {
-        type: Number,
-        trim: true,
 
-        validate(value) {
-            if (value < 3) throw new Error('your creditcard Id must be 3 ')
-        },
-        required: function() { return this.userType == 3 }
-    },
     customerExpMonth: {
         type: Number,
         trim: true,
@@ -107,12 +99,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         required: function() { return this.userType == 3 }
     },
-    //hasheel el customercvc and customercreditcardType ba3deen
-    customerCVC: {
-        type: "Number",
-        trim: true,
-        required: function() { return this.userType == 3 }
-    },
+
     contactMessages: [{
         subject: {
             type: String,
