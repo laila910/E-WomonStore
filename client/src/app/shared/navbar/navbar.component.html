@@ -21,47 +21,35 @@
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a routerLink="" class="nav-item nav-link ">Home</a>
-                    <a routerLink="product/allProduct" class="nav-item nav-link">Products</a>
-                    <a routerLink="product/addedTocard" class="nav-item nav-link">Cart</a>
-                    <a routerLink="user/profile" class="nav-item nav-link">Account</a>
-
-                    <a routerLink="user/sendMessage" class="nav-item nav-link">Contact Us</a>
-                    <div class="dropdown">
-                        <a class="btn  text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">More Pages</a>
-
+                    <li class="nav-item" *ngFor="let l of _userService.navMenu">
+                        <a class="nav-link" aria-current="page" [routerLink]="l.path">{{l.key}}</a>
+                    </li>
+                    <!-- <a [routerLink]="myRoutes[0].path" class="nav-item nav-link" *ngIf="myRoutes[0].isAuth">{{ myRoutes[0].key }}</a>
+                    <a [routerLink]="myRoutes[1].path" class="nav-item nav-link" *ngIf="myRoutes[1].isAuth">{{ myRoutes[1].key }}</a>
+                    <a [routerLink]="myRoutes[2].path" class="nav-item nav-link" *ngIf="myRoutes[2].isAuth">{{ myRoutes[2].key }}</a>
+                    <a [routerLink]="myRoutes[3].path" class="nav-item nav-link" *ngIf="myRoutes[3].isAuth">{{ myRoutes[3].key }}</a>
+                    <a [routerLink]="myRoutes[4].path" class="nav-item nav-link" *ngIf="myRoutes[4].isAuth">{{ myRoutes[4].key }}</a> -->
+                    <!-- <div class="dropdown">
+                        <a class="btn  text-white dropdown-toggle" routerLink="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">More Pages</a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" routerLink="user/allUsers">Admin Dashboard</a></li>
-                            <li><a class="dropdown-item" routerLink="supplier">supplier Dashboard</a></li>
-
+                            <li><a class="dropdown-item" [routerLink]="myRoutes[5].path" *ngIf="myRoutes[5].isAuth">{{ myRoutes[5].key }}</a></li>
+                            <li><a class="dropdown-item" [routerLink]="myRoutes[6].path" *ngIf="myRoutes[6].isAuth">{{ myRoutes[6].key }}</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
-
-
-                <div class="navbar-nav ml-auto">
-
-
-
-
+                <!-- <div class="navbar-nav ml-auto">
                     <div class="dropdown">
                         <a class="btn text-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">User Account</a>
-
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" routerLink="user/login">Login</a></li>
-                            <li><a class="dropdown-item" routerLink="user/register">Register</a></li>
-
+                            <li><a class="dropdown-item" [routerLink]="myRoutes[7].path" *ngIf="myRoutes[7].isAuth">{{ myRoutes[7].key }}</a></li>
+                            <li><a class="dropdown-item" [routerLink]="myRoutes[8].path" *ngIf="myRoutes[8].isAuth">{{ myRoutes[8].key }}</a></li>
                         </ul>
-                    </div>
-
-
-
-                    <a routerLink="user/logOut" (click)="logOut()" class="nav-item nav-link">logOut</a>
-                </div>
+                    </div> -->
+                <a (click)="logOut()" class="nav-item nav-link">LogOut</a>
             </div>
+            <!-- </div> -->
         </nav>
     </div>
 </div>

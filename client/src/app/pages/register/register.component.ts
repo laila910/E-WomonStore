@@ -1,4 +1,5 @@
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class RegisterComponent implements OnInit {
   userType: any
 
   userData: any = {}
-  constructor(private _userService: UserService) { }
+  constructor(private _userService: UserService, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -54,9 +55,17 @@ export class RegisterComponent implements OnInit {
     console.log(data.value)
     if (data.valid) {
       console.log(this.userData)
-      this._userService.registerUser(this.userData).subscribe(data => {
-        console.log(data)
-      })
+      this._userService.registerUser(this.userData).subscribe(
+        data => {
+          console.log(data)
+          this._router.navigateByUrl('user/login')
+
+        },
+        () => { },
+        () => {
+
+        }
+      )
 
     }
   }

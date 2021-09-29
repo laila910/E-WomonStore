@@ -19,7 +19,10 @@ export class LoginComponent implements OnInit {
   get email() {
     return this.loginForm.get('email')
   }
-  constructor(private _userService: UserService, private _router: Router) { }
+  get password() {
+    return this.loginForm.get('password')
+  }
+  constructor(public _userService: UserService, private _router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,7 +35,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem(`appToken`, `Bearer ${data.data.token}`)
       },
       () => { },
-      () => { this._router.navigateByUrl('user/profile') }
+      () => {
+        this._userService.navMenu = this._userService.myLoggedRoutes
+        this._router.navigateByUrl('user/profile')
+      }
     )
 
     // }

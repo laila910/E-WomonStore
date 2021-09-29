@@ -58,24 +58,26 @@
             <thead>
                 <tr>
                     <th scope="col ">#</th>
-                    <th scope="col ">Name</th>
-                    <th scope="col ">Price</th>
-                    <th scope="col ">Image</th>
-                    <th scope="col ">action</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let product of myProducts">
-                    <th scope="row ">{{ product._id }}</th>
+                    <th>{{ product._id }}</th>
                     <td>{{ product.name }}</td>
                     <td>{{ product.productPrice }}</td>
-                    <td><img [src]="product.productImage"></td>
-                    <td class="space-between">
+                    <td>
+                        <img [src]="product.productImage">
+                    </td>
+                    <td>
                         <a class="btn btn-danger" (click)="addSize(product._id)">Add Sizes </a>
                         <a class="btn btn-danger" (click)="addCat(product._id)">Add Category </a>
                         <a class="btn btn-danger" (click)="addBrand(product._id)">Add Brand </a>
                         <a class="btn btn-danger" (click)="addColors(product._id)">Add Colors</a>
-                        <a class="btn btn-danger" (click)="addPImage(product._id)">>Add Product Image </a>
+                        <a class="btn btn-danger" (click)="addPImage(product._id)">Add Product Image </a>
                         <a class="btn btn-primary" (click)="showProduct(product._id)">show product</a>
                         <a class="btn btn-primary" (click)="editProduct(product._id)">edit product</a>
                         <a class="btn btn-primary" (click)="deleteProduct(product._id)">delete product</a>

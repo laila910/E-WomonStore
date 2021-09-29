@@ -5,6 +5,23 @@ import { HttpClient } from '@angular/common/http'
   providedIn: 'root'
 })
 export class UserService {
+  public myRoutes = [
+    { path: "user/register", key: "Register", isAuth: false },
+    { path: "user/login", key: "Login", isAuth: false }
+  ]
+  public myLoggedRoutes = [
+    { path: "", key: "Home", isAuth: true },
+    { path: "product/allProduct", key: "products", isAuth: true },
+    { path: "product/addedTocard", key: "cart", isAuth: true },
+    { path: "user/profile", key: "account", isAuth: true },
+    { path: "user/sendMessage", key: "contact us", isAuth: true },
+    { path: "user/allUsers", key: "Admin-dashboard", isAuth: true },
+    { path: "supplier", key: "supplier-dashboard", isAuth: true }
+  ]
+
+  public isLoggedIn = localStorage.getItem("appToken") ? true : false
+  public navMenu = localStorage.getItem("appToken") ? this.myLoggedRoutes : this.myRoutes
+
   commonUrl = "http://localhost:3000/"
   constructor(private _http: HttpClient) { }
 

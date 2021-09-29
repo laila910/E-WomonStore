@@ -15,6 +15,11 @@
                     <div class="col-md-6">
                         <label>Password</label>
                         <input class="form-control" type="password" name="password" placeholder="Password" required formControlName="password">
+                        <div class="alert alert-danger" *ngIf="password?.invalid && (password?.touched)">
+                            <p *ngIf="password?.errors?.required">required</p>
+
+
+                        </div>
                     </div>
 
                     <div class="col-md-12">

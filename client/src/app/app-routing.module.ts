@@ -28,31 +28,42 @@ import { AddReviewComponent } from './pages/add-review/add-review.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "user/register", component: RegisterComponent },
-  { path: "user/login", component: LoginComponent },
+  {
+    path: "user", children: [
 
-  { path: "user/addAddress", component: AddAddressComponent },
-  { path: "user/addImage", component: AddImageComponent },
+      { path: "register", component: RegisterComponent },
+      { path: "login", component: LoginComponent },
 
-  { path: "user/profile", component: MyprofileComponent },
+      { path: "addAddress", component: AddAddressComponent },
+      { path: "addImage", component: AddImageComponent },
 
-  { path: "user/editProfile", component: EditProfileComponent },
+      { path: "profile", component: MyprofileComponent },
 
-  { path: "user/sendMessage", component: ContactComponent },
-  { path: "user/allUsers", component: AdminComponent },
-  { path: "user/allUsers", component: SingleUserComponent },//ha3mlha b activateRoute ba3den mn el kashkol
+      { path: "editProfile", component: EditProfileComponent },
 
-  { path: "product/addProduct", component: AddProductComponent },
-  { path: "product/addCat", component: AddCatComponent },
-  { path: "product/addBrand", component: AddBrandComponent },
-  { path: "product/allProduct", component: ProductlistComponent },
-  { path: "product/allProduct", component: ProductdetailsComponent },//nafs el kalam zayfo2
-  { path: "product/addSizes", component: AddSizesComponent },
-  { path: "product/editProduct", component: EditProductComponent },
-  { path: "product/addColors", component: AddColorsComponent },
-  { path: "product/addPImages", component: AddPImagesComponent },
-  { path: "product/addReview", component: AddReviewComponent },
-  { path: "product/addedTocard", component: AddtocardComponent },
+      { path: "sendMessage", component: ContactComponent },
+      { path: "allUsers", component: AdminComponent },
+      { path: "allUsers", component: SingleUserComponent }
+    ]
+  },
+  //ha3mlha b activateRoute ba3den mn el kashkol
+  {
+    path: "product", children: [
+      { path: "addProduct", component: AddProductComponent },
+      { path: "addCat", component: AddCatComponent },
+      { path: "addBrand", component: AddBrandComponent },
+      { path: "allProduct", component: ProductlistComponent },
+      { path: "allProduct", component: ProductdetailsComponent },//nafs el kalam zayfo2
+      { path: "addSizes", component: AddSizesComponent },
+      { path: "editProduct", component: EditProductComponent },
+      { path: "addColors", component: AddColorsComponent },
+      { path: "addPImages", component: AddPImagesComponent },
+      { path: "addReview", component: AddReviewComponent },
+      { path: "addedTocard", component: AddtocardComponent }
+
+    ]
+  },
+
   { path: "supplier", component: SupplierComponent }
 ];
 
