@@ -50,9 +50,9 @@
                                 <div class="p-color">
                                     <h4>Color:</h4>
                                     <div class="btn-group btn-group-sm">
-                                        <button type=" button " class="btn ">{{  productData.productColors.firstColor}}</button>
-                                        <button type=" button " class="btn ">{{  productData.productColors.secondColor}}</button>
-                                        <button type=" button " class="btn ">{{  productData.productColors.thirdColor}}</button>
+                                        <button type=" button " class="btn ">{{  productData.Colors.firstColor}}</button>
+                                        <button type=" button " class="btn ">{{  productData.Colors.secondColor}}</button>
+                                        <button type=" button " class="btn ">{{  productData.Colors.thirdColor}}</button>
 
                                     </div>
                                 </div>
@@ -67,72 +67,52 @@
 
                 <div class="row product-detail-bottom ">
                     <div class="col-lg-12 ">
-                        <ul class="nav nav-pills nav-justified ">
-                            <li class="nav-item ">
-                                <a class="nav-link active " data-toggle="pill " href="#description ">Description</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link " data-toggle="pill " href="#specification ">Specification</a>
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link " data-toggle="pill " href="#reviews ">Reviews (1)</a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content ">
-                            <div id="description " class="container tab-pane active ">
-                                <h4>Product description</h4>
+                        <div class="container ">
+                            <h4 class="text-decoration-underline text-danger">Product description</h4>
+                            <p class="text-capitalize text-lg-start fa-text-width ">
+                                {{ productData.Description }}
+                            </p>
+                        </div>
+                        <div class="container  ">
+                            <h4 class="text-decoration-underline text-danger">Product specification</h4>
+                            <p class="text-capitalize text-lg-start fa-text-width ">
+                                {{ productData.productSpecifications }}
+                            </p>
+                        </div>
+                        <div class="container">
+                            <div *ngFor="let r of productData.reviews">
+                                <div>{{ r.userId }}<span>01 Jan 2020</span></div>
                                 <p>
-                                    {{ productData.Description }}
+                                    {{r.content }}
                                 </p>
                             </div>
-                            <div id="specification " class="container tab-pane fade ">
-                                <h4>Product specification</h4>
-                                <ul>
-                                    {{ productData.productSpecifications }}
-                                </ul>
-                            </div>
-                            <div id="reviews " class="container tab-pane fade ">
-                                <div class="reviews-submitted " *ngFor="let r of productData.reviews">
-                                    <div class="reviewer ">{{ r.userId }}<span>01 Jan 2020</span></div>
-                                    <!-- <div class="ratting "> haboslha b3denn ezay a7awl el rating mn rakm w a3rd el ngom
-                                        <i class="fa fa-star ">{{ r.rating }}</i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                        <i class="fa fa-star "></i>
-                                    </div> -->
-                                    <p>
-                                        {{r.content }}
-                                    </p>
+                            <div>
+                                <h4>Give your Review:</h4>
+                                <div class="ratting ">
+                                    <i class="far fa-star "></i>
+                                    <i class="far fa-star "></i>
+                                    <i class="far fa-star "></i>
+                                    <i class="far fa-star "></i>
+                                    <i class="far fa-star "></i>
                                 </div>
-
-
-                                <div class="reviews-submit ">
-                                    <h4>Give your Review:</h4>
-                                    <div class="ratting ">
-                                        <i class="far fa-star "></i>
-                                        <i class="far fa-star "></i>
-                                        <i class="far fa-star "></i>
-                                        <i class="far fa-star "></i>
-                                        <i class="far fa-star "></i>
+                                <!-- <form #addReview="ngForm" (ngSubmit)="addR(addReview)">
+                                    <div class="col-sm-12 ">
+                                        <input placeholder="Review" name="review" [(ngModel)]="review" #review="ngModel">
                                     </div>
-                                    <form>
-                                        <div class="col-sm-6 ">
-                                            <input type="text " placeholder="Name ">
-                                        </div>
-
-                                        <div class="col-sm-12 ">
-                                            <textarea placeholder="Review" name="content"></textarea>
-                                        </div>
-                                        <div class="col-sm-12 ">
-                                            <button>Submit</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    <div>
+                                        <input type="number" name="rating" placeholder="give your rating from 1 to 5 " [(ngModel)]="rating" #rating="ngModel"> </div>
+                                    <div class="col-sm-12 ">
+                                        <button class="btn btn-danger">Submit</button>
+                                    </div>
+                                </form> -->
                             </div>
                         </div>
+
                     </div>
+
+
+
+
                 </div>
 
                 <div class="product ">

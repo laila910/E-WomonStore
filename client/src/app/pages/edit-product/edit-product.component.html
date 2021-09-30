@@ -5,47 +5,47 @@
         <form #editForm="ngForm" (ngSubmit)="editProduct(editForm)">
             <div class=" mb-3">
                 <label>Product Name</label>
-                <input type="text " class="form-control " name="name" [(ngModel)]="productData.name" #name="ngModel">
+                <input type="text " class="form-control" [value]="productData.name" name="name" [(ngModel)]="productData.name" #name="ngModel">
 
             </div>
             <div class="mb-3 ">
                 <label>Status if is Old,New Or Used</label>
-                <input type="text" class="form-control" name="status" [(ngModel)]="productData.status" #status="ngModel">
+                <input type="text" class="form-control" [value]="productData.status" name="status" [(ngModel)]="productData.status" #status="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>IsFeatured</label>
-                <input type="text " class="form-control " placeholder="true or false " name="isFeatured" [(ngModel)]="productData.isFeatured" #isFeatured="ngModel">
+                <input type="text " class="form-control " [value]="productData.isFeatured" placeholder="true or false " name="isFeatured" [(ngModel)]="productData.isFeatured" #isFeatured="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product Price</label>
-                <input type="text " class="form-control " placeholder="productPrice" name="productPrice" [(ngModel)]="productData.productPrice" #productPrice="ngModel">
+                <input type="text " class="form-control" [value]="productData.productPrice" placeholder="productPrice" name="productPrice" [(ngModel)]="productData.productPrice" #productPrice="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product Quantity</label>
-                <input type="text " class="form-control " placeholder="productQuantity" name="productQuantity" [(ngModel)]="productData.productQuantity" #productQuantity="ngModel">
+                <input type="text" class="form-control" [value]="productData.productQuantity" placeholder="productQuantity" name="productQuantity" [(ngModel)]="productData.productQuantity" #productQuantity="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product Description</label>
-                <input type="text " class="form-control " placeholder="productDescription" name="productDescription" [(ngModel)]="productData.productDescription" #productDescription="ngModel">
+                <input type="text " class="form-control" [value]="productData.productDescription" placeholder="productDescription" name="productDescription" [(ngModel)]="productData.productDescription" #productDescription="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product Specifications</label>
-                <input type="text " class="form-control" placeholder="productSpecifications" name="productSpecifications" [(ngModel)]="productData.productSpecifications" #productSpecification="ngModel">
+                <input type="text " class="form-control" [value]="productData.productSpecifications" placeholder="productSpecifications" name="productSpecifications" [(ngModel)]="productData.productSpecifications" #productSpecification="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product unitsInStock</label>
-                <input type="number" class="form-control" placeholder="unitsInStock" name="unitsInStock" [(ngModel)]="productData.unitsInStock" #unitsInStock="ngModel">
+                <input type="number" class="form-control" [value]="productData.unitsInStock" placeholder="unitsInStock" name="unitsInStock" [(ngModel)]="productData.unitsInStock" #unitsInStock="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product Discount Amount</label>
-                <input type="number" class="form-control" placeholder="productDiscountAmount" name="productDiscountAmount" [(ngModel)]="productData.productDiscountAmount" #productDiscountAmount="ngModel">
+                <input type="number" class="form-control" [value]="productData.productDiscountAmount" placeholder=" productDiscountAmount " name="productDiscountAmount " [(ngModel)]="productData.productDiscountAmount " #productDiscountAmount="ngModel">
             </div>
             <div class="mb-3 ">
                 <label>Product Discount Status </label>
-                <input type="text" class="form-control" placeholder="productDiscountStatus" name="productDiscountStatus" [(ngModel)]="productData.productDiscountStatus" #productDiscountStatus="ngModel">
+                <input type="text " class="form-control" [value]="productData.productDiscountStatus" placeholder="productDiscountStatus " name="productDiscountStatus " [(ngModel)]="productData.productDiscountStatus " #productDiscountStatus="ngModel">
             </div>
             <div>
-                <button class="btn btn-primary">Submit</button>
+                <button class="btn btn-primary ">Submit</button>
             </div>
 
         </form>

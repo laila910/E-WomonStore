@@ -9,19 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-product.component.css']
 })
 export class EditProductComponent implements OnInit {
-  // productData = {
-  //   name: "",
-  //   status: "",
-  //   isFeatured: "",
-  //   productPrice: "",
-  //   productQuantity: "",
-  //   productSpecifications: "",
-  //   productDescription: "",
-  //   unitsInStock: "",
-  //   productDiscountAmount: "",
-  //   productDiscountStatus: ""
-  // }
-  productData: any = {}
+  productData: any = {
+    name: "",
+    status: "",
+    isFeatured: "",
+    productPrice: "",
+    productQuantity: "",
+    productSpecifications: "",
+    productDescription: "",
+    unitsInStock: "",
+    productDiscountAmount: "",
+    productDiscountStatus: ""
+  }
+
   constructor(private _data: ProductService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
