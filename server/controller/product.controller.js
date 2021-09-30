@@ -1,6 +1,6 @@
 const Product = require('../models/product.model')
 const multer = require('multer')
-
+var ObjectId = require('mongodb').ObjectId;
 const addProduct = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
@@ -153,9 +153,10 @@ const editProduct = async(req, res) => {
         isValid = requested.every(p => availableupdates.includes(p))
         if (!isValid) res.send('unavailable updates')
         try {
+            const { id } = req.params
+            id = new ObjectId(id);
             const updatedData = await Product.findByIdAndUpdate(
-                req.params.id,
-                req.body, { runValidators: true })
+                id.trim(), req.body, { runValidators: true })
             if (!updatedData) res.send('unavailable updates')
 
             await updatedData.save()
