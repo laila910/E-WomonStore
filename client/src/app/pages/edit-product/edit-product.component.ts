@@ -23,7 +23,7 @@ export class EditProductComponent implements OnInit {
   }
 
   constructor(private _data: ProductService, private _router: Router, private _route: ActivatedRoute) { }
-
+  id = this._route.snapshot.params.id;
   ngOnInit(): void {
     this._data.singleProduct(this.id).subscribe(
       all => {
@@ -32,9 +32,9 @@ export class EditProductComponent implements OnInit {
       }
     )
   }
-  id = this._route.snapshot.params.id;
+
   editProduct(data: any) {
-    this._data.editProduct(this.id, this.productData).subscribe(
+    this._data.editProduct(this.productData, this.id).subscribe(
       data => {
         console.log(data)
         this.productData = data
