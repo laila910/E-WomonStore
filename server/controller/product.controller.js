@@ -1,6 +1,6 @@
 const Product = require('../models/product.model')
 const multer = require('multer')
-var ObjectId = require('mongodb').ObjectId;
+    // var ObjectId = require('mongodb').ObjectId;
 const addProduct = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
@@ -120,8 +120,8 @@ const singleProduct = async(req, res) => {
 const addSizes = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
-            var id = new ObjectId(req.params.id);
-            const product = await Product.findById(id)
+            //var id = new ObjectId(req.params.id);
+            const product = await Product.findById(req.params.id)
             const sizes = req.body
             product.productSizes.push(sizes)
             await product.save()
@@ -145,18 +145,18 @@ const addSizes = async(req, res) => {
 
 const editProduct = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
-        availableupdates = ["name", "status", "isFeatured ",
-            "productPrice", "productQuantity", "productDescription", "productSpecifications",
-            "unitsInStock", "productDiscountAmount", "productDiscountStatus"
-        ]
-        requested = Object.keys(req.body)
-        isValid = requested.every(p => availableupdates.includes(p))
-        if (!isValid) res.send('unavailable updates')
+        // availableupdates = ["name", "status", "isFeatured",
+        //     "productPrice", "productQuantity", "productDescription", "productSpecifications",
+        //     "unitsInStock", "productDiscountAmount", "productDiscountStatus"
+        // ]
+        // requested = Object.keys(req.body)
+        // isValid = requested.every(p => availableupdates.includes(p))
+        // if (!isValid) res.send('unavailable updates')
         try {
-            const { id } = req.params
-            id = new ObjectId(id);
-            const updatedData = await Product.findByIdAndUpdate(
-                id.trim(), req.body, { runValidators: true })
+            // { id } = req.params
+            // id = new ObjectId(req.params.id);
+            updatedData = await Product.findByIdAndUpdate(
+                req.params.id, req.body, { runValidators: true })
             if (!updatedData) res.send('unavailable updates')
 
             await updatedData.save()
