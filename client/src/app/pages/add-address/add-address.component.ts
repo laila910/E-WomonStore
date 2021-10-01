@@ -24,7 +24,7 @@ export class AddAddressComponent implements OnInit {
       },
       (e) => { console.log(e) },
       () => {
-        this._route.navigateByUrl(`profile`)
+        this._route.navigateByUrl(`user/profile`)
       }
     )
   }

@@ -32,7 +32,8 @@ export class SupplierComponent implements OnInit {
       (e) => { console.log(e) },
       () => { console.log(2) })
   }
-  showUser(id: any) {
+  showUser(id: any, userType: any) {
+    localStorage.setItem(`userType`, userType)
     this._router.navigateByUrl(`user/allUsers/${id}`)
   }
 
@@ -61,13 +62,14 @@ export class SupplierComponent implements OnInit {
   editProduct(id: any) {
     this._router.navigateByUrl(`product/editProduct/${id}`)
   }
-  deleteProduct(id: any) {
+  deleteProduct(id: any, i: any) {
     this._product.deleteProduct(id).subscribe(data => {
       console.log(data)
     },
       (e) => { console.log(e) },
       () => {
-        this._router.navigateByUrl('supplier')
+
+        this.myProducts.splice(i, 1)
       })
   }
 

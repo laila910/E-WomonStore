@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
     this._userService.logout().subscribe(
       data => {
         console.log(data)
-        localStorage.removeItem('appToken')
+        localStorage.clear
       },
       (e) => { console.log(e) },
       () => {

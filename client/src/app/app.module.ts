@@ -20,7 +20,7 @@ import { SearchbarComponent } from './shared/searchbar/searchbar.component';
 
 
 import { FeaturedComponent } from './shared/featured/featured.component';
-import { RecentComponent } from './shared/recent/recent.component';
+
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { SupplierComponent } from './dashboard/supplier/supplier.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -57,7 +57,7 @@ import { AddReviewComponent } from './pages/add-review/add-review.component';
     SearchbarComponent,
 
     FeaturedComponent,
-    RecentComponent,
+
     AdminComponent,
     SupplierComponent,
     HeaderComponent,

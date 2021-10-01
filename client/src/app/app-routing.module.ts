@@ -65,6 +65,8 @@ const routes: Routes = [
   },
 
   { path: "supplier", component: SupplierComponent }
+
+
 ];
 
 @NgModule({

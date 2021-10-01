@@ -11,29 +11,29 @@
                                     <th>Product</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th>Total</th>
-                                    <th>Remove</th>
+                                    <th>Total Price</th>
+
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
                                 <tr>
-                                    <!-- ha3ml loop 3la el montagat elyfe el cart where userid= id of user ely da5l-->
+
                                     <td>
                                         <div class="img">
-                                            <a routerLink="productdetails"><img src="assets/img/product-1.jpg" alt="Image"></a>
-                                            <p>Product Name</p>
+                                            <a><img [src]="Myproduct.productImage" alt="Image"></a>
+                                            <p>{{ Myproduct.name }}</p>
                                         </div>
                                     </td>
-                                    <td>$99</td>
+                                    <td>{{Myproduct.productPrice }}</td>
                                     <td>
-                                        <div class="qty">
-                                            <button class="btn-minus" (click)="minusqty(qty)"><i class="fa fa-minus"></i></button>
-                                            <input type="text" [value]="qty">
-                                            <button class="btn-plus" (click)="plusqty(qty)"><i class="fa fa-plus"></i></button>
+                                        <div>
+
+                                            <button (click)="countVal=countVal-1">- </button> {{countVal}}
+                                            <button (click)="countVal=countVal+1"> + </button>
                                         </div>
                                     </td>
-                                    <td>$99</td>
-                                    <td><button class="btn btn-danger" (click)="deleteProduct()"><i class="fa fa-trash"></i></button></td>
+                                    <td>{{ countVal}} * {{ Myproduct.productPrice }}</td>
+
                                 </tr>
 
 
@@ -50,13 +50,13 @@
                             <div class="cart-summary">
                                 <div class="cart-content">
                                     <h1>Cart Summary</h1>
-                                    <p>Sub Total<span>$99</span></p>
-                                    <p>Shipping Cost<span>$1</span></p>
-                                    <h2>Grand Total<span>$100</span></h2>
+                                    <p>Sub Total<span>{{ Myproduct.productPrice }}*{{ countVal }}</span></p>
+                                    <p>Shipping Cost<span>70</span></p>
+                                    <h2>Grand Total<span>({{ Myproduct.productPrice }}*{{ countVal }})+70</span></h2>
                                 </div>
                                 <div class="cart-btn">
                                     <button class="btn btn-success" (click)="updateCard()">Update Cart</button>
-                                    <button class="btn btn-primary" (click)="submitOrder()">Checkout</button>
+                                    <button class="btn btn-primary" (click)="processOrder(Myproduct._id)">Checkout</button>
                                 </div>
                             </div>
                         </div>

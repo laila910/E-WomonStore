@@ -1,50 +1,46 @@
 <div class="container d-flex justify-content-center">
     <div class="row">
-        <div class="col-lg-6">
-            <li> UserName:{{ userData.name}}</li>
-        </div>
-        <div class="col-lg-6">
-            <li>UserEmail:{{ userData.email }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li>UserMobileNo.:{{ userData.mobileNo }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> UserType:{{ userData.userType }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> UserAddresses:{{ userData.Addresses}}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> AccountStatus:{{ userData.accountStatus}}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> contactMessages:{{ userData.contactMessages }}</li>
-        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile No </th>
+                    <th scope="col" *ngIf="userType==2">supplierCompanyName</th>
+                    <th scope="col" *ngIf="userType==2">supplierCompanyFax</th>
+                    <th scope="col" *ngIf="userType==2">supplierCompanyURL</th>
+                    <th scope="col" *ngIf="userType==3">customerCreditCard</th>
+                    <th scope="col" *ngIf="userType==3">customerExpMonth </th>
+                    <th scope="col" *ngIf="userType==3">customerExpYr </th>
+
+                    <th scope="col" *ngIf="userType==3">process to order </th>
+
+                    <th scope="col">User Profile Image</th>
 
 
-        <div class="col-lg-6">
-            <li> customerCreditCard:{{ userData.customerCreditCard }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> customerExpMonth:{{ userData.customerExpMonth }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> customerExpYr:{{ userData.customerExpYr }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li>proccess Order:{{userData.proccessedOrder}}</li>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Personal Data</th>
+                    <td>{{ userData.name }}</td>
+                    <td>{{ userData.email }}</td>
+                    <td>{{ userData.mobileNo }}</td>
+                    <td *ngIf="userType==2">{{ userData.supplierCompanyName}}</td>
+                    <td *ngIf="userType==2">{{ userData.supplierCompanyFax}}</td>
+                    <td *ngIf="userType==2">{{ userData.supplierCompanyURL}}</td>
+                    <td *ngIf="userType==3">{{ userData.customerCreditCard}}</td>
+                    <td *ngIf="userType==3">{{ userData.customerExpMonth}}</td>
+                    <td *ngIf="userType==3">{{ userData.customerExpYr}}</td>
 
-        </div>
-        <div class="col-lg-6">
-            <li> supplierCompanyName:{{ userData.supplierCompanyName }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> supplierCompanyFax:{{ userData.supplierCompanyFax }}</li>
-        </div>
-        <div class="col-lg-6">
-            <li> supplierCompanyURL:{{ userData.supplierCompanyURL}}</li>
-        </div>
+
+                    <td *ngIf="userType==3">{{ userData.proccessedOrder}}</td>
+                    <td><img [src]="userData.ImageProfile"></td>
+
+
+            </tbody>
+        </table>
 
 
     </div>

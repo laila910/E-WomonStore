@@ -23,8 +23,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of myUsers">
-                    <th scope="row ">{{ user._id }}</th>
+                <tr *ngFor="let user of myUsers;let i =index">
+                    <th scope="row ">{{ i+1}}</th>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
                     <td>{{ user.mobileNo }}</td>
@@ -43,8 +43,8 @@
 
 
                     <td class="space-between">
-                        <a class="btn btn-danger" (click)="submitOrder(user._id)">SubmitOrder</a>
-                        <a class="btn btn-primary" (click)="showUser(user._id)">show user</a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="submitOrder(user._id)">SubmitOrder</a>
+                        <a class="btn btn-danger mx-2 my-2" (click)="showUser(user._id,user.userType)">show user</a>
                     </td>
                 </tr>
 
@@ -65,22 +65,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let product of myProducts">
-                    <th>{{ product._id }}</th>
+                <tr *ngFor="let product of myProducts; let i =index">
+                    <th>{{ i+1 }}</th>
                     <td>{{ product.name }}</td>
                     <td>{{ product.productPrice }}</td>
                     <td>
                         <img [src]="product.productImage">
                     </td>
                     <td>
-                        <a class="btn btn-danger" (click)="addSize(product._id)">Add Sizes </a>
-                        <a class="btn btn-danger" (click)="addCat(product._id)">Add Category </a>
-                        <a class="btn btn-danger" (click)="addBrand(product._id)">Add Brand </a>
-                        <a class="btn btn-danger" (click)="addColors(product._id)">Add Colors</a>
-                        <a class="btn btn-danger" (click)="addPImage(product._id)">Add Product Image </a>
-                        <a class="btn btn-primary" (click)="showProduct(product._id)">show product</a>
-                        <a class="btn btn-primary" (click)="editProduct(product._id)">edit product</a>
-                        <a class="btn btn-primary" (click)="deleteProduct(product._id)">delete product</a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="addSize(product._id)">Add Sizes </a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="addCat(product._id)">Add Category </a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="addBrand(product._id)">Add Brand </a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="addColors(product._id)">Add Colors</a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="addPImage(product._id)">Add Product Image </a>
+                        <a class="btn btn-warning mx-2 my-2" (click)="showProduct(product._id)">show product</a>
+                        <a class="btn btn-danger mx-2 my-2" (click)="editProduct(product._id)">edit product</a>
+                        <a class="btn btn-danger mx-2 my-2" (click)="deleteProduct(product._id,i)">delete product</a>
                     </td>
                 </tr>
 

@@ -20,8 +20,12 @@ export class UserService {
   ]
 
   public isLoggedIn = localStorage.getItem("appToken") ? true : false
-  public navMenu = localStorage.getItem("appToken") ? this.myLoggedRoutes : this.myRoutes
 
+
+  public navMenu = localStorage.getItem("appToken") ? this.myLoggedRoutes : this.myRoutes
+  public admin = localStorage.getItem('admin') ? true : false
+  public supplier = localStorage.getItem('supplier') ? true : false
+  public customer = localStorage.getItem('customer') ? true : false
   commonUrl = "http://localhost:3000/"
   constructor(private _http: HttpClient) { }
 
@@ -34,8 +38,10 @@ export class UserService {
   addAddress(userData: any): Observable<any> {
     return this._http.post(`${this.commonUrl}user/addAddress`, userData)
   }
-  addProfileImage(userData: any): Observable<any> {
-    return this._http.post(`${this.commonUrl}user/addImage`, userData)
+  addProfileImage(file: any): Observable<any> {
+    const formData = new FormData()
+    formData.append('ImageProfile', file, file.name)
+    return this._http.post(`${this.commonUrl}user/addImage`, formData)
   }
   logout(): Observable<any> {
     return this._http.post(`${this.commonUrl}user/logOut`, null)
@@ -68,7 +74,7 @@ export class UserService {
   deactivate(): Observable<any> {
     return this._http.post(`${this.commonUrl}user/deactivate`, null)
   }
-  processOrder(): Observable<any> {
+  processOrder(id: any): Observable<any> {
     return this._http.post(`${this.commonUrl}user/processOrder`, null)
   }
   submitOrder(id: any): Observable<any> {

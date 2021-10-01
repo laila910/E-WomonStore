@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./searchbar.component.css']
 })
 export class SearchbarComponent implements OnInit {
-  // searchProduct: string = ""
+  // Key: string = ""
   constructor() { }
   // arrayOfProducts: [] = []
   ngOnInit(): void {
+
   }
   // result: any[] = this.arrayOfProducts
   // searchP() {

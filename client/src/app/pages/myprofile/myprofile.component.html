@@ -1,8 +1,60 @@
 <!-- My Account Start -->
-<div class="my-account">
-    <div class="container-fluid">
+<div class="my-profile">
+    <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Mobile No </th>
+                        <th scope="col" *ngIf="_userService.supplier">supplierCompanyName</th>
+                        <th scope="col" *ngIf="_userService.supplier">supplierCompanyFax</th>
+                        <th scope="col" *ngIf="_userService.supplier">supplierCompanyURL</th>
+                        <th scope="col" *ngIf="_userService.customer">customerCreditCard</th>
+                        <th scope="col" *ngIf="_userService.customer">customerExpMonth </th>
+                        <th scope="col" *ngIf="_userService.customer">customerExpYr </th>
+                        <th scope="col">User Profile Image</th>
+                        <th scope="col">Addresses</th>
+                        <th scope="col" *ngIf="_userService.customer||_userService.supplier">Contact Messages</th>
+
+                        <th scope="col">action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Personal Data</th>
+                        <td>{{ myData.name }}</td>
+                        <td>{{ myData.email }}</td>
+                        <td>{{ myData.mobileNo }}</td>
+                        <td *ngIf="_userService.supplier">{{ myData.supplierCompanyName}}</td>
+                        <td *ngIf="_userService.supplier">{{ myData.supplierCompanyFax}}</td>
+                        <td *ngIf="_userService.supplier">{{ myData.supplierCompanyURL}}</td>
+                        <td *ngIf="_userService.customer">{{ myData.customerCreditCard}}</td>
+                        <td *ngIf="_userService.customer">{{ myData.customerExpMonth}}</td>
+                        <td *ngIf="_userService.customer">{{ myData.customerExpYr}}</td>
+                        <td><img [src]="myData.ImageProfile"></td>
+                        <td *ngFor="let a of myData.Addresses,let i =index">
+                            <i>Address{{ i }}:-{{ a.addrType }}{{ a.addrDetails }}</i>
+                        </td>
+                        <td *ngIf="_userService.customer||_userService.supplier">
+                            <p *ngFor="let i of myData.contactMessages;let in =index">
+                                <i> Message{{ in }}:-{{ i.subject }}<br>{{ i.Message }}</i>
+                            </p>
+                        </td>
+
+                        <td>
+                            <button class="btn btn-warning mx-2 my-2" (click)="edit()">Edit</button>
+                            <button class="btn btn-success mx-2 my-2" (click)="addAddress()">Add Address</button>
+                            <button class="btn btn-success mx-2 my-2" (click)="addImage()">AddImage</button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <!-- <div class="col-md-3">
                 <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
                     <a class="nav-link btn" id="dashboard-nav" data-toggle="pill" href="#dashboard-tab" role="tab"><i class="fa fa-tachometer-alt"></i>Dashboard</a>
                     <a class="nav-link btn" id="orders-nav" data-toggle="pill" href="#orders-tab" role="tab"><i class="fa fa-shopping-bag"></i>Orders</a>
@@ -127,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

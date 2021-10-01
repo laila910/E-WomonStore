@@ -8,22 +8,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-image.component.css']
 })
 export class AddImageComponent implements OnInit {
-  userData = {
-    ImageProfile: ""
-  }
+  // userData = {
+  //   ImageProfile: ""
+  // }
+  file: any
   constructor(private _userService: UserService, private _router: Router) { }
 
   ngOnInit(): void {
   }
-  addProfileImage(data: any) {
-    this._userService.addProfileImage(this.userData).subscribe(
+  onChangeFile(event: any) {
+    this.file = event.target.files[0]
+    console.log(event.target.files)
+  }
+  addProfileImage() {
+    this._userService.addProfileImage(this.file).subscribe(
       data => {
         console.log(data)
-        this.userData = data
+
       },
       (e) => { console.log(e) },
       () => {
-        this._router.navigateByUrl(`profile`)
+        this._router.navigateByUrl(`user/profile`)
       }
     )
   }
