@@ -13,7 +13,9 @@ router.post('/addBrand/:id', auth, uploadbrandImage.single('brandImage'), produc
 router.get('/allProduct', productController.allProducts)
     //single product :) for all users 
 router.get('/allProduct/:id', productController.singleProduct)
-    //add sizes :)
+
+
+//add sizes :)
 router.post('/addSizes/:id', auth, productController.addSizes)
     //  edit product :)
 router.patch('/editProduct/:id', auth, productController.editProduct)

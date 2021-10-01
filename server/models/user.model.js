@@ -136,7 +136,7 @@ userSchema.virtual('myProducts', {
 userSchema.methods.toJSON = function() {
         const user = this.toObject()
         delete user.password
-        delete user.contactMessages
+
         delete user.submitOrder
         delete user.__v
         delete user.tokens

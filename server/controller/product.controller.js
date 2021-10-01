@@ -117,6 +117,7 @@ const singleProduct = async(req, res) => {
         })
     }
 }
+
 const addSizes = async(req, res) => {
     if (req.user.userType == 2 && req.user.accountStatus == true) {
         try {
@@ -258,37 +259,37 @@ const addReview = async(req, res) => {
     }
 }
 const addToCard = async(req, res) => {
-    if (req.user.userType == 3 && req.user.accountStatus == true) {
-        try {
+    // if (req.user.userType == 3 && req.user.accountStatus == true) {
+    try {
 
-            product = await Product.findById(req.params.id)
-            let addtocardData = {}
-            addtocardData.productId = req.params.id
-            addtocardData.userId = req.user._id
-            addtocardData.quantity = req.body.quantity
-            addtocardData.price = parseInt(product.productPrice, 10)
-                // totalPrice = addtocardData.quantity * addtocardData.price
-                // addtocardData.totalPrice = parseInt(totalPrice, 10)
-
-
-            product.addTocard.push(addtocardData)
-            await product.save()
+        product = await Product.findById(req.params.id)
+        let addtocardData = {}
+        addtocardData.productId = req.params.id
+        addtocardData.userId = req.user._id
+        addtocardData.quantity = req.body.quantity
+        addtocardData.price = parseInt(product.productPrice, 10)
+            // totalPrice = addtocardData.quantity * addtocardData.price
+            // addtocardData.totalPrice = parseInt(totalPrice, 10)
 
 
-            res.status(200).send({
-                apiStatus: "true",
-                data: product.addTocard,
-                message: " added to card successfuly "
-            })
-        } catch (e) {
-            res.status(500).send({
-                apiStatus: "false",
-                data: e.message,
-                message: "can not add to card,Error :("
-            })
+        product.addTocard.push(addtocardData)
+        await product.save()
 
-        }
+
+        res.status(200).send({
+            apiStatus: "true",
+            data: product.addTocard,
+            message: " added to card successfuly "
+        })
+    } catch (e) {
+        res.status(500).send({
+            apiStatus: "false",
+            data: e.message,
+            message: "can not add to card,Error :("
+        })
+
     }
+    // }
 
 }
 const deleteProduct = async(req, res) => {

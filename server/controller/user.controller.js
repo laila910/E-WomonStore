@@ -129,15 +129,15 @@ const editProfile = async(req, res) => {
 
 
 
-        avalUpdatates = ["name", "email", "password", "mobileNo", "supplierCompanyName",
-            "supplierCompanyURL",
-            "supplierCompanyFax", "customerCreditCard", "customerCreditCardTypeId",
-            "customerExpMonth",
-            "customerExpYr", "customerCVC"
-        ]
-        requested = Object.keys(req.body)
-        isValid = requested.every(r => avalUpdatates.includes(r))
-        if (!isValid) res.send('updates unavaliable')
+        // avalUpdatates = ["name", "email", "mobileNo", "supplierCompanyName",
+        //     "supplierCompanyURL",
+        //     "supplierCompanyFax", "customerCreditCard",
+        //     "customerExpMonth",
+        //     "customerExpYr"
+        // ]
+        // requested = Object.keys(req.body)
+        // isValid = requested.every(r => avalUpdatates.includes(r))
+        // if (!isValid) res.send('updates unavaliable')
         try {
             const updatedData = await User.findByIdAndUpdate(req.user._id, req.body, { runValidators: true })
             if (!updatedData) res.send('User not found')
@@ -204,13 +204,14 @@ const allUsers = async(req, res) => {
     }
 }
 
-const singleUser = async(req, res) => {
+singleUser = async(req, res) => {
     if (req.user.userType != 3 && req.user.accountStatus == true) {
 
         try {
 
             singleUser = await User.findById(req.params.id)
             if (!singleUser) req.send('user Not Found')
+
 
             res.status(200).send({
                 apiStatus: true,

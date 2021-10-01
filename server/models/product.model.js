@@ -158,8 +158,7 @@ productSchema.methods.toJSON = function() {
     const product = this.toObject()
     delete product.userId
 
-    delete product.addTocard
-    delete product.isFeatured
+
     delete product.__v
     return product
 
