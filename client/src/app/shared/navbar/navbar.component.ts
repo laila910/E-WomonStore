@@ -23,30 +23,30 @@ export class NavbarComponent implements OnInit {
     { path: "product/allProduct", key: "products", isAuth: true },
     { path: "showcard", key: "card", isAuth: true },
     { path: "user/profile", key: "account", isAuth: true },
-    { path: "user/sendMessage", key: "contact us", isAuth: true },
+    { path: "user/sendMessage", key: "contact us", isAuth: true }
     // { path: "user/allUsers", key: "Admin-dashboard", isAuth: true, admin: true },
     // { path: "supplier", key: "supplier-dashboard", isAuth: true, supplier: true },
-    { path: "user/logOut", key: "logout", isAuth: true }
+    // { path: "user/logOut", key: "logout", isAuth: true }
   ]
   ngOnInit(): void {
   }
-  // logOut() {
-  //   this._userService.logout().subscribe(
-  //     data => {
-  //       console.log(data)
+  logOut() {
+    this._userService.logout().subscribe(
+      data => {
+        console.log(data)
 
-  //     },
-  //     (e) => { console.log(e) },
-  //     () => {
+      },
+      (e) => { console.log(e) },
+      () => {
 
-  //       // this._userService.isLoggedIn = false
+        // this._userService.isLoggedIn = false
 
-  //       this._userService.navMenu = this._userService.myRoutes
+        this._userService.navMenu = this._userService.myRoutes
 
-  //       this._router.navigateByUrl('user/login')
-  //       localStorage.clear()
+        this._router.navigateByUrl('user/login')
+        localStorage.clear()
 
-  //     })
+      })
 
+  }
 }
-

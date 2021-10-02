@@ -14,10 +14,10 @@ export class UserService {
     { path: "product/allProduct", key: "products", isAuth: true },
     { path: "showcard", key: "cart", isAuth: true },
     { path: "user/profile", key: "account", isAuth: true },
-    { path: "user/sendMessage", key: "contact us", isAuth: true },
+    { path: "user/sendMessage", key: "contact us", isAuth: true }
     // { path: "user/allUsers", key: "Admin-dashboard", isAuth: true },
     // { path: "supplier", key: "supplier-dashboard", isAuth: true },
-    { path: `user/logOut`, key: "Logout", isAuth: true }
+    // { path: `user/logOut`, key: "Logout", isAuth: true }
   ]
 
   public isLoggedIn = localStorage.getItem("appToken") ? true : false

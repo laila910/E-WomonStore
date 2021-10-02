@@ -15,21 +15,24 @@ export class LogoutComponent implements OnInit {
 
 
 
-    this._userService.logout().subscribe(
-      data => {
-        console.log(data)
-
-        localStorage.clear()
-      },
-      (e) => { console.log(e) },
-      () => {
-        this._userService.navMenu = this._userService.myRoutes
-        localStorage.clear()
-        this._router.navigateByUrl('user/login')
-      })
+    // this.logout()
 
   }
+  // logout() {
+  //   this._userService.logout().subscribe(
+  //     data => {
 
+
+
+  //     },
+  //     (e) => { console.log(e) },
+  //     () => {
+  //       localStorage.removeItem(`appToken`)
+  //       this._userService.navMenu = this._userService.myRoutes
+  //       // localStorage.clear()
+  //       this._router.navigateByUrl('user/login')
+  //     })
+  // }
 }
 
 
