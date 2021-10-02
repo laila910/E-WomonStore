@@ -7,7 +7,7 @@
 ![product Page](https://github.com/laila910/E-WomonStore/blob/master/img/products.png?row=true)
 ## when the customer add any product to his card or click on buy now button this page will be shown to him directly
 ![Add To Card page](https://github.com/laila910/E-WomonStore/blob/master/img/addtocard.png?row=true)
-## when the customer click on the search button on any project that will redirect him to the product details page
+## when the customer click on the search button on any product that will redirect him to the product details page
 ![Product Details](https://github.com/laila910/E-WomonStore/blob/master/img/productdetails.png?row=true)
 ## customer account Example
 ![customer Account](https://github.com/laila910/E-WomonStore/blob/master/img/customeraccount.png?row=true)
@@ -19,7 +19,7 @@
 ![supplier Account](https://github.com/laila910/E-WomonStore/blob/master/img/supplieraccount.png?row=true)
 ## supplier Dashboard
 ![supplier Dashboard](https://github.com/laila910/E-WomonStore/blob/master/img/supplierDashboard.png?row=true)
-## contact us page any supplier or any customer can send mesage to the admin and this message will be redirect to email to the admin
+## contact us page any supplier or any customer can send message to the admin and this message will be redirect to email to the admin
 ![contact Us](https://github.com/laila910/E-WomonStore/blob/master/img/contactuspage.png?row=true)
 ## login page
 ![login page](https://github.com/laila910/E-WomonStore/blob/master/img/loginpage.png?row=true)
@@ -28,7 +28,7 @@
 ## register page when the user select usertype 2 as supplier
 ![register supplier page](https://github.com/laila910/E-WomonStore/blob/master/img/registerpageforsupplier.png?row=true)
 ## register page when the user select usertype 3 as customer 
-![register customer page](https://github.com/laila910/E-WomonStore/blob/master/img/registerpageforsupplier.png?row=true)
+![register customer page](https://github.com/laila910/E-WomonStore/blob/master/img/registerpageforcustomer.png?row=true)
 ## This card page that is shown to the customer only when he want to check the contents of his card
 ![Card Page](https://github.com/laila910/E-WomonStore/blob/master/img/cardpage.png?row=true)
 ### notes
