@@ -26,7 +26,8 @@ router.post('/addPImages/:id', auth, uploadProductImages.single('productImage'),
     //add reviews by customer :) 
 
 router.post('/addReview/:id', auth, productController.addReview)
-    //add To card BY customer :) 
+
+//add To card BY customer :) 
 router.post('/addedTocard/:id', auth, productController.addToCard)
     //delete product by supplier  :)
 router.delete('/allProduct/:id', auth, productController.deleteProduct)
