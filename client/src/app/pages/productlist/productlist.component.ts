@@ -33,11 +33,12 @@ export class ProductlistComponent implements OnInit {
       if (this.cat) {
         this.myProducts = data.data
 
-        this.Data = this.myProducts.filter(d => {
+        this.Data = this.myProducts.find(d => {
 
-          return d.categories.catName == this.cat
+          return this.cat == d.categories.catName
         })
         this.myProducts = this.Data
+        console.log(this.myProducts)
 
       } else if (!this.cat) {
         this.myProducts = data.data
