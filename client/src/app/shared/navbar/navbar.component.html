@@ -47,7 +47,7 @@
                             <li><a class="dropdown-item" [routerLink]="myRoutes[8].path" *ngIf="myRoutes[8].isAuth">{{ myRoutes[8].key }}</a></li>
                         </ul>
                     </div> -->
-                <a (click)="logOut()" class="nav-item nav-link">LogOut</a>
+                <a (click)="logOut()" class="nav-item nav-link" *ngIf="_userService.supplier||_userService.customer||_userService.admin">LogOut</a>
             </div>
             <!-- </div> -->
         </nav>
