@@ -13,25 +13,24 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+
     this._userService.logout().subscribe(
       data => {
-        // localStorage.removeItem(`appToken`)
-        this._userService.navMenu = this._userService.myRoutes
+        console.log(data)
 
-
+        localStorage.clear()
       },
       (e) => { console.log(e) },
       () => {
-        // localStorage.clear()
-        this._userService.isLoggedIn = false
-
-
+        this._userService.navMenu = this._userService.myRoutes
+        localStorage.clear()
         this._router.navigateByUrl('user/login')
-
-
       })
 
   }
+
 }
+
 
 

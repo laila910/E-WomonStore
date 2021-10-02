@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem(`appToken`, `Bearer ${data.data.token}`)
 
+
       },
       () => { },
       () => {

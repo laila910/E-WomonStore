@@ -9,6 +9,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class MyprofileComponent implements OnInit {
   myData = {
+    _id: "",
     name: "",
     email: "",
     mobileNo: "",
@@ -27,6 +28,7 @@ export class MyprofileComponent implements OnInit {
   constructor(public _userService: UserService, private _router: Router) { }
 
   ngOnInit(): void {
+
     this.getMe()
   }
   getMe() {
@@ -34,6 +36,7 @@ export class MyprofileComponent implements OnInit {
       data => {
         console.log(data.data)
         this.myData = data.data
+        localStorage.setItem(`userId`, data.data._id)
         if (data.data.userType == 1) {
           localStorage.removeItem(`supplier`)
           localStorage.removeItem(`customer`)
@@ -64,25 +67,24 @@ export class MyprofileComponent implements OnInit {
   addImage() {
     this._router.navigateByUrl(`user/addImage`)
   }
-  logOut() {
-    this._userService.logout().subscribe(
-      data => {
-        console.log(data)
 
-        localStorage.clear
-      },
-      (e) => { console.log(e) },
-      () => {
-        this._userService.navMenu = this._userService.myRoutes
-        localStorage.clear
-        this._router.navigateByUrl('user/login')
-      })
-
-  }
   admin() {
     this._router.navigateByUrl(`user/allUsers`)
   }
   supplier() {
     this._router.navigateByUrl(`supplier`)
+  }
+  deactivate() {
+    this._userService.deactivate().subscribe(
+      data => { },
+      (e) => { console.log(e) },
+      () => {
+
+        this._router.navigateByUrl(`user/register`)
+      }
+    )
+  }
+  showcard(id: any) {
+    this._router.navigate([`showcard`], { queryParams: { userId: id } })
   }
 }

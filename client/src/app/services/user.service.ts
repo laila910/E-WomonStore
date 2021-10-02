@@ -12,7 +12,7 @@ export class UserService {
   public myLoggedRoutes = [
     { path: "", key: "Home", isAuth: true },
     { path: "product/allProduct", key: "products", isAuth: true },
-    { path: "product/addedTocard", key: "cart", isAuth: true },
+    { path: "showcard", key: "cart", isAuth: true },
     { path: "user/profile", key: "account", isAuth: true },
     { path: "user/sendMessage", key: "contact us", isAuth: true },
     // { path: "user/allUsers", key: "Admin-dashboard", isAuth: true },
@@ -75,7 +75,7 @@ export class UserService {
   deactivate(): Observable<any> {
     return this._http.post(`${this.commonUrl}user/deactivate`, null)
   }
-  processOrder(id: any): Observable<any> {
+  processOrder(): Observable<any> {
     return this._http.post(`${this.commonUrl}user/processOrder`, null)
   }
   submitOrder(id: any): Observable<any> {

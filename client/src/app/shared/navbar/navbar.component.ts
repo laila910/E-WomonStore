@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
   myLoggedRoutes = [
     { path: "", key: "Home", isAuth: true },
     { path: "product/allProduct", key: "products", isAuth: true },
-    { path: "product/addedTocard", key: "cart", isAuth: true },
+    { path: "showcard", key: "card", isAuth: true },
     { path: "user/profile", key: "account", isAuth: true },
     { path: "user/sendMessage", key: "contact us", isAuth: true },
     // { path: "user/allUsers", key: "Admin-dashboard", isAuth: true, admin: true },

@@ -13,7 +13,7 @@ export class ProductlistComponent implements OnInit {
   constructor(private _data: ProductService, private _route: ActivatedRoute, private _router: Router) { }
   // name = this._route.snapshot.params.cat;
   cat: string = ""
-
+  // catName: any = ""
   //name 1 to 6 ["bag","watches", "eyewear", "clothing", "accessories","footwear"]
   ngOnInit(): void {
 
@@ -38,13 +38,18 @@ export class ProductlistComponent implements OnInit {
           return this.cat == d.categories.catName
         })
         this.myProducts = this.Data
-        console.log(this.myProducts)
+        console.log(this.Data)
 
       } else if (!this.cat) {
         this.myProducts = data.data
+        console.log(this.myProducts)
       }
 
-    })
+    },
+      (e) => { console.log(e) },
+      () => {
+        console.log(2)
+      })
   }
   details(id: any) {
     this._router.navigateByUrl(`product/allProduct/${id}`)

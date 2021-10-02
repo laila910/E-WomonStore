@@ -58,8 +58,8 @@ export class AddtocardComponent implements OnInit {
       productImage: ""
     }
   }
-  processOrder(id: any) {
-    this._user.processOrder(this.id).subscribe(
+  processOrder() {
+    this._user.processOrder().subscribe(
       data => { console.log(data) },
       (e) => { console.log(e) },
       () => { console.log(2) }

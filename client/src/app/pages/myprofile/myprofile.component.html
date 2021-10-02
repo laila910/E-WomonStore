@@ -48,9 +48,11 @@
                         <td>
                             <button class="btn btn-warning mx-2 my-2" *ngIf="_userService.admin" (click)="admin()">Admin Dashboard</button>
                             <button class="btn btn-warning mx-2 my-2" *ngIf="_userService.supplier" (click)="supplier()">supplier Dashboard</button>
+                            <button class="btn btn-warning mx-2 my-2 " *ngIf="_userService.customer" (click)="showcard(myData._id)">show card</button>
                             <button class="btn btn-warning mx-2 my-2" (click)="edit()">Edit</button>
                             <button class="btn btn-success mx-2 my-2" (click)="addAddress()">Add Address</button>
-                            <button class="btn btn-success mx-2 my-2" (click)="addImage()">AddImage</button></td>
+                            <button class="btn btn-success mx-2 my-2" (click)="addImage()">AddImage</button>
+                            <button class="btn btn-danger mx-2 my-2" (click)="deactivate()">Deactivate account</button></td>
                     </tr>
 
                 </tbody>

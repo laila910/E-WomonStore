@@ -27,6 +27,7 @@ import { AddReviewComponent } from './pages/add-review/add-review.component';
 import { IsLoggedGuard } from './guards/is-logged.guard';
 import { IsnotloggedGuard } from './guards/isnotlogged.guard';
 import { Err404Component } from './pages/err404/err404.component';
+import { ShowcardComponent } from './pages/showcard/showcard.component';
 
 
 const routes: Routes = [
@@ -67,9 +68,9 @@ const routes: Routes = [
 
     ]
   },
+  { path: "showcard", component: ShowcardComponent, canActivate: [IsnotloggedGuard] },
+  { path: "supplier", component: SupplierComponent, canActivate: [IsnotloggedGuard] }
 
-  { path: "supplier", component: SupplierComponent, canActivate: [IsnotloggedGuard] },
-  { path: "**", component: Err404Component }
 
 
 ];

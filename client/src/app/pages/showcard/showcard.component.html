@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <button class="btn btn-warning " (click)="processOrder()">processOrder</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ProductId</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of ownCard,let in =index">
+                    <th scope="row">{{in+1 }}</th>
+                    <td>{{ ownCard[in].productId }}</td>
+                    <td>{{ ownCard[in].quantity }}</td>
+                    <td>{{ ownCard[in].price }}</td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
