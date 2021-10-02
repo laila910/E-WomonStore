@@ -35,3 +35,6 @@
 any user select any type of userType cannot do anything in the website until the super admin activate his account status :)
 
 ## The website still Not finished to Now , Updates will be continue :)
+## if you want to test myProject the superadmin and only admin
+email  lailaibrahim978@gmail.com
+pass   1234567
