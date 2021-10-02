@@ -1,0 +1,559 @@
+{
+	"info": {
+		"_postman_id": "1b582a23-8fd7-4e20-9a87-4ddb135f74a3",
+		"name": "E-commerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/addAddress",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"addAddress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Image",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/addImage",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"addImage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/logOut",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"logOut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout from all devices",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/logOutAll",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"logOutAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/profile",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit profile",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/editProfile",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"editProfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "send Message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/sendMessage",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"sendMessage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/allUsers",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"allUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single user by Id of this user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTUzYzgxZmExMDBkNzg4Z...",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/user/allUser/6153c81fa100d788f61cee01",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"allUser",
+						"6153c81fa100d788f61cee01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activate status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/activateStatus/614e4ab31b05e1a7d832c14f",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"activateStatus",
+						"614e4ab31b05e1a7d832c14f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deactivate account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/deactivate",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"deactivate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "process order by customer only",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/processOrder",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"processOrder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "submit customer order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/submitCustomerOrder/614cda2c3ef05c8151c6a774",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"submitCustomerOrder",
+						"614cda2c3ef05c8151c6a774"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user by admin only",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/allUser/6153c81fa100d788f61cee01",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"allUser",
+						"6153c81fa100d788f61cee01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/addProduct",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"addProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add category to product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/addCat/614bbf01595e2233ed5568b3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"addCat",
+						"614bbf01595e2233ed5568b3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add brand to any product by customer only",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/addBrand/614a7aa56e20ddb9bb44d2b2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"addBrand",
+						"614a7aa56e20ddb9bb44d2b2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/allProduct",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"allProduct"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/allProduct/614ce0eb7182472e35e96baa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"allProduct",
+						"614ce0eb7182472e35e96baa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add sizes to the product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/addSizes/614e4e6b50d88cfa94230e4d",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"addSizes",
+						"614e4e6b50d88cfa94230e4d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "edit product by supplier",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/editProduct/615593bb491513d00d0df02c",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"editProduct",
+						"615593bb491513d00d0df02c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Colors to product by supplier",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/addColors/614e4e6b50d88cfa94230e4d",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"addColors",
+						"614e4e6b50d88cfa94230e4d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product Image by supplier",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/addPImages/614ce0eb7182472e35e96baa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"addPImages",
+						"614ce0eb7182472e35e96baa"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add Review on the product by customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/user/addReview/614e4e6b50d88cfa94230e4d",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"addReview",
+						"614e4e6b50d88cfa94230e4d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add product to the card by customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/addedTocard/614cf8268c395fc1d1d09dc7",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"addedTocard",
+						"614cf8268c395fc1d1d09dc7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/product/allProduct/614ce0eb7182472e35e96baa",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"product",
+						"allProduct",
+						"614ce0eb7182472e35e96baa"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
