@@ -37,15 +37,17 @@
                         <td *ngIf="_userService.customer">{{ myData.customerExpYr}}</td>
                         <td><img [src]="myData.ImageProfile"></td>
                         <td *ngFor="let a of myData.Addresses,let i =index">
-                            <i>Address{{ i }}:-{{ a.addrType }}{{ a.addrDetails }}</i>
+                            <span>Address{{ i }}:-{{ a.addrType }}{{ a.addrDetails }}</span>
                         </td>
                         <td *ngIf="_userService.customer||_userService.supplier">
                             <p *ngFor="let i of myData.contactMessages;let in =index">
-                                <i> Message{{ in }}:-{{ i.subject }}<br>{{ i.Message }}</i>
+                                <span> Message{{ in }}:-{{ i.subject }}<br>{{ i.Message }}</span>
                             </p>
                         </td>
 
                         <td>
+                            <button class="btn btn-warning mx-2 my-2" *ngIf="_userService.admin" (click)="admin()">Admin Dashboard</button>
+                            <button class="btn btn-warning mx-2 my-2" *ngIf="_userService.supplier" (click)="supplier()">supplier Dashboard</button>
                             <button class="btn btn-warning mx-2 my-2" (click)="edit()">Edit</button>
                             <button class="btn btn-success mx-2 my-2" (click)="addAddress()">Add Address</button>
                             <button class="btn btn-success mx-2 my-2" (click)="addImage()">AddImage</button></td>

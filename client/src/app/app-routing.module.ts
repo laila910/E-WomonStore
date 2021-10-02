@@ -24,6 +24,9 @@ import { EditProductComponent } from './pages/edit-product/edit-product.componen
 import { AddColorsComponent } from './pages/add-colors/add-colors.component';
 import { AddPImagesComponent } from './pages/add-pimages/add-pimages.component';
 import { AddReviewComponent } from './pages/add-review/add-review.component';
+import { IsLoggedGuard } from './guards/is-logged.guard';
+import { IsnotloggedGuard } from './guards/isnotlogged.guard';
+import { Err404Component } from './pages/err404/err404.component';
 
 
 const routes: Routes = [
@@ -31,40 +34,42 @@ const routes: Routes = [
   {
     path: "user", children: [
 
-      { path: "register", component: RegisterComponent },
-      { path: "login", component: LoginComponent },
+      { path: "register", component: RegisterComponent, canActivate: [IsLoggedGuard] },
+      { path: "login", component: LoginComponent, canActivate: [IsLoggedGuard] },
 
-      { path: "addAddress", component: AddAddressComponent },
-      { path: "addImage", component: AddImageComponent },
+      { path: "addAddress", component: AddAddressComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addImage", component: AddImageComponent, canActivate: [IsnotloggedGuard] },
 
-      { path: "profile", component: MyprofileComponent },
+      { path: "profile", component: MyprofileComponent, canActivate: [IsnotloggedGuard] },
 
-      { path: "editProfile", component: EditProfileComponent },
+      { path: "editProfile", component: EditProfileComponent, canActivate: [IsnotloggedGuard] },
 
-      { path: "sendMessage", component: ContactComponent },
-      { path: "allUsers", component: AdminComponent },
-      { path: "allUsers/:id", component: SingleUserComponent }
+      { path: "sendMessage", component: ContactComponent, canActivate: [IsnotloggedGuard] },
+      { path: "allUsers", component: AdminComponent, canActivate: [IsnotloggedGuard] },
+      { path: "allUsers/:id", component: SingleUserComponent, canActivate: [IsnotloggedGuard] },
+      { path: "logOut", component: LoginComponent, canActivate: [IsnotloggedGuard] }
     ]
   },
   //ha3mlha b activateRoute ba3den mn el kashkol
   {
     path: "product", children: [
-      { path: "addProduct", component: AddProductComponent },
-      { path: "addCat/:id", component: AddCatComponent },
-      { path: "addBrand/:id", component: AddBrandComponent },
-      { path: "allProduct", component: ProductlistComponent },
-      { path: "allProduct/:id", component: ProductdetailsComponent },
-      { path: "addSizes/:id", component: AddSizesComponent },
-      { path: "editProduct/:id", component: EditProductComponent },
-      { path: "addColors/:id", component: AddColorsComponent },
-      { path: "addPImages/:id", component: AddPImagesComponent },
-      { path: "addReview/:id", component: AddReviewComponent },
-      { path: "addedTocard/:id", component: AddtocardComponent }
+      { path: "addProduct", component: AddProductComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addCat/:id", component: AddCatComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addBrand/:id", component: AddBrandComponent, canActivate: [IsnotloggedGuard] },
+      { path: "allProduct", component: ProductlistComponent, canActivate: [IsnotloggedGuard] },
+      { path: "allProduct/:id", component: ProductdetailsComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addSizes/:id", component: AddSizesComponent, canActivate: [IsnotloggedGuard] },
+      { path: "editProduct/:id", component: EditProductComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addColors/:id", component: AddColorsComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addPImages/:id", component: AddPImagesComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addReview/:id", component: AddReviewComponent, canActivate: [IsnotloggedGuard] },
+      { path: "addedTocard/:id", component: AddtocardComponent, canActivate: [IsnotloggedGuard] }
 
     ]
   },
 
-  { path: "supplier", component: SupplierComponent }
+  { path: "supplier", component: SupplierComponent, canActivate: [IsnotloggedGuard] },
+  { path: "**", component: Err404Component }
 
 
 ];

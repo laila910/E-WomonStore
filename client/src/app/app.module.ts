@@ -13,7 +13,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MyprofileComponent } from './pages/myprofile/myprofile.component';
-import { CategoryComponent } from './pages/category/category.component';
+
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { SearchbarComponent } from './shared/searchbar/searchbar.component';
@@ -38,6 +38,8 @@ import { EditProductComponent } from './pages/edit-product/edit-product.componen
 import { AddColorsComponent } from './pages/add-colors/add-colors.component';
 import { AddPImagesComponent } from './pages/add-pimages/add-pimages.component';
 import { AddReviewComponent } from './pages/add-review/add-review.component';
+import { Err404Component } from './pages/err404/err404.component';
+import { LogoutComponent } from './pages/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,7 @@ import { AddReviewComponent } from './pages/add-review/add-review.component';
     RegisterComponent,
     LoginComponent,
     MyprofileComponent,
-    CategoryComponent,
+
     NavbarComponent,
     FooterComponent,
     SearchbarComponent,
@@ -73,7 +75,9 @@ import { AddReviewComponent } from './pages/add-review/add-review.component';
     EditProductComponent,
     AddColorsComponent,
     AddPImagesComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    Err404Component,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

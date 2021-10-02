@@ -10,9 +10,12 @@ import { ProductService } from '../../services/product.service';
 export class SupplierComponent implements OnInit {
   myUsers: any[] = []
   myProducts: any[] = []
-  constructor(private _data: UserService, private _product: ProductService, private _router: Router) { }
+  constructor(public _data: UserService, private _product: ProductService, private _router: Router) { }
 
   ngOnInit(): void {
+    if (!this._data.supplier) {
+      this._router.navigateByUrl(``)
+    }
     this._product.getAllProduct().subscribe(product => {
       console.log(product)
       this.myProducts = product.data

@@ -12,6 +12,9 @@ export class AdminComponent implements OnInit {
   constructor(private _data: UserService, private _router: Router) { }
 
   ngOnInit(): void {
+    if (!this._data.admin) {
+      this._router.navigateByUrl(``)
+    }
     this._data.getAllUsers().subscribe(data => {
       console.log(data)
       this.myUsers = data.data

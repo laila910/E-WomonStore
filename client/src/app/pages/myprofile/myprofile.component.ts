@@ -79,4 +79,10 @@ export class MyprofileComponent implements OnInit {
       })
 
   }
+  admin() {
+    this._router.navigateByUrl(`user/allUsers`)
+  }
+  supplier() {
+    this._router.navigateByUrl(`supplier`)
+  }
 }
