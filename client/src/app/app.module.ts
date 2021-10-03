@@ -39,7 +39,7 @@ import { AddColorsComponent } from './pages/add-colors/add-colors.component';
 import { AddPImagesComponent } from './pages/add-pimages/add-pimages.component';
 import { AddReviewComponent } from './pages/add-review/add-review.component';
 import { Err404Component } from './pages/err404/err404.component';
-import { LogoutComponent } from './pages/logout/logout.component';
+
 import { ShowcardComponent } from './pages/showcard/showcard.component';
 
 @NgModule({
@@ -78,7 +78,7 @@ import { ShowcardComponent } from './pages/showcard/showcard.component';
     AddPImagesComponent,
     AddReviewComponent,
     Err404Component,
-    LogoutComponent,
+
     ShowcardComponent
   ],
   imports: [
