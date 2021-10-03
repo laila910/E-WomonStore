@@ -47,8 +47,8 @@ const routes: Routes = [
 
       { path: "sendMessage", component: ContactComponent, canActivate: [IsnotloggedGuard] },
       { path: "allUsers", component: AdminComponent, canActivate: [IsnotloggedGuard] },
-      { path: "allUsers/:id", component: SingleUserComponent, canActivate: [IsnotloggedGuard] },
-      { path: "logOut", component: LoginComponent, canActivate: [IsnotloggedGuard] }
+      { path: "allUsers/:id", component: SingleUserComponent, canActivate: [IsnotloggedGuard] }
+
     ]
   },
   //ha3mlha b activateRoute ba3den mn el kashkol
