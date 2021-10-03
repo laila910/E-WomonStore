@@ -31,7 +31,7 @@ export class ProductlistComponent implements OnInit {
     this._data.getAllProduct().subscribe(data => {
 
       if (this.cat) {
-        this.myProducts = data.data
+        this.myProducts = data
 
         this.Data = this.myProducts.find(d => {
 

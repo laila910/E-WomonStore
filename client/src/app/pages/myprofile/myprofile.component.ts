@@ -53,7 +53,6 @@ export class MyprofileComponent implements OnInit {
 
         console.log(data.data.userType)
 
-
       },
       (e) => { this._router.navigate(['user/login']) },
       () => { console.log(2) })
