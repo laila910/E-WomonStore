@@ -33,19 +33,19 @@ export class NavbarComponent implements OnInit {
   logOut() {
     this._userService.logout().subscribe(
       data => {
-           localStorage.clear()
+        localStorage.clear()
 
 
       },
       (e) => { console.log(e) },
       () => {
 
-        // this._userService.isLoggedIn = false
+        this._userService.isLoggedIn = false
 
         this._userService.navMenu = this._userService.myRoutes
 
         this._router.navigateByUrl('user/login')
- 
+
       })
 
   }
